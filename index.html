@@ -11,7 +11,7 @@
   <meta property="og:description" content="Profesjonalne biuro nieruchomości w Łodzi z indywidualnym podejściem do każdego klienta.">
   <meta property="og:type" content="website">
 
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2'><path d='M3 22V8L12 2l9 6v14'/><line x1='9' y1='22' x2='9' y2='14'/><line x1='15' y1='22' x2='15' y2='14'/><rect x='9' y='14' width='6' height='8'/></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,7 @@
   <a href="#hero" class="logo" aria-label="MWW Mieszkanie – strona główna">MWW <strong>Mieszkanie</strong></a>
 
   <nav class="nav-links" id="navLinks" role="navigation" aria-label="Nawigacja główna">
+    <a href="oferty.html" class="nav-link">Oferty</a>
     <a href="#o-nas"     class="nav-link">O nas</a>
     <a href="#oferta"    class="nav-link">Oferta</a>
     <a href="#deweloper" class="nav-link">Deweloperskie</a>
@@ -45,7 +46,7 @@
 
   <div class="nav-right">
     <a href="tel:+48515488951" class="btn btn-primary nav-cta">
-      <span class="nav-cta-icon" aria-hidden="true">📞</span>&nbsp;+48&nbsp;515&nbsp;488&nbsp;951
+      <svg class="nav-cta-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.09-1.08a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>&nbsp;+48&nbsp;515&nbsp;488&nbsp;951
     </a>
     <button class="hamburger" id="hamburger" aria-label="Otwórz menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span><span></span>
@@ -60,7 +61,7 @@
     <p class="hero-eyebrow">Łódź &amp; Województwo Łódzkie</p>
     <h1>
       <span class="hero-title-light">Nieruchomości w Łodzi</span><br>
-      <em class="hero-title-accent">na każdym etapie</em>
+      <span class="hero-title-accent">na każdym etapie</span>
     </h1>
     <p class="hero-subtitle">
       Sprzedaż, wynajem, skup i inwestycje deweloperskie.<br class="br-desktop">
@@ -72,8 +73,6 @@
     </div>
   </div>
 
-  <!-- Scan line overlay -->
-  <div class="hero-scan" aria-hidden="true"></div>
 
   <!-- Animated blueprint skyline -->
   <div class="skyline-wrap" aria-hidden="true">
@@ -83,8 +82,6 @@
           <path d="M 48 0 L 0 0 0 48" fill="none" stroke="rgba(80,160,255,0.05)" stroke-width="0.4"/>
         </pattern>
         <!-- Orbit animation paths (invisible guides) -->
-        <path id="horbit" d="M 749,318 A 196,24 0 0 1 357,318 A 196,24 0 0 1 749,318"/>
-        <path id="vorbit" d="M 553,80 A 20,210 0 0 1 553,500 A 20,210 0 0 1 553,80"/>
       </defs>
 
       <!-- Blueprint grid background -->
@@ -114,10 +111,6 @@
 
       <!-- Ground line -->
       <line class="s-ground" x1="0" y1="500" x2="1440" y2="500"/>
-
-      <!-- ── ORBIT BACK HALVES (rendered before buildings so they appear "behind") ── -->
-      <path class="s-orbit-back" d="M 749,318 A 196,24 0 0 1 357,318"/>
-      <path class="s-orbit-v-back" d="M 553,80 A 20,210 0 0 0 553,500"/>
 
       <!-- ── BUILDINGS ── -->
 
@@ -411,22 +404,33 @@
         <rect class="s-win" x="1432" y="468" width="8" height="6"/>
       </g>
 
-      <!-- ── ORBIT FRONT HALVES (rendered after buildings so they appear "in front") ── -->
-      <path class="s-orbit-front" d="M 357,318 A 196,24 0 0 1 749,318"/>
-      <path class="s-orbit-v-front" d="M 553,80 A 20,210 0 0 1 553,500"/>
-
-      <!-- ── ORBIT DOTS ── -->
-      <circle class="s-orbit-dot" r="4.5">
-        <animateMotion dur="10s" repeatCount="indefinite">
-          <mpath href="#horbit"/>
-        </animateMotion>
-      </circle>
-
-      <circle class="s-orbit-dot-v" r="3">
-        <animateMotion dur="14s" repeatCount="indefinite">
-          <mpath href="#vorbit"/>
-        </animateMotion>
-      </circle>
+      <!-- ── TECHNICAL MEASUREMENT ANNOTATIONS ── -->
+      <!-- Small crosshair at B4 tower top -->
+      <g class="s-crosshair s-ch-small" style="animation-delay:3.8s">
+        <circle class="s-ch-circle" cx="287" cy="122" r="5"/>
+        <line class="s-ch" x1="287" y1="113" x2="287" y2="118"/>
+        <line class="s-ch" x1="287" y1="126" x2="287" y2="131"/>
+        <line class="s-ch" x1="278" y1="122" x2="283" y2="122"/>
+        <line class="s-ch" x1="291" y1="122" x2="296" y2="122"/>
+      </g>
+      <!-- Small crosshair at B10 tower top -->
+      <g class="s-crosshair s-ch-small" style="animation-delay:4.1s">
+        <circle class="s-ch-circle" cx="852" cy="136" r="5"/>
+        <line class="s-ch" x1="852" y1="127" x2="852" y2="132"/>
+        <line class="s-ch" x1="852" y1="140" x2="852" y2="145"/>
+        <line class="s-ch" x1="843" y1="136" x2="848" y2="136"/>
+        <line class="s-ch" x1="856" y1="136" x2="861" y2="136"/>
+      </g>
+      <!-- Small crosshair at B14 tower top -->
+      <g class="s-crosshair s-ch-small" style="animation-delay:4.3s">
+        <circle class="s-ch-circle" cx="1196" cy="144" r="5"/>
+        <line class="s-ch" x1="1196" y1="135" x2="1196" y2="140"/>
+        <line class="s-ch" x1="1196" y1="148" x2="1196" y2="153"/>
+        <line class="s-ch" x1="1187" y1="144" x2="1192" y2="144"/>
+        <line class="s-ch" x1="1200" y1="144" x2="1205" y2="144"/>
+      </g>
+      <!-- Horizontal dashed reference line at mid-height -->
+      <line class="s-ref-mid" x1="28" y1="380" x2="1432" y2="380"/>
 
       <!-- ── DIMENSION LINES for B7 central tower ── -->
       <g class="s-dim">
@@ -511,7 +515,7 @@
              style="background-image:url('https://images.unsplash.com/photo-1560185008-b033106af5c3?w=500&q=80')"
              role="img" aria-label="Łódź – panorama miasta"></div>
         <div class="about-award-badge" aria-label="Działamy w Łodzi i województwie łódzkim">
-          <span aria-hidden="true">🏠</span>
+          <span aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22V8L12 2l9 6v14"/><line x1="9" y1="22" x2="9" y2="14"/><line x1="15" y1="22" x2="15" y2="14"/><rect x="9" y="14" width="6" height="8"/></svg></span>
           <p>Łódź &amp; region</p>
         </div>
       </div>
@@ -528,28 +532,28 @@
       </p>
       <ul class="features-list" aria-label="Nasze przewagi">
         <li>
-          <span class="feature-icon" aria-hidden="true">✅</span>
+          <span class="feature-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
           <div>
             <strong>Pełen zakres usług</strong>
             <span>Wycena, sprzedaż, wynajem, skup — wszystko w jednym biurze</span>
           </div>
         </li>
         <li>
-          <span class="feature-icon" aria-hidden="true">🤝</span>
+          <span class="feature-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 11H9a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H7m10-8V7a2 2 0 0 0-2-2h-1M7 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/></svg></span>
           <div>
             <strong>Współpraca na rynku</strong>
             <span>Pracujemy na wyłączność, ale otwarcie współpracujemy z innymi agentami</span>
           </div>
         </li>
         <li>
-          <span class="feature-icon" aria-hidden="true">⚖️</span>
+          <span class="feature-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 9l9-7 9 7"/><polyline points="3 9 3 17 9 21 15 21 21 17 21 9"/></svg></span>
           <div>
             <strong>Wiedza prawna i branżowa</strong>
             <span>Magister prawa UŁ, licencja pośrednika i zarządcy nieruchomości</span>
           </div>
         </li>
         <li>
-          <span class="feature-icon" aria-hidden="true">💡</span>
+          <span class="feature-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg></span>
           <div>
             <strong>Nieruchomości bez granic</strong>
             <span>Kamienice, biurowce, zabytkowe obiekty — żadne wyzwanie nas nie zatrzyma</span>
@@ -571,32 +575,32 @@
     </div>
     <div class="dist-grid">
       <div class="dist-card reveal">
-        <div class="dist-icon" aria-hidden="true">🔍</div>
+        <div class="dist-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
         <h3>Rzetelna wycena</h3>
         <p>Precyzyjna analiza wartości rynkowej oparta na aktualnych danych — bez zawyżania, bez zaniżania.</p>
       </div>
       <div class="dist-card reveal">
-        <div class="dist-icon" aria-hidden="true">📋</div>
+        <div class="dist-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></div>
         <h3>Od A do Z</h3>
         <p>Obsługujemy całość procesu: od przygotowania oferty, przez prezentacje, aż po podpisanie aktu notarialnego.</p>
       </div>
       <div class="dist-card reveal">
-        <div class="dist-icon" aria-hidden="true">🌐</div>
+        <div class="dist-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <h3>Szeroka sieć</h3>
         <p>Dzięki współpracy z biurami i agentami w całym regionie Twoja oferta trafia do dużo większego grona kupujących.</p>
       </div>
       <div class="dist-card reveal">
-        <div class="dist-icon" aria-hidden="true">💼</div>
+        <div class="dist-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <h3>Wyłączność, która procentuje</h3>
         <p>Umowy na wyłączność oznaczają, że poświęcamy Twojej nieruchomości maksimum uwagi i zaangażowania.</p>
       </div>
       <div class="dist-card reveal">
-        <div class="dist-icon" aria-hidden="true">🏗️</div>
+        <div class="dist-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="1"/><line x1="12" y1="3" x2="12" y2="21"/><path d="M6 8h2m-2 4h2m8-4h2m-2 4h2"/></svg></div>
         <h3>Trudne przypadki? Proszę!</h3>
         <p>Nieruchomości z obciążeniami, skomplikowanym stanem prawnym czy wymagające rewitalizacji — to właśnie lubimy najbardziej.</p>
       </div>
       <div class="dist-card reveal">
-        <div class="dist-icon" aria-hidden="true">⚡</div>
+        <div class="dist-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
         <h3>Ekspresowa decyzja</h3>
         <p>Skup nieruchomości w 48 godzin — gotówka, brak zbędnych formalności, pewność transakcji.</p>
       </div>
@@ -626,10 +630,10 @@
           <h3 id="sale-heading">Sprzedaż</h3>
           <p>Skutecznie sprzedajemy każdy rodzaj nieruchomości — zawsze w najlepszej możliwej cenie i czasie.</p>
           <ul class="service-list" aria-label="Co sprzedajemy">
-            <li>🏢 Mieszkania</li>
-            <li>🏠 Domy</li>
-            <li>🌿 Działki</li>
-            <li>🏭 Nieruchomości komercyjne</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg> Mieszkania</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg> Domy</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 22"/><path d="M17 8C17 8 21 14 15 18C9 22 5 18 5 18"/></svg> Działki</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 22V12l6-4v4l6-4v4l6-4v10"/><line x1="2" y1="22" x2="22" y2="22"/></svg> Nieruchomości komercyjne</li>
           </ul>
           <a href="#kontakt" class="btn btn-primary btn-sm">Sprawdź ofertę →</a>
         </div>
@@ -646,11 +650,11 @@
           <h3 id="rental-heading">Wynajem</h3>
           <p>Krótko i długoterminowy wynajem mieszkań oraz szerokie spektrum powierzchni komercyjnych i magazynowych.</p>
           <ul class="service-list" aria-label="Co wynajmujemy">
-            <li>🛋️ Mieszkania (krótko- i długoterminowo)</li>
-            <li>🖥️ Biura i powierzchnie coworkingowe</li>
-            <li>🏪 Lokale usługowo-handlowe</li>
-            <li>🏗️ Hale i magazyny</li>
-            <li>🏰 Kamienice i biurowce</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg> Mieszkania (krótko- i długoterminowo)</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Biura i powierzchnie coworkingowe</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 9l1-6h16l1 6"/><path d="M3 9h18v11a1 1 0 01-1 1H4a1 1 0 01-1-1z"/><path d="M9 21v-6h6v6"/></svg> Lokale usługowo-handlowe</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 6l10-4 10 4v14H2z"/><rect x="8" y="14" width="8" height="6"/></svg> Hale i magazyny</li>
+            <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 22V6l9-4 9 4v16"/><line x1="9" y1="22" x2="9" y2="12"/><line x1="15" y1="22" x2="15" y2="12"/></svg> Kamienice i biurowce</li>
           </ul>
           <a href="#kontakt" class="btn btn-primary btn-sm">Sprawdź ofertę →</a>
         </div>
@@ -667,7 +671,7 @@
           <h3 id="skup-heading">Skup za gotówkę</h3>
           <p>Kiedy czas gra kluczową rolę — odkupimy Twoje mieszkanie, dom lub działkę za gotówkę, błyskawicznie i bez komplikacji.</p>
           <div class="skup-highlight" aria-label="Czas realizacji">
-            <span class="skup-time">⚡ 48h</span>
+            <span class="skup-time"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> 48h</span>
             <span>do sfinalizowania transakcji</span>
           </div>
           <a href="#kontakt" class="btn btn-primary btn-sm">Zapytaj o wycenę →</a>
@@ -710,13 +714,13 @@
           <div class="dev-badge">Kameralna</div>
         </div>
         <div class="dev-body">
-          <div class="dev-location"><span aria-hidden="true">📍</span> Polesie – Retkinia, Łódź</div>
+          <div class="dev-location"><span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> Polesie – Retkinia, Łódź</div>
           <h3 id="dev1-heading">Polesie – Retkinia</h3>
           <p>Zaledwie 13 mieszkań z przestronnymi tarasami, otoczone bujną zielenią w jednej z najbardziej pożądanych lokalizacji w Łodzi.</p>
           <div class="dev-features">
-            <span class="dev-feature">🌿 Otoczenie zieleni</span>
-            <span class="dev-feature">🏡 Tarasy</span>
-            <span class="dev-feature">🔑 13 mieszkań</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 8C8 10 5.9 16.17 3.82 22"/><path d="M17 8C17 8 21 14 15 18C9 22 5 18 5 18"/></svg> Otoczenie zieleni</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg> Tarasy</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zM11 11V7m4 4V7"/></svg> 13 mieszkań</span>
           </div>
           <a href="#kontakt" class="btn btn-primary btn-sm">Zapytaj o szczegóły →</a>
         </div>
@@ -729,13 +733,13 @@
           <div class="dev-badge">Klucze gotowe</div>
         </div>
         <div class="dev-body">
-          <div class="dev-location"><span aria-hidden="true">📍</span> Górniak, okolice Ogrodów Geyera, Łódź</div>
+          <div class="dev-location"><span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> Górniak, okolice Ogrodów Geyera, Łódź</div>
           <h3 id="dev2-heading">Górniak – Ożywiona kamienica</h3>
           <p>Pięknie zrewitalizowana kamienica w sąsiedztwie Ogrodów Geyera — kilkanaście mieszkań wykończonych pod klucz, gotowych do zamieszkania od dziś.</p>
           <div class="dev-features">
-            <span class="dev-feature">🏗️ Rewitalizacja</span>
-            <span class="dev-feature">✨ Wykończone pod klucz</span>
-            <span class="dev-feature">📦 Natychmiastowe przejęcie</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="1"/><line x1="12" y1="3" x2="12" y2="21"/></svg> Rewitalizacja</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Wykończone pod klucz</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Natychmiastowe przejęcie</span>
           </div>
           <a href="#kontakt" class="btn btn-primary btn-sm">Zapytaj o szczegóły →</a>
         </div>
@@ -748,13 +752,13 @@
           <div class="dev-badge">100+ apartamentów</div>
         </div>
         <div class="dev-body">
-          <div class="dev-location"><span aria-hidden="true">📍</span> Górna, Łódź</div>
+          <div class="dev-location"><span aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> Górna, Łódź</div>
           <h3 id="dev3-heading">Górna – Nowoczesne osiedle</h3>
           <p>Ponad 100 funkcjonalnych apartamentów od doświadczonego dewelopera — do wyboru stan deweloperski lub mieszkanie wykończone i gotowe do zamieszkania.</p>
           <div class="dev-features">
-            <span class="dev-feature">🏢 100+ lokali</span>
-            <span class="dev-feature">🔑 Stan dev. lub pod klucz</span>
-            <span class="dev-feature">📐 Przemyślane układy</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg> 100+ lokali</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Stan dev. lub pod klucz</span>
+            <span class="dev-feature"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 2l20 20M2 22L22 2"/></svg> Przemyślane układy</span>
           </div>
           <a href="#kontakt" class="btn btn-primary btn-sm">Zapytaj o szczegóły →</a>
         </div>
@@ -779,11 +783,11 @@
         „Nie ma dla mnie słowa niemożliwe — jest tylko pytanie: jak to zrobić?"
       </blockquote>
       <ul class="agent-credentials" aria-label="Kwalifikacje Magdaleny Wałowskiej-Wojtczak">
-        <li><span aria-hidden="true">🎓</span><span>Magister Prawa – Uniwersytet Łódzki</span></li>
-        <li><span aria-hidden="true">🪪</span><span>Licencjonowany pośrednik nieruchomości</span></li>
-        <li><span aria-hidden="true">🏛️</span><span>Licencjonowany zarządca nieruchomości</span></li>
-        <li><span aria-hidden="true">🤝</span><span>Członek SPRNPC</span></li>
-        <li><span aria-hidden="true">📅</span><span>Ponad 5 lat aktywnej pracy na rynku</span></li>
+        <li><span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span><span>Magister Prawa – Uniwersytet Łódzki</span></li>
+        <li><span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M13 11h5m-5 3h4"/></svg></span><span>Licencjonowany pośrednik nieruchomości</span></li>
+        <li><span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22V12M21 22V12M12 3L2 12h20z"/><rect x="7" y="12" width="4" height="10"/><rect x="13" y="12" width="4" height="10"/><line x1="3" y1="22" x2="21" y2="22"/></svg></span><span>Licencjonowany zarządca nieruchomości</span></li>
+        <li><span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 11H9a2 2 0 0 0 0 4h4a2 2 0 0 1 0 4H7m10-8V7a2 2 0 0 0-2-2h-1M7 7H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/></svg></span><span>Członek SPRNPC</span></li>
+        <li><span aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span><span>Ponad 5 lat aktywnej pracy na rynku</span></li>
       </ul>
       <a href="#kontakt" class="btn btn-primary">Umów spotkanie z Magdaleną</a>
     </div>
@@ -847,32 +851,32 @@
     </div>
     <div class="partners-grid">
       <div class="partner-card reveal">
-        <div class="partner-icon" aria-hidden="true">⚖️</div>
+        <div class="partner-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 6l9 4 9-4"/><path d="M3 6v12l9 3 9-3V6"/></svg></div>
         <strong>Legal Architects</strong>
         <span>Kancelaria Redlicki</span>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-icon" aria-hidden="true">👩‍⚖️</div>
+        <div class="partner-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
         <strong>Agnieszka</strong>
         <span>Harajda-Tarlecka</span>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-icon" aria-hidden="true">🏢</div>
+        <div class="partner-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/></svg></div>
         <strong>Dino Polska</strong>
         <span>S.A.</span>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-icon" aria-hidden="true">📜</div>
+        <div class="partner-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
         <strong>KW Notariusze</strong>
         <span>Kancelaria Notarialna</span>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-icon" aria-hidden="true">🌍</div>
+        <div class="partner-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <strong>Rent Planet</strong>
         <span>Platforma wynajmu</span>
       </div>
       <div class="partner-card reveal">
-        <div class="partner-icon" aria-hidden="true">🏗️</div>
+        <div class="partner-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8l-2 4h12z"/></svg></div>
         <strong>Cermag</strong>
         <span>Budownictwo</span>
       </div>
@@ -895,35 +899,35 @@
           <h3>Dane biura</h3>
           <ul class="contact-details" aria-label="Dane kontaktowe MWW Mieszkanie">
             <li>
-              <span class="contact-icon" aria-hidden="true">📍</span>
+              <span class="contact-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
               <div>
                 <strong>Biuro</strong>
                 <span>ul. Henryka Sienkiewicza 85/87 lok. 8<br>90-057 Łódź</span>
               </div>
             </li>
             <li>
-              <span class="contact-icon" aria-hidden="true">📞</span>
+              <span class="contact-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.09-1.08a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
               <div>
                 <strong>Telefon</strong>
                 <a href="tel:+48515488951">+48 515 488 951</a>
               </div>
             </li>
             <li>
-              <span class="contact-icon" aria-hidden="true">✉️</span>
+              <span class="contact-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
               <div>
                 <strong>E-mail</strong>
                 <a href="mailto:mwwmieszkanie@interia.pl">mwwmieszkanie@interia.pl</a>
               </div>
             </li>
             <li>
-              <span class="contact-icon" aria-hidden="true">🌐</span>
+              <span class="contact-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
               <div>
                 <strong>Strona internetowa</strong>
                 <a href="https://www.MWWmieszkanie.pl" target="_blank" rel="noopener">www.MWWmieszkanie.pl</a>
               </div>
             </li>
             <li>
-              <span class="contact-icon" aria-hidden="true">🏛️</span>
+              <span class="contact-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 22V12M21 22V12M12 3L2 12h20z"/><rect x="7" y="12" width="4" height="10"/><rect x="13" y="12" width="4" height="10"/><line x1="3" y1="22" x2="21" y2="22"/></svg></span>
               <div>
                 <strong>Dane rejestrowe</strong>
                 <span>NIP: 7262546896<br>REGON: 388690768</span>
@@ -931,8 +935,8 @@
             </li>
           </ul>
           <div class="contact-cta-btns">
-            <a href="tel:+48515488951" class="btn btn-primary">�� Zadzwoń</a>
-            <a href="mailto:mwwmieszkanie@interia.pl" class="btn btn-outline">✉️ Napisz</a>
+            <a href="tel:+48515488951" class="btn btn-primary" style="gap:8px;display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.09-1.08a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> Zadzwoń</a>
+            <a href="mailto:mwwmieszkanie@interia.pl" class="btn btn-outline" style="gap:8px;display:inline-flex;align-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Napisz</a>
           </div>
         </div>
       </div>
@@ -991,9 +995,9 @@
         <div class="footer-logo">MWW <strong>Mieszkanie</strong></div>
         <p>Profesjonalne biuro nieruchomości z pasją. Pomagamy kupować, sprzedawać i wynajmować nieruchomości na terenie Łodzi i województwa łódzkiego.</p>
         <div class="footer-social">
-          <a href="tel:+48515488951"               class="social-btn" aria-label="Zadzwoń do MWW Mieszkanie">📞</a>
-          <a href="mailto:mwwmieszkanie@interia.pl" class="social-btn" aria-label="E-mail do MWW Mieszkanie">✉️</a>
-          <a href="https://www.MWWmieszkanie.pl" target="_blank" rel="noopener" class="social-btn" aria-label="Strona MWW Mieszkanie">🌐</a>
+          <a href="tel:+48515488951"               class="social-btn" aria-label="Zadzwoń do MWW Mieszkanie"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.09-1.08a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
+          <a href="mailto:mwwmieszkanie@interia.pl" class="social-btn" aria-label="E-mail do MWW Mieszkanie"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="https://www.MWWmieszkanie.pl" target="_blank" rel="noopener" class="social-btn" aria-label="Strona MWW Mieszkanie"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></a>
         </div>
       </div>
 
@@ -1015,6 +1019,8 @@
           <li><a href="#agent">Magdalena Wałowska-Wojtczak</a></li>
           <li><a href="#partnerzy">Nasi partnerzy</a></li>
           <li><a href="#kontakt">Kontakt</a></li>
+          <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
+          <li><a href="regulamin.html">Regulamin serwisu</a></li>
         </ul>
       </div>
 
@@ -1039,11 +1045,46 @@
 
 <!-- STICKY BAR -->
 <div id="stickyBar" class="sticky-bar" role="complementary" aria-label="Szybki kontakt" aria-hidden="true">
-  <div class="sticky-bar-content">
-    <span class="sticky-bar-text">Masz pytanie? Zadzwoń teraz!</span>
-    <a href="tel:+48515488951" class="btn btn-primary sticky-btn">📞 +48 515 488 951</a>
+  <a href="tel:+48515488951" class="sticky-phone">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.9 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9a16 16 0 0 0 6.91 6.91l1.09-1.08a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span>+48 515 488 951</span>
+  </a>
+  <a href="oferty.html" class="sticky-offers">Przeglądaj oferty</a>
+  <button id="stickyClose" class="sticky-close" aria-label="Zamknij">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+</div>
+
+<!-- COOKIE CONSENT -->
+<div id="cookieConsent" class="cookie-consent" role="dialog" aria-labelledby="cookieTitle" aria-modal="true">
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <strong id="cookieTitle">Używamy plików cookies</strong>
+      <p>Ta strona używa plików cookie w celu zapewnienia najlepszej jakości usług. Możesz zaakceptować wszystkie, odmówić lub wybrać, które cookies akceptujesz.</p>
+    </div>
+    <div class="cookie-actions">
+      <button id="cookieCustomize" class="cookie-btn cookie-btn-ghost">Dostosuj</button>
+      <button id="cookieReject" class="cookie-btn cookie-btn-outline">Odmów</button>
+      <button id="cookieAccept" class="cookie-btn cookie-btn-primary">Akceptuj wszystkie</button>
+    </div>
   </div>
-  <button id="stickyClose" class="sticky-close" aria-label="Zamknij pasek kontaktowy">×</button>
+  <!-- Custom panel -->
+  <div id="cookieCustomPanel" class="cookie-custom-panel" hidden>
+    <div class="cookie-checks">
+      <label class="cookie-check">
+        <input type="checkbox" checked disabled> <span><strong>Niezbędne</strong> – wymagane do działania strony</span>
+      </label>
+      <label class="cookie-check">
+        <input type="checkbox" id="cookieAnalytics"> <span><strong>Analityczne</strong> – pomagają nam ulepszać stronę</span>
+      </label>
+      <label class="cookie-check">
+        <input type="checkbox" id="cookieMarketing"> <span><strong>Marketingowe</strong> – spersonalizowane treści i reklamy</span>
+      </label>
+    </div>
+    <div class="cookie-actions cookie-actions-panel">
+      <button id="cookieSave" class="cookie-btn cookie-btn-primary">Zapisz preferencje</button>
+    </div>
+  </div>
 </div>
 
 <script src="script.js"></script>
