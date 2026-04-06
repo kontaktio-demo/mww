@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initForm();
   initStickyBar();
+  initCookieConsent();
 });
 
 function initPreloader() {
@@ -217,5 +218,35 @@ function initStickyBar() {
     bar.setAttribute('aria-hidden', 'true');
     try { localStorage.setItem(KEY, '1'); } catch {}
     window.removeEventListener('scroll', update);
+  });
+}
+
+function initCookieConsent() {
+  const consent = document.getElementById('cookieConsent');
+  if (!consent) return;
+  if (localStorage.getItem('mww_cookie_consent')) return;
+
+  setTimeout(() => consent.classList.add('show'), 1200);
+
+  document.getElementById('cookieAccept').addEventListener('click', () => {
+    localStorage.setItem('mww_cookie_consent', JSON.stringify({necessary:true, analytics:true, marketing:true}));
+    consent.classList.remove('show');
+  });
+
+  document.getElementById('cookieReject').addEventListener('click', () => {
+    localStorage.setItem('mww_cookie_consent', JSON.stringify({necessary:true, analytics:false, marketing:false}));
+    consent.classList.remove('show');
+  });
+
+  document.getElementById('cookieCustomize').addEventListener('click', () => {
+    const panel = document.getElementById('cookieCustomPanel');
+    panel.hidden = !panel.hidden;
+  });
+
+  document.getElementById('cookieSave').addEventListener('click', () => {
+    const analytics = document.getElementById('cookieAnalytics').checked;
+    const marketing = document.getElementById('cookieMarketing').checked;
+    localStorage.setItem('mww_cookie_consent', JSON.stringify({necessary:true, analytics, marketing}));
+    consent.classList.remove('show');
   });
 }
