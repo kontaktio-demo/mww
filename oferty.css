@@ -104,9 +104,33 @@ body {
   padding: 48px 40px 32px;
   border-bottom: 1px solid var(--border-soft);
   background: var(--bg-soft);
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600&q=50') center/cover no-repeat;
+  opacity: .05;
+  filter: grayscale(100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to top, var(--bg-soft), transparent);
+  pointer-events: none;
+  z-index: 0;
 }
 .page-header-inner {
   max-width: 1200px; margin: 0 auto;
+  position: relative; z-index: 1;
 }
 .page-header h1 {
   font-family: var(--font-serif);
@@ -338,8 +362,23 @@ body {
 .footer {
   background: var(--primary); color: rgba(255,255,255,.65);
   font-size: .82rem;
+  position: relative;
+  overflow: hidden;
 }
-.footer-top { padding: 48px 40px; }
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1600&q=40') top center/cover no-repeat;
+  opacity: .06;
+  filter: grayscale(100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.footer-top { padding: 48px 40px; position: relative; z-index: 1; }
 .footer-grid {
   max-width: 1200px; margin: 0 auto;
   display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -375,6 +414,9 @@ body {
 .footer-bottom {
   border-top: 1px solid rgba(255,255,255,.08);
   padding: 18px 40px;
+  position: relative;
+  z-index: 1;
+  background: rgba(0,0,0,.15);
 }
 .footer-bottom-inner {
   max-width: 1200px; margin: 0 auto;
@@ -483,4 +525,89 @@ body {
 @media (max-width:480px) {
   .filter-group { min-width: 100%; }
   .modal { padding: 24px; }
+}
+
+/* =========================================================
+   VISUAL ENHANCEMENTS – Oferty page polish
+   ========================================================= */
+
+/* ── Main listings area – subtle cityscape watermark ────── */
+.listings-page {
+  position: relative;
+}
+.listings-page::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  background: url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1600&q=50') bottom center/cover no-repeat;
+  opacity: .025;
+  filter: grayscale(100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.listings-page > * { position: relative; z-index: 1; }
+
+/* ── Enhanced listing card interactions ──────────────────── */
+.listing-card {
+  transition: box-shadow .3s var(--ease), transform .3s var(--ease);
+}
+.listing-card:hover {
+  box-shadow: 0 16px 48px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.05);
+}
+
+/* ── Card corner accents ────────────────────────────────── */
+.listing-card::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 12px;
+  height: 12px;
+  border-top: 1px solid var(--border-soft);
+  border-left: 1px solid var(--border-soft);
+  transition: border-color .3s, width .3s, height .3s;
+  z-index: 2;
+  pointer-events: none;
+}
+.listing-card::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  border-bottom: 1px solid var(--border-soft);
+  border-right: 1px solid var(--border-soft);
+  transition: border-color .3s, width .3s, height .3s;
+  z-index: 2;
+  pointer-events: none;
+}
+.listing-card:hover::before,
+.listing-card:hover::after {
+  border-color: var(--primary);
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Filter bar subtle depth ────────────────────────────── */
+.filter-bar {
+  box-shadow: 0 2px 8px rgba(0,0,0,.03);
+}
+
+/* ── Enhanced button micro-interactions ─────────────────── */
+.btn-primary:active,
+.btn-ask:active { transform: translateY(1px) scale(.98); }
+.filter-btn:active { transform: translateY(1px); }
+.btn-load-more:active { transform: translateY(1px); }
+
+/* ── Subtle parallax for backgrounds ────────────────────── */
+@media (prefers-reduced-motion: no-preference) {
+  .page-header::before,
+  .listings-page::before,
+  .footer::before {
+    background-attachment: fixed;
+  }
 }
