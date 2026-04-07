@@ -11,6 +11,7 @@
 
     const ctx = canvas.getContext('2d');
     let w, h, particles, animId;
+    let isPageVisible = true;
     const PARTICLE_COUNT = Math.min(Math.floor(window.innerWidth / 18), 70);
     const CONNECT_DIST = 140;
     const SPEED = 0.25;
@@ -35,6 +36,11 @@
     }
 
     function draw() {
+      if (!isPageVisible) {
+        animId = requestAnimationFrame(draw);
+        return;
+      }
+
       ctx.clearRect(0, 0, w, h);
 
       for (let i = 0; i < particles.length; i++) {
@@ -70,6 +76,11 @@
 
       animId = requestAnimationFrame(draw);
     }
+
+    // Pause animation when tab not visible
+    document.addEventListener('visibilitychange', function () {
+      isPageVisible = !document.hidden;
+    });
 
     resize();
     createParticles();

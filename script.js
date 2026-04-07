@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initForm();
   initStickyBar();
   initCookieConsent();
+  initBackToTop();
+  initShineEffects();
 });
 
 function initPreloader() {
@@ -121,41 +123,131 @@ function initCounters() {
   stats.forEach(stat => observer.observe(stat));
 }
 
+function sanitizeInput(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
+var _formSubmitCount = 0;
+var _formLastSubmit = 0;
+
 function initForm() {
-  const form = document.getElementById('contactForm');
+  var form = document.getElementById('contactForm');
   if (!form) return;
 
-  form.addEventListener('submit', e => {
+  var EMAIL_RE = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+  var MAX_NAME_LEN = 100;
+  var MAX_EMAIL_LEN = 254;
+  var MAX_PHONE_LEN = 20;
+  var MAX_MSG_LEN = 5000;
+  var RATE_LIMIT_MS = 10000;
+  var MAX_SUBMITS_PER_SESSION = 5;
+
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    const btn      = form.querySelector('button[type="submit"]');
-    const nameEl   = form.querySelector('#fname');
-    const emailEl  = form.querySelector('#femail');
-    const orig     = btn.textContent;
-    const hasName  = nameEl.value.trim();
-    const hasEmail = emailEl.value.trim();
+    var btn       = form.querySelector('button[type="submit"]');
+    var nameEl    = form.querySelector('#fname');
+    var emailEl   = form.querySelector('#femail');
+    var phoneEl   = form.querySelector('#fphone');
+    var msgEl     = form.querySelector('#fmessage');
+    var gdprEl    = form.querySelector('#fgdpr');
+    var honeypot  = form.querySelector('#fwebsite');
+    var orig      = btn.textContent;
 
     clearError(nameEl);
     clearError(emailEl);
+    if (phoneEl) clearError(phoneEl);
+    if (msgEl) clearError(msgEl);
+    if (gdprEl) clearError(gdprEl);
 
-    let hasError = false;
-    if (!hasName)  { showError(nameEl,  'Please enter your name.');  hasError = true; }
-    if (!hasEmail) { showError(emailEl, 'Please enter your email.'); hasError = true; }
+    // Honeypot check
+    if (honeypot && honeypot.value) return;
+
+    // Rate limiting
+    var now = Date.now();
+    if (now - _formLastSubmit < RATE_LIMIT_MS) {
+      showError(btn.parentNode || form, 'Poczekaj chwilę przed ponownym wysłaniem.');
+      shakeBtn(btn);
+      return;
+    }
+    if (_formSubmitCount >= MAX_SUBMITS_PER_SESSION) {
+      showError(btn.parentNode || form, 'Osiągnięto limit wysłanych wiadomości. Odśwież stronę.');
+      shakeBtn(btn);
+      return;
+    }
+
+    var nameVal  = (nameEl.value || '').trim();
+    var emailVal = (emailEl.value || '').trim();
+    var phoneVal = phoneEl ? (phoneEl.value || '').trim() : '';
+    var msgVal   = msgEl ? (msgEl.value || '').trim() : '';
+
+    var hasError = false;
+
+    if (!nameVal) {
+      showError(nameEl, 'Podaj imię i nazwisko.');
+      hasError = true;
+    } else if (nameVal.length > MAX_NAME_LEN) {
+      showError(nameEl, 'Imię jest za długie (maks. ' + MAX_NAME_LEN + ' znaków).');
+      hasError = true;
+    } else if (/[<>{}]/.test(nameVal)) {
+      showError(nameEl, 'Imię zawiera niedozwolone znaki.');
+      hasError = true;
+    }
+
+    if (!emailVal) {
+      showError(emailEl, 'Podaj adres e-mail.');
+      hasError = true;
+    } else if (emailVal.length > MAX_EMAIL_LEN) {
+      showError(emailEl, 'Adres e-mail jest za długi.');
+      hasError = true;
+    } else if (!EMAIL_RE.test(emailVal)) {
+      showError(emailEl, 'Podaj poprawny adres e-mail.');
+      hasError = true;
+    }
+
+    if (phoneVal && phoneVal.length > MAX_PHONE_LEN) {
+      showError(phoneEl, 'Numer telefonu jest za długi.');
+      hasError = true;
+    } else if (phoneVal && !/^[+\d\s()-]*$/.test(phoneVal)) {
+      showError(phoneEl, 'Numer telefonu zawiera niedozwolone znaki.');
+      hasError = true;
+    }
+
+    if (msgVal && msgVal.length > MAX_MSG_LEN) {
+      showError(msgEl, 'Wiadomość jest za długa (maks. ' + MAX_MSG_LEN + ' znaków).');
+      hasError = true;
+    }
+
+    if (gdprEl && !gdprEl.checked) {
+      showError(gdprEl, 'Zaakceptuj zgodę na przetwarzanie danych.');
+      hasError = true;
+    }
 
     if (hasError) {
       shakeBtn(btn);
       return;
     }
 
-    btn.textContent = 'Sending…';
+    // Sanitize values
+    nameVal = sanitizeInput(nameVal);
+    emailVal = sanitizeInput(emailVal);
+    phoneVal = sanitizeInput(phoneVal);
+    msgVal = sanitizeInput(msgVal);
+
+    _formSubmitCount++;
+    _formLastSubmit = now;
+
+    btn.textContent = 'Wysyłanie…';
     btn.disabled = true;
 
-    setTimeout(() => {
-      btn.textContent = 'Request Sent ✓';
+    setTimeout(function () {
+      btn.textContent = 'Wiadomość wysłana ✓';
       btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
       btn.style.color = '#fff';
 
-      setTimeout(() => {
+      setTimeout(function () {
         btn.textContent = orig;
         btn.disabled = false;
         btn.style.background = '';
@@ -248,5 +340,31 @@ function initCookieConsent() {
     const marketing = document.getElementById('cookieMarketing').checked;
     localStorage.setItem('mww_cookie_consent', JSON.stringify({necessary:true, analytics, marketing}));
     consent.classList.remove('show');
+  });
+}
+
+function initBackToTop() {
+  var btn = document.getElementById('backToTop');
+  if (!btn) return;
+
+  var update = function () {
+    btn.classList.toggle('visible', window.scrollY > 600);
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+
+  btn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+function initShineEffects() {
+  var cards = document.querySelectorAll('.dist-card, .dev-card, .testimonial-card, .partner-card');
+  cards.forEach(function (card) {
+    var shine = document.createElement('div');
+    shine.className = 'shine-layer';
+    shine.setAttribute('aria-hidden', 'true');
+    card.appendChild(shine);
   });
 }
