@@ -502,8 +502,7 @@
             innerStyle = 'border-radius:50%;border:2px solid currentColor;background:transparent;';
             break;
           case 'square':
-            innerStyle = 'border:2px solid currentColor;background:transparent;' +
-              (shape.rotate ? 'transform:rotate(' + shape.rotate + 'deg);' : '');
+            innerStyle = 'border:2px solid currentColor;background:transparent;';
             break;
           case 'line':
             innerStyle = 'height:2px !important;background:currentColor;';
@@ -523,7 +522,7 @@
           innerStyle;
 
         parent.appendChild(el);
-        allDecoElements.push({ el: el, speed: shape.speed });
+        allDecoElements.push({ el: el, speed: shape.speed, rotate: shape.rotate || 0 });
       });
     });
 
@@ -533,8 +532,8 @@
       allDecoElements.forEach(function (item) {
         var progress = getViewportProgress(item.el);
         var shift = progress * item.speed * 150;
-        item.el.style.transform = 'translateY(' + shift + 'px)' +
-          (item.el.style.cssText.indexOf('rotate') > -1 ? '' : '');
+        var rotate = item.rotate ? ' rotate(' + item.rotate + 'deg)' : '';
+        item.el.style.transform = 'translateY(' + shift + 'px)' + rotate;
       });
     }
 

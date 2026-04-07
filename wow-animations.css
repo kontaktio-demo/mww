@@ -728,12 +728,10 @@
   .dev-card,
   .testimonial-card,
   .partner-card {
-    transform: translateY(var(--card-parallax-y, 0));
-    --card-parallax-y: 0px;
+    transform: none !important;
   }
   .stat .stat-number {
-    transform: none;
-    --stat-parallax-y: 0px;
+    transform: none !important;
   }
 
   /* Sticky bar */
@@ -946,7 +944,8 @@
   50%     { opacity: 0; }
 }
 
-   (when linked from oferty.html)
+/* ------------------------------------------------------------------
+   OFERTY PAGE RESPONSIVE ENHANCEMENTS
    ------------------------------------------------------------------ */
 
 /* Card reveal for listings page */
