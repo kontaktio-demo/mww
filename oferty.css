@@ -27,7 +27,7 @@ ul { list-style:none; }
   --shadow:      0 2px 12px rgba(0,0,0,.07);
   --shadow-lg:   0 8px 32px rgba(0,0,0,.12);
   --font-sans:   'Inter', system-ui, sans-serif;
-  --font-serif:  'Playfair Display', Georgia, serif;
+  --font-heading:  'Inter', system-ui, sans-serif;
 }
 
 body {
@@ -52,7 +52,7 @@ body {
 }
 .nav.scrolled { box-shadow: 0 2px 16px rgba(0,0,0,.08); }
 .logo {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 1.18rem;
   font-weight: 400;
   color: var(--primary);
@@ -133,7 +133,7 @@ body {
   position: relative; z-index: 1;
 }
 .page-header h1 {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 2rem; font-weight: 800;
   color: var(--primary);
   margin-bottom: 8px;
@@ -385,7 +385,7 @@ body {
   gap: 40px;
 }
 .footer-logo {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-size: 1.1rem; font-weight: 400;
   color: #fff; margin-bottom: 12px;
 }
