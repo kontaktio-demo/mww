@@ -225,10 +225,7 @@
    7. ICON HOVER ANIMATIONS
    ------------------------------------------------------------------ */
 
-.dist-card:hover .dist-icon {
-  transform: scale(1.2) rotate(-8deg);
-  transition: transform .4s var(--ease-spring);
-}
+/* Icon moves together with the whole card — no separate transform */
 .partner-card:hover .partner-icon {
   transform: scale(1.18) rotate(6deg);
   transition: transform .4s var(--ease-spring);
