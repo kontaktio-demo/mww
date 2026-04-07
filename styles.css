@@ -1,7 +1,3 @@
-/* =========================================================
-   MWW Mieszkanie – Biuro Nieruchomości Łódź
-   Clean monochrome design – white & grey only
-   ========================================================= */
 
 :root {
   --bg:          #ffffff;
@@ -36,7 +32,6 @@
   --radius-xl:   36px;
 }
 
-/* ── Reset ──────────────────────────────────────────────── */
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 body { font-family:"Inter",system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.65; overflow-x:hidden; }
@@ -52,10 +47,8 @@ h1 { font-size:clamp(2.4rem,6.5vw,5.2rem); line-height:1.08; }
 h2 { font-size:clamp(1.8rem,3.8vw,3.1rem); line-height:1.15; }
 h3 { font-size:clamp(1.15rem,2.4vw,1.5rem); }
 
-em { font-style:italic; color:var(--accent); }
-.hero-content em { font-style:normal; }
 
-/* ── Utility ────────────────────────────────────────────── */
+
 .eyebrow {
   font-family:"Inter",sans-serif;
   font-size:.68rem;
@@ -84,7 +77,6 @@ em { font-style:italic; color:var(--accent); }
   .two-col-reverse > :last-child  { order:1; }
 }
 
-/* ── Buttons ────────────────────────────────────────────── */
 .btn {
   display:inline-flex; align-items:center; justify-content:center;
   padding:13px 30px; border-radius:50px;
@@ -117,7 +109,6 @@ em { font-style:italic; color:var(--accent); }
   transform:translateY(-3px);
 }
 
-/* ── Preloader ──────────────────────────────────────────── */
 #preloader {
   position:fixed; inset:0; background:var(--bg);
   display:flex; align-items:center; justify-content:center;
@@ -152,7 +143,6 @@ em { font-style:italic; color:var(--accent); }
   text-transform:uppercase; color:var(--text-muted);
 }
 
-/* ── Navigation ─────────────────────────────────────────── */
 .nav {
   position:fixed; top:0; left:0; right:0; z-index:1000;
   display:flex; align-items:center; justify-content:space-between;
@@ -197,7 +187,6 @@ em { font-style:italic; color:var(--accent); }
 .nav-cta { font-size:.82rem; padding:10px 20px; }
 .nav-cta-icon { display:inline-flex; align-items:center; vertical-align:middle; }
 
-/* ── Hamburger ──────────────────────────────────────────── */
 .hamburger { display:flex; flex-direction:column; gap:5px; width:28px; padding:4px 0; }
 .hamburger span { display:block; height:1.5px; background:var(--primary); border-radius:2px; transition:transform .3s var(--ease), opacity .3s; }
 .hamburger.open span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
@@ -222,7 +211,6 @@ em { font-style:italic; color:var(--accent); }
   .nav-link { font-size:1rem; }
 }
 
-/* ── Hero ───────────────────────────────────────────────── */
 .hero {
   position:relative; min-height:100vh; overflow:hidden;
   display:flex; flex-direction:column;
@@ -285,7 +273,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 .br-desktop { display:none; }
 @media(min-width:768px){ .br-desktop { display:inline; } }
 
-/* scroll indicator */
 .hero-scroll {
   position:absolute; bottom:36px; left:50%; transform:translateX(-50%); z-index:3;
   display:flex; flex-direction:column; align-items:center; gap:10px;
@@ -305,7 +292,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
   .hero-scroll { display:none; }
 }
 
-/* ── Skyline SVG ────────────────────────────────────────── */
 .skyline-wrap {
   display:none;
 }
@@ -314,7 +300,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
   min-height:280px;
 }
 
-/* ── Stats ──────────────────────────────────────────────── */
 .stats { background:var(--bg-alt); }
 .stats-grid {
   display:grid; grid-template-columns:repeat(2,1fr);
@@ -338,7 +323,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 }
 .stat span { font-size:.8rem; font-weight:500; color:var(--text-muted); letter-spacing:.04em; }
 
-/* ── About ──────────────────────────────────────────────── */
 .about-img-stack { position:relative; aspect-ratio:1/1.1; max-width:480px; }
 
 .about-img {
@@ -374,7 +358,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 .features-list li strong { font-size:.92rem; font-weight:700; color:var(--primary); }
 .features-list li span   { font-size:.82rem; color:var(--text-muted); }
 
-/* ── Distinguishes ──────────────────────────────────────── */
 .dist-grid {
   display:grid; gap:24px;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -395,7 +378,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 .dist-card h3 { font-size:1.05rem; margin-bottom:.6rem; color:var(--primary); }
 .dist-card p  { font-size:.88rem; color:var(--text-muted); line-height:1.65; }
 
-/* ── Services ───────────────────────────────────────────── */
 .services-grid {
   display:grid; gap:28px;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -450,7 +432,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 .skup-time { font-size:1.4rem; font-weight:800; color:var(--primary); font-family:"Inter",system-ui,sans-serif; }
 .skup-highlight span:last-child { font-size:.82rem; color:var(--text-muted); }
 
-/* Off the market */
 .off-market-banner {
   border-radius:var(--radius-xl);
   overflow:hidden;
@@ -477,7 +458,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
   filter:grayscale(40%);
 }
 
-/* ── Developer ──────────────────────────────────────────── */
 .dev-grid {
   display:grid; gap:28px;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -522,7 +502,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
   border:1px solid var(--border-soft);
 }
 
-/* ── Agent ──────────────────────────────────────────────── */
 .agent-visual { position:relative; }
 .agent-photo {
   border-radius:var(--radius-xl);
@@ -553,7 +532,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 .agent-credentials li { display:flex; align-items:center; gap:12px; font-size:.88rem; color:var(--text); }
 .agent-credentials li span:first-child { flex-shrink:0; color:var(--primary); display:flex; }
 
-/* ── Testimonials ───────────────────────────────────────── */
 .testimonials-grid {
   display:grid; gap:24px;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -571,7 +549,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 .testimonial-card footer strong { display:block; font-size:.88rem; color:var(--primary); }
 .testimonial-card footer span   { font-size:.78rem; color:var(--text-muted); }
 
-/* ── Partners ───────────────────────────────────────────── */
 .partners-grid {
   display:grid; gap:20px;
   grid-template-columns:repeat(3, 1fr);
@@ -592,7 +569,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 .partner-card strong { font-size:.88rem; font-weight:700; color:var(--primary); }
 .partner-card span   { font-size:.78rem; color:var(--text-muted); }
 
-/* ── Contact ────────────────────────────────────────────── */
 .contact-layout {
   display:grid; grid-template-columns:1fr; gap:48px;
   align-items:start;
@@ -617,7 +593,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 
 .contact-cta-btns { display:flex; flex-wrap:wrap; gap:12px; }
 
-/* form */
 .contact-form {
   background:var(--bg);
   border:1px solid var(--border-soft);
@@ -656,7 +631,6 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
 .form-group-check label { font-size:.78rem; color:var(--text-muted); font-weight:400; }
 button[type="submit"] { margin-top:8px; }
 
-/* ── Footer ─────────────────────────────────────────────── */
 .footer { background:var(--primary); color:#fff; }
 .footer-top { padding:clamp(48px,7vw,90px) 0 clamp(32px,4vw,56px); }
 .footer-grid {
@@ -700,7 +674,6 @@ button[type="submit"] { margin-top:8px; }
   gap:8px; font-size:.78rem; color:rgba(255,255,255,.3);
 }
 
-/* ── Sticky bar ─────────────────────────────────────────── */
 .sticky-bar {
   position:fixed; bottom:24px; left:50%; z-index:900;
   background:#fff;
@@ -739,7 +712,6 @@ button[type="submit"] { margin-top:8px; }
 .sticky-close:hover { color:var(--primary); background:var(--bg-alt); }
 .sticky-bar-content, .sticky-bar-text, .sticky-btn { display:none; }
 
-/* ── Reveal animations ──────────────────────────────────── */
 .reveal {
   opacity: 0;
   transform: translateY(30px) scale(.975);
@@ -747,7 +719,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .reveal.visible { opacity: 1; transform: none; }
 
-/* ── Shake ──────────────────────────────────────────────── */
 @keyframes shake {
   0%,100%{transform:translateX(0)}
   20%{transform:translateX(-6px)}
@@ -756,7 +727,6 @@ button[type="submit"] { margin-top:8px; }
   80%{transform:translateX(4px)}
 }
 
-/* ── Responsive ─────────────────────────────────────────── */
 @media(max-width:600px){
   .stats-grid { grid-template-columns:repeat(2,1fr); }
   .stat { border-bottom:1px solid var(--border); }
@@ -775,7 +745,6 @@ button[type="submit"] { margin-top:8px; }
   .off-market-text { padding:32px 24px; }
 }
 
-/* ── Hero nav & text overrides (landscape background) ──── */
 .nav:not(.scrolled) .logo { color: #ffffff; }
 .nav:not(.scrolled) .logo strong { color: rgba(255,255,255,.8); }
 .nav:not(.scrolled) .nav-link { color: rgba(255,255,255,.9); }
@@ -791,7 +760,6 @@ button[type="submit"] { margin-top:8px; }
   background: rgba(255,255,255,.25);
 }
 
-/* Hero text on landscape background */
 .hero .hero-eyebrow { color: rgba(255,255,255,.9); }
 .hero .hero-eyebrow::before,
 .hero .hero-eyebrow::after { background: rgba(255,255,255,.5); }
@@ -813,7 +781,6 @@ button[type="submit"] { margin-top:8px; }
 .scroll-line { background: rgba(255,255,255,.25); }
 .scroll-line::after { background: rgba(255,255,255,.7); }
 
-/* ── Tech corner brackets on cards ─────────────────────── */
 .dist-card,
 .service-card,
 .dev-card,
@@ -847,7 +814,6 @@ button[type="submit"] { margin-top:8px; }
   width: 20px; height: 20px;
 }
 
-/* ── Staggered grid reveals ─────────────────────────────── */
 .dist-grid    .reveal:nth-child(1) { transition-delay: .0s; }
 .dist-grid    .reveal:nth-child(2) { transition-delay: .1s; }
 .dist-grid    .reveal:nth-child(3) { transition-delay: .2s; }
@@ -874,7 +840,6 @@ button[type="submit"] { margin-top:8px; }
 .partners-grid .reveal:nth-child(5) { transition-delay: .32s; }
 .partners-grid .reveal:nth-child(6) { transition-delay: .40s; }
 
-/* ── Floating badge animation ────────────────────────────── */
 .agent-card-float { animation: floatY 5s ease-in-out .8s infinite; }
 
 @keyframes floatY {
@@ -882,7 +847,6 @@ button[type="submit"] { margin-top:8px; }
   50%     { transform: translateY(-8px); }
 }
 
-/* ── Stat number glow on count ───────────────────────────── */
 .stat-number {
   transition: filter .3s;
 }
@@ -895,7 +859,6 @@ button[type="submit"] { margin-top:8px; }
   100% { transform: scale(1); }
 }
 
-/* ── Section divider line ────────────────────────────────── */
 .section-header::after {
   content: '';
   display: block;
@@ -907,10 +870,8 @@ button[type="submit"] { margin-top:8px; }
   margin: 1.4rem auto 0;
 }
 
-/* ── Partner card text refinement ───────────────────────── */
 .partner-card { cursor: default; }
 
-/* ── Service card overlay refinement ────────────────────── */
 .service-card { overflow: hidden; }
 .service-img::after {
   content: '';
@@ -920,7 +881,6 @@ button[type="submit"] { margin-top:8px; }
   pointer-events: none;
 }
 
-/* ── Off-market banner tech border ──────────────────────── */
 .off-market-banner {
   position: relative;
 }
@@ -939,7 +899,6 @@ button[type="submit"] { margin-top:8px; }
   border-right: 1px solid var(--border);
 }
 
-/* ── Cookie Consent ─────────────────────────────────────── */
 .cookie-consent {
   position:fixed; bottom:24px; left:24px; z-index:9999;
   background:#fff; border:1px solid var(--border);
@@ -969,11 +928,6 @@ button[type="submit"] { margin-top:8px; }
 .cookie-check span { line-height:1.5; }
 .cookie-actions-panel { justify-content:flex-start; }
 
-/* =========================================================
-   VISUAL ENHANCEMENTS – Łódź cityscape backgrounds & polish
-   ========================================================= */
-
-/* ── About section – subtle Łódź panorama ───────────────── */
 .about {
   position: relative;
   overflow: hidden;
@@ -990,7 +944,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .about > .container { position: relative; z-index: 1; }
 
-/* ── Distinguishes section – geometric city accent ──────── */
 .distinguishes {
   position: relative;
   overflow: hidden;
@@ -1021,7 +974,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .distinguishes > .container { position: relative; z-index: 1; }
 
-/* ── Services section – city buildings watermark ────────── */
 .services {
   position: relative;
   overflow: hidden;
@@ -1041,7 +993,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .services > .container { position: relative; z-index: 1; }
 
-/* ── Developer section – urban skyline accent ───────────── */
 .developer {
   position: relative;
   overflow: hidden;
@@ -1061,7 +1012,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .developer > .container { position: relative; z-index: 1; }
 
-/* ── Testimonials section – subtle texture ──────────────── */
 .testimonials {
   position: relative;
   overflow: hidden;
@@ -1078,7 +1028,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .testimonials > .container { position: relative; z-index: 1; }
 
-/* ── Contact section – Łódź architecture background ────── */
 .contact {
   position: relative;
   overflow: hidden;
@@ -1095,7 +1044,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .contact > .container { position: relative; z-index: 1; }
 
-/* ── Partners section – cityline accent ─────────────────── */
 .partners {
   position: relative;
   overflow: hidden;
@@ -1115,7 +1063,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .partners > .container { position: relative; z-index: 1; }
 
-/* ── Agent section – warm Łódź vibe ─────────────────────── */
 .agent-section {
   position: relative;
   overflow: hidden;
@@ -1132,7 +1079,6 @@ button[type="submit"] { margin-top:8px; }
 }
 .agent-section > .container { position: relative; z-index: 1; }
 
-/* ── Enhanced section separators with gradient lines ────── */
 .section + .section::after {
   content: '';
   position: absolute;
@@ -1145,7 +1091,6 @@ button[type="submit"] { margin-top:8px; }
   pointer-events: none;
 }
 
-/* ── Decorative floating dots on sections ───────────────── */
 .about::after {
   content: '';
   position: absolute;
@@ -1172,7 +1117,6 @@ button[type="submit"] { margin-top:8px; }
   z-index: 0;
 }
 
-/* ── Hero enhanced gradient & depth ─────────────────────── */
 .hero::after {
   content: '';
   position: absolute;
@@ -1185,7 +1129,6 @@ button[type="submit"] { margin-top:8px; }
   z-index: 2;
 }
 
-/* ── Stats section glow effect ──────────────────────────── */
 .stats {
   position: relative;
 }
@@ -1197,7 +1140,6 @@ button[type="submit"] { margin-top:8px; }
   pointer-events: none;
 }
 
-/* ── Enhanced card shadows & hover with glow ────────────── */
 .dist-card:hover,
 .service-card:hover,
 .dev-card:hover,
@@ -1205,7 +1147,6 @@ button[type="submit"] { margin-top:8px; }
   box-shadow: 0 16px 48px rgba(0,0,0,.10), 0 4px 12px rgba(0,0,0,.05);
 }
 
-/* ── Footer enhanced styling ────────────────────────────── */
 .footer {
   position: relative;
   overflow: hidden;
@@ -1230,16 +1171,13 @@ button[type="submit"] { margin-top:8px; }
   background: rgba(0,0,0,.15);
 }
 
-/* ── Smooth section background transitions ──────────────── */
 .section {
   position: relative;
 }
 
-/* ── Enhanced button micro-interactions ─────────────────── */
 .btn-primary:active { transform: translateY(1px) scale(.98); }
 .btn-outline:active { transform: translateY(1px) scale(.98); }
 
-/* ── Decorative corner accents on section headers ────────── */
 .section-header-center {
   position: relative;
 }
@@ -1260,7 +1198,6 @@ button[type="submit"] { margin-top:8px; }
   opacity: .5;
 }
 
-/* ── Subtle parallax-like depth on bg images ────────────── */
 @media (prefers-reduced-motion: no-preference) {
   .about::before,
   .services::before,
@@ -1273,7 +1210,6 @@ button[type="submit"] { margin-top:8px; }
   }
 }
 
-/* ── Hide decorative dots on mobile ─────────────────────── */
 @media (max-width: 768px) {
   .about::after,
   .agent-section::after {
@@ -1284,11 +1220,6 @@ button[type="submit"] { margin-top:8px; }
   }
 }
 
-/* =========================================================
-   DYNAMIC BACKGROUND EFFECTS
-   ========================================================= */
-
-/* ── 1. Canvas Particle Network ─────────────────────────── */
 #bgParticles {
   position: absolute;
   top: 0;
@@ -1298,7 +1229,6 @@ button[type="submit"] { margin-top:8px; }
   z-index: 0;
 }
 
-/* ── 2. Floating Decorative Shapes ──────────────────────── */
 .bg-float-shape {
   position: absolute;
   pointer-events: none;
@@ -1324,7 +1254,6 @@ button[type="submit"] { margin-top:8px; }
   }
 }
 
-/* ── 3. Gradient Orbs ───────────────────────────────────── */
 .bg-gradient-orb {
   position: absolute;
   pointer-events: none;
@@ -1344,7 +1273,6 @@ button[type="submit"] { margin-top:8px; }
   50%     { opacity: 1;   transform: translate(-50%,-50%) scale(1.2); }
 }
 
-/* ── 4. Scroll Progress Line ────────────────────────────── */
 .bg-scroll-line {
   position: fixed;
   top: 0;
@@ -1361,7 +1289,6 @@ button[type="submit"] { margin-top:8px; }
   transition: transform 0.1s linear;
 }
 
-/* ── 5. Scroll Dots ─────────────────────────────────────── */
 .bg-scroll-dots {
   position: fixed;
   top: 50%;
@@ -1387,7 +1314,6 @@ button[type="submit"] { margin-top:8px; }
   transform: scale(1.5);
 }
 
-/* ── 6. Grid Pattern for bg-alt sections ────────────────── */
 .bg-grid-pattern {
   position: absolute;
   inset: 0;
@@ -1406,7 +1332,6 @@ button[type="submit"] { margin-top:8px; }
   100% { background-position: 60px 60px; }
 }
 
-/* ── 7. Wave Section Dividers ───────────────────────────── */
 .bg-wave-divider {
   position: absolute;
   bottom: -1px;
@@ -1422,7 +1347,6 @@ button[type="submit"] { margin-top:8px; }
   display: block;
 }
 
-/* ── 8. Noise/Grain texture overlay ─────────────────────── */
 body::after {
   content: '';
   position: fixed;
@@ -1436,7 +1360,6 @@ body::after {
   mix-blend-mode: multiply;
 }
 
-/* ── Responsive adjustments for background effects ──────── */
 @media (max-width: 768px) {
   .bg-scroll-line,
   .bg-scroll-dots {

@@ -1,18 +1,9 @@
 'use strict';
 
-/**
- * MWW Mieszkanie – Dynamic Background Effects
- * Animated particles, floating shapes, gradient orbs, and scroll-reactive elements.
- */
-
 (function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  /* ------------------------------------------------------------------ */
-  /*  1. Canvas Particle Network – subtle floating dots & connecting    */
-  /*     lines behind the whole page                                    */
-  /* ------------------------------------------------------------------ */
-  function initParticleCanvas() {
+          function initParticleCanvas() {
     const canvas = document.createElement('canvas');
     canvas.id = 'bgParticles';
     canvas.setAttribute('aria-hidden', 'true');
@@ -93,8 +84,7 @@
       }, 250);
     });
 
-    /* Re-calculate canvas height when content may have changed */
-    const ro = new ResizeObserver(function () {
+        const ro = new ResizeObserver(function () {
       const newH = document.documentElement.scrollHeight;
       if (Math.abs(newH - h) > 50) {
         h = canvas.height = newH;
@@ -103,29 +93,19 @@
     ro.observe(document.body);
   }
 
-  /* ------------------------------------------------------------------ */
-  /*  2. Floating Decorative Shapes – house icons, keys, pin markers    */
-  /*     that drift slowly in sections                                  */
-  /* ------------------------------------------------------------------ */
-  function initFloatingShapes() {
+          function initFloatingShapes() {
     const shapes = [
-      /* house */
-      '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".08"><path d="M3 22V8L12 2l9 6v14"/><rect x="9" y="14" width="6" height="8"/></svg>',
-      /* key */
-      '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".07"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>',
-      /* pin */
-      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".06"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
-      /* building */
-      '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".07"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><rect x="9" y="18" width="6" height="4"/></svg>',
-      /* diamond */
-      '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".06"><rect x="12" y="1" width="15.56" height="15.56" rx="1" transform="rotate(45 12 1)"/></svg>',
-      /* circle */
-      '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".05"><circle cx="12" cy="12" r="10"/></svg>',
+            '<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".08"><path d="M3 22V8L12 2l9 6v14"/><rect x="9" y="14" width="6" height="8"/></svg>',
+            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".07"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>',
+            '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".06"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>',
+            '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".07"><rect x="4" y="2" width="16" height="20" rx="1"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><rect x="9" y="18" width="6" height="4"/></svg>',
+            '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" opacity=".06"><rect x="12" y="1" width="15.56" height="15.56" rx="1" transform="rotate(45 12 1)"/></svg>',
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".05"><circle cx="12" cy="12" r="10"/></svg>',
     ];
 
     const sections = document.querySelectorAll('.section');
     sections.forEach(function (section) {
-      const count = Math.floor(Math.random() * 3) + 3; // 3-5 shapes per section
+      const count = Math.floor(Math.random() * 3) + 3;
       for (let i = 0; i < count; i++) {
         const shape = document.createElement('div');
         shape.className = 'bg-float-shape';
@@ -134,7 +114,7 @@
 
         const x = Math.random() * 90 + 5;
         const y = Math.random() * 80 + 10;
-        const duration = Math.random() * 20 + 25; // 25-45s
+        const duration = Math.random() * 20 + 25;
         const delay = Math.random() * -30;
         const drift = Math.random() * 50 + 30;
 
@@ -149,10 +129,7 @@
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /*  3. Animated Gradient Orbs – soft glowing circles that pulse       */
-  /* ------------------------------------------------------------------ */
-  function initGradientOrbs() {
+        function initGradientOrbs() {
     const orbConfigs = [
       { parent: '.about',         x: '75%', y: '20%', size: 340, delay: 0 },
       { parent: '.distinguishes', x: '15%', y: '60%', size: 280, delay: -8 },
@@ -180,10 +157,7 @@
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /*  4. Parallax Mouse Tracking – subtle shift of decoration elements  */
-  /* ------------------------------------------------------------------ */
-  function initMouseParallax() {
+        function initMouseParallax() {
     let mouseX = 0, mouseY = 0, ticking = false;
 
     const orbs = document.querySelectorAll('.bg-gradient-orb');
@@ -216,18 +190,13 @@
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /*  5. Scroll-Reactive Progress Decorations                           */
-  /* ------------------------------------------------------------------ */
-  function initScrollDecorations() {
-    /* Vertical progress line on left side */
-    const line = document.createElement('div');
+        function initScrollDecorations() {
+        const line = document.createElement('div');
     line.className = 'bg-scroll-line';
     line.setAttribute('aria-hidden', 'true');
     document.body.appendChild(line);
 
-    /* Floating scroll indicators – small dots on the side */
-    const dotsWrap = document.createElement('div');
+        const dotsWrap = document.createElement('div');
     dotsWrap.className = 'bg-scroll-dots';
     dotsWrap.setAttribute('aria-hidden', 'true');
     for (let i = 0; i < 6; i++) {
@@ -254,10 +223,7 @@
     updateScroll();
   }
 
-  /* ------------------------------------------------------------------ */
-  /*  6. Animated Grid Pattern for bg-alt sections                      */
-  /* ------------------------------------------------------------------ */
-  function initGridPatterns() {
+        function initGridPatterns() {
     const altSections = document.querySelectorAll('.section.bg-alt');
     altSections.forEach(function (section) {
       const grid = document.createElement('div');
@@ -267,10 +233,7 @@
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /*  7. Section Wave Dividers (SVG)                                    */
-  /* ------------------------------------------------------------------ */
-  function initWaveDividers() {
+        function initWaveDividers() {
     const wavePairs = [
       { after: '.hero',           type: 'wave1' },
       { after: '.stats',          type: 'wave2' },
@@ -301,8 +264,7 @@
       divider.setAttribute('aria-hidden', 'true');
       divider.innerHTML = waveSVGs[cfg.type];
 
-      /* Color based on next section bg */
-      const isNextAlt = next.classList.contains('bg-alt') || next.classList.contains('stats');
+            const isNextAlt = next.classList.contains('bg-alt') || next.classList.contains('stats');
       const isNextFooter = next.classList.contains('footer');
       if (isNextFooter) {
         divider.style.color = '#1a1a1a';
@@ -317,10 +279,7 @@
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /*  Boot everything after DOM ready                                   */
-  /* ------------------------------------------------------------------ */
-  function boot() {
+        function boot() {
     initParticleCanvas();
     initFloatingShapes();
     initGradientOrbs();
@@ -328,8 +287,7 @@
     initWaveDividers();
     initScrollDecorations();
 
-    /* Mouse parallax only on non-touch devices */
-    if (window.matchMedia('(hover: hover)').matches) {
+        if (window.matchMedia('(hover: hover)').matches) {
       initMouseParallax();
     }
   }

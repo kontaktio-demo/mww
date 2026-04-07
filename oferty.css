@@ -1,8 +1,4 @@
-/* =========================================================
-   MWW Mieszkanie – Oferty page styles
-   ========================================================= */
 
-/* Reset & base */
 *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
 a { text-decoration:none; color:inherit; }
 button { background:none; border:none; cursor:pointer; }
@@ -39,7 +35,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ── Nav (same as main site) ────────────────────────────── */
 .nav {
   position: sticky; top: 0; z-index: 800;
   display: flex; align-items: center; justify-content: space-between;
@@ -99,7 +94,6 @@ body {
   background: var(--primary); transition: all .3s;
 }
 
-/* ── Page header ─────────────────────────────────────────── */
 .page-header {
   padding: 48px 40px 32px;
   border-bottom: 1px solid var(--border-soft);
@@ -140,7 +134,6 @@ body {
 }
 .page-header p { color: var(--text-muted); font-size: .9rem; }
 
-/* ── Filter bar ───────────────────────────────────────────── */
 .filter-bar {
   background: #fff;
   border-bottom: 1px solid var(--border-soft);
@@ -193,7 +186,6 @@ body {
 }
 .filter-reset:hover { color: var(--primary); }
 
-/* ── Main content layout ─────────────────────────────────── */
 .listings-page {
   max-width: 1200px; margin: 0 auto;
   padding: 32px 40px;
@@ -221,7 +213,6 @@ body {
 }
 .listings-sort select:focus { outline: none; border-color: var(--primary); }
 
-/* ── Listings grid ───────────────────────────────────────── */
 .listings-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -229,7 +220,6 @@ body {
   margin-bottom: 40px;
 }
 
-/* ── Listing card ────────────────────────────────────────── */
 .listing-card {
   background: #fff;
   border: 1px solid var(--border-soft);
@@ -330,7 +320,6 @@ body {
 }
 .btn-save:hover { border-color: var(--primary); color: var(--primary); }
 
-/* No results */
 .no-results {
   grid-column: 1 / -1;
   text-align: center;
@@ -340,7 +329,6 @@ body {
 .no-results svg { margin: 0 auto 16px; opacity: .3; }
 .no-results h3 { font-size: 1.1rem; color: var(--primary); margin-bottom: 8px; }
 
-/* ── Load more ───────────────────────────────────────────── */
 .load-more-wrap {
   text-align: center; padding-bottom: 40px;
 }
@@ -358,7 +346,6 @@ body {
   border-color: var(--primary); background: var(--bg-soft);
 }
 
-/* ── Footer ──────────────────────────────────────────────── */
 .footer {
   background: var(--primary); color: rgba(255,255,255,.65);
   font-size: .82rem;
@@ -424,7 +411,6 @@ body {
   flex-wrap: wrap; gap: 8px;
 }
 
-/* ── Modal ───────────────────────────────────────────────── */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 2000;
   background: rgba(0,0,0,.5);
@@ -460,7 +446,6 @@ body {
 .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary); }
 .form-group textarea { resize: vertical; min-height: 80px; }
 
-/* ── Cookie Consent ─────────────────────────────────────── */
 .cookie-consent {
   position:fixed; bottom:24px; left:24px; z-index:9999;
   background:#fff; border:1px solid var(--border);
@@ -490,7 +475,6 @@ body {
 .cookie-check span { line-height:1.5; }
 .cookie-actions-panel { justify-content:flex-start; }
 
-/* ── Admin bar (shown to logged-in employees) ─────────────── */
 .admin-bar {
   background: var(--primary); color: rgba(255,255,255,.8);
   padding: 8px 40px;
@@ -501,7 +485,6 @@ body {
 .admin-bar a:hover { color: #fff; }
 .admin-bar-hidden { display: none; }
 
-/* ── Responsive ───────────────────────────────────────────── */
 @media (max-width:1024px) {
   .listings-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -527,11 +510,6 @@ body {
   .modal { padding: 24px; }
 }
 
-/* =========================================================
-   VISUAL ENHANCEMENTS – Oferty page polish
-   ========================================================= */
-
-/* ── Main listings area – subtle cityscape watermark ────── */
 .listings-page {
   position: relative;
 }
@@ -550,7 +528,6 @@ body {
 }
 .listings-page > * { position: relative; z-index: 1; }
 
-/* ── Enhanced listing card interactions ──────────────────── */
 .listing-card {
   transition: box-shadow .3s var(--ease), transform .3s var(--ease);
 }
@@ -558,7 +535,6 @@ body {
   box-shadow: 0 16px 48px rgba(0,0,0,.12), 0 4px 12px rgba(0,0,0,.05);
 }
 
-/* ── Card corner accents ────────────────────────────────── */
 .listing-card::before {
   content: '';
   position: absolute;
@@ -592,18 +568,15 @@ body {
   height: 18px;
 }
 
-/* ── Filter bar subtle depth ────────────────────────────── */
 .filter-bar {
   box-shadow: 0 2px 8px rgba(0,0,0,.03);
 }
 
-/* ── Enhanced button micro-interactions ─────────────────── */
 .btn-primary:active,
 .btn-ask:active { transform: translateY(1px) scale(.98); }
 .filter-btn:active { transform: translateY(1px); }
 .btn-load-more:active { transform: translateY(1px); }
 
-/* ── Subtle parallax for backgrounds ────────────────────── */
 @media (prefers-reduced-motion: no-preference) {
   .page-header::before,
   .listings-page::before,
