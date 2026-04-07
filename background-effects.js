@@ -4,17 +4,21 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
           function initParticleCanvas() {
-    const canvas = document.createElement('canvas');
+    var isMobile = window.innerWidth < 768;
+    var canvas = document.createElement('canvas');
     canvas.id = 'bgParticles';
     canvas.setAttribute('aria-hidden', 'true');
     document.body.prepend(canvas);
 
-    const ctx = canvas.getContext('2d');
-    let w, h, particles, animId;
-    let isPageVisible = true;
-    const PARTICLE_COUNT = Math.min(Math.floor(window.innerWidth / 18), 70);
-    const CONNECT_DIST = 140;
-    const SPEED = 0.25;
+    var ctx = canvas.getContext('2d');
+    var w, h, particles, animId;
+    var isPageVisible = true;
+    var PARTICLE_COUNT = isMobile ? 15 : Math.min(Math.floor(window.innerWidth / 30), 40);
+    var CONNECT_DIST = isMobile ? 0 : 110;
+    var CONNECT_DIST_SQ = CONNECT_DIST * CONNECT_DIST;
+    var SPEED = 0.2;
+    var scrollY = 0;
+    var vpHeight = window.innerHeight;
 
     function resize() {
       w = canvas.width = window.innerWidth;
@@ -23,14 +27,14 @@
 
     function createParticles() {
       particles = [];
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
+      for (var i = 0; i < PARTICLE_COUNT; i++) {
         particles.push({
           x: Math.random() * w,
           y: Math.random() * h,
           vx: (Math.random() - 0.5) * SPEED,
           vy: (Math.random() - 0.5) * SPEED,
-          r: Math.random() * 2 + 1,
-          opacity: Math.random() * 0.25 + 0.08,
+          r: Math.random() * 1.5 + 0.8,
+          opacity: Math.random() * 0.2 + 0.06,
         });
       }
     }
@@ -43,8 +47,11 @@
 
       ctx.clearRect(0, 0, w, h);
 
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      var vpTop = scrollY - 100;
+      var vpBottom = scrollY + vpHeight + 100;
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
 
@@ -53,23 +60,28 @@
         if (p.y < 0) p.y = h;
         if (p.y > h) p.y = 0;
 
+        if (p.y < vpTop || p.y > vpBottom) continue;
+
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(26,26,26,' + p.opacity + ')';
         ctx.fill();
 
-        for (let j = i + 1; j < particles.length; j++) {
-          const q = particles[j];
-          const dx = p.x - q.x;
-          const dy = p.y - q.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONNECT_DIST) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(q.x, q.y);
-            ctx.strokeStyle = 'rgba(26,26,26,' + (0.04 * (1 - dist / CONNECT_DIST)) + ')';
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
+        if (CONNECT_DIST > 0) {
+          for (var j = i + 1; j < particles.length; j++) {
+            var q = particles[j];
+            if (q.y < vpTop || q.y > vpBottom) continue;
+            var dx = p.x - q.x;
+            var dy = p.y - q.y;
+            var distSq = dx * dx + dy * dy;
+            if (distSq < CONNECT_DIST_SQ) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = 'rgba(26,26,26,' + (0.03 * (1 - distSq / CONNECT_DIST_SQ)) + ')';
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
           }
         }
       }
@@ -77,10 +89,13 @@
       animId = requestAnimationFrame(draw);
     }
 
-    // Pause animation when tab not visible
     document.addEventListener('visibilitychange', function () {
       isPageVisible = !document.hidden;
     });
+
+    window.addEventListener('scroll', function () {
+      scrollY = window.scrollY;
+    }, { passive: true });
 
     resize();
     createParticles();
@@ -116,7 +131,7 @@
 
     const sections = document.querySelectorAll('.section');
     sections.forEach(function (section) {
-      const count = Math.floor(Math.random() * 3) + 3;
+      var count = Math.floor(Math.random() * 2) + 2;
       for (let i = 0; i < count; i++) {
         const shape = document.createElement('div');
         shape.className = 'bg-float-shape';

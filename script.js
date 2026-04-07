@@ -21,9 +21,9 @@ function initPreloader() {
   };
 
   if (document.readyState === 'complete') {
-    setTimeout(hide, 800);
+    setTimeout(hide, 200);
   } else {
-    window.addEventListener('load', () => setTimeout(hide, 800));
+    window.addEventListener('load', () => setTimeout(hide, 200));
   }
 }
 
