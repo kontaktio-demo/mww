@@ -500,7 +500,13 @@ body {
   .listings-page { padding: 24px 20px; }
   .listings-grid { grid-template-columns: 1fr; }
   .footer-top { padding: 36px 20px; }
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+  .footer-brand { text-align: center; }
+  .footer-brand p { margin-left: auto; margin-right: auto; }
+  .footer-social { justify-content: center; }
+  .footer-col { text-align: center; }
+  .footer-col ul { align-items: center; }
+  .footer-address { align-items: center; }
   .footer-bottom { padding: 16px 20px; }
   .footer-bottom-inner { flex-direction: column; gap: 4px; text-align: center; }
   .admin-bar { padding: 8px 20px; }
