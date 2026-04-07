@@ -506,7 +506,7 @@
       const input = el("input", {
         id: inputId,
         class: "kontaktio-input",
-        placeholder: "Napisz wiadomosc...",
+        placeholder: "Napisz wiadomość...",
         type: "text"
       });
 

@@ -155,22 +155,21 @@ function initForm() {
     clearError(emailEl);
 
     let hasError = false;
-    if (!hasName)  { showError(nameEl,  'Wpisz swoje imie.');  hasError = true; }
-    if (!hasEmail) { showError(emailEl, 'Wpisz swoj e-mail.'); hasError = true; }
+    if (!hasName)  { showError(nameEl,  'Wpisz swoje imię.');  hasError = true; }
+    if (!hasEmail) { showError(emailEl, 'Wpisz swój e-mail.'); hasError = true; }
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(hasEmail)) {
       showError(emailEl, 'Wpisz poprawny adres e-mail.'); hasError = true;
     }
 
     if (hasError) {
-      shakeBtn(btn);
       return;
     }
 
-    btn.textContent = 'Wysylanie...';
+    btn.textContent = 'Wysyłanie...';
     btn.disabled = true;
 
     setTimeout(() => {
-      btn.textContent = 'Wyslano';
+      btn.textContent = 'Wysłano';
       btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
       btn.style.color = '#fff';
 
@@ -205,7 +204,7 @@ function clearError(input) {
   if (msg) msg.remove();
 }
 
-function shakeBtn(btn) {
+function shakeBtn() {
 }
 
 function initStickyBar() {
