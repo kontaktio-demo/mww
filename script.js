@@ -84,6 +84,13 @@ function initScrollReveal() {
   );
 
   elements.forEach(el => observer.observe(el));
+
+  window.__scrollRevealReset = () => {
+    elements.forEach(el => {
+      el.classList.remove('visible');
+      observer.observe(el);
+    });
+  };
 }
 
 function initCounters() {
@@ -119,6 +126,15 @@ function initCounters() {
   );
 
   stats.forEach(stat => observer.observe(stat));
+
+  window.__counterReset = () => {
+    stats.forEach(stat => {
+      stat.classList.remove('counted');
+      const number = stat.querySelector('.stat-number');
+      if (number) number.textContent = '0' + (stat.dataset.suffix || '');
+      observer.observe(stat);
+    });
+  };
 }
 
 function initForm() {
@@ -139,19 +155,22 @@ function initForm() {
     clearError(emailEl);
 
     let hasError = false;
-    if (!hasName)  { showError(nameEl,  'Please enter your name.');  hasError = true; }
-    if (!hasEmail) { showError(emailEl, 'Please enter your email.'); hasError = true; }
+    if (!hasName)  { showError(nameEl,  'Wpisz swoje imie.');  hasError = true; }
+    if (!hasEmail) { showError(emailEl, 'Wpisz swoj e-mail.'); hasError = true; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(hasEmail)) {
+      showError(emailEl, 'Wpisz poprawny adres e-mail.'); hasError = true;
+    }
 
     if (hasError) {
       shakeBtn(btn);
       return;
     }
 
-    btn.textContent = 'Sending…';
+    btn.textContent = 'Wysylanie...';
     btn.disabled = true;
 
     setTimeout(() => {
-      btn.textContent = 'Request Sent ✓';
+      btn.textContent = 'Wyslano';
       btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
       btn.style.color = '#fff';
 
@@ -187,8 +206,6 @@ function clearError(input) {
 }
 
 function shakeBtn(btn) {
-  btn.style.animation = 'shake .45s ease';
-  btn.addEventListener('animationend', () => { btn.style.animation = ''; }, { once: true });
 }
 
 function initStickyBar() {
