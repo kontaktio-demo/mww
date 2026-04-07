@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#1a1a1a">
   <title>Panel Pracownika - MWW Mieszkanie</title>
   <meta name="robots" content="noindex, nofollow">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2'><path d='M3 22V8L12 2l9 6v14'/><line x1='9' y1='22' x2='9' y2='14'/><line x1='15' y1='22' x2='15' y2='14'/><rect x='9' y='14' width='6' height='8'/></svg>">
@@ -26,7 +29,6 @@
     }
     body { font-family:'Inter',system-ui,sans-serif; color:var(--text); background:var(--bg-alt); font-size:14px; -webkit-font-smoothing:antialiased; }
 
-    /* ── Login screen ── */
     .login-wrap {
       min-height:100vh; display:flex; align-items:center; justify-content:center;
       background:var(--primary); padding:20px;
@@ -47,7 +49,6 @@
     .login-error { color:#ef4444; font-size:.78rem; margin-top:10px; display:none; }
     .login-error.show { display:block; }
 
-    /* ── Dashboard ── */
     #dashboard { display:none; }
     .topbar {
       background:var(--primary); color:#fff;
@@ -71,7 +72,6 @@
 
     .panel-title { font-size:1.3rem; font-weight:700; margin-bottom:24px; }
 
-    /* ── Add form ── */
     .card { background:#fff; border-radius:var(--radius-lg); padding:24px; margin-bottom:24px; border:1px solid var(--border-soft); }
     .card-title { font-size:.88rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--text-muted); margin-bottom:20px; }
     .form-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:14px; }
@@ -96,7 +96,6 @@
     .form-success { color:#22c55e; font-size:.8rem; margin-top:8px; display:none; }
     .form-success.show { display:block; }
 
-    /* ── Table ── */
     .listings-table-wrap { overflow-x:auto; }
     .listings-table { width:100%; border-collapse:collapse; font-size:.82rem; }
     .listings-table th {
@@ -260,9 +259,6 @@
 
 const STORAGE_KEY   = 'mww_listings';
 const ADMIN_KEY     = 'mww_admin_logged_in';
-// NOTE: This is a lightweight, client-side-only admin panel as specified.
-// Credentials are intentionally stored here for demonstration purposes.
-// For production use, replace with server-side authentication.
 const CORRECT_USER  = 'mww';
 const CORRECT_PASS  = 'admin2024';
 
@@ -278,7 +274,6 @@ const DEFAULT_LISTINGS = [
   {id:9, type:'wynajem', category:'mieszkanie', title:'Mieszkanie 3-pokojowe Śródmieście', price:3400, currency:'PLN/mies', area:72, rooms:3, floor:3, totalFloors:7, address:'ul. Kilińskiego, Śródmieście, Łódź', img:'images/hero-bg.webp', desc:'Przestronne mieszkanie, po remoncie, dostępne od zaraz.', active:true},
 ];
 
-// ── Auth ───────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   try {
     if (localStorage.getItem(ADMIN_KEY) === '1') {
@@ -320,7 +315,6 @@ function showDashboard() {
   renderTable();
 }
 
-// ── Listings CRUD ──────────────────────────────────────────
 function getListings() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -373,7 +367,6 @@ function addListing() {
   listings.push(listing);
   saveListings(listings);
 
-  // Reset form
   ['fTitle','fPrice','fArea','fRooms','fFloor','fAddr','fImg','fDesc'].forEach(id => {
     document.getElementById(id).value = '';
   });
