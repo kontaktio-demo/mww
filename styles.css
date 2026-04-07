@@ -708,7 +708,7 @@ button[type="submit"] { margin-top:8px; }
   border-radius:50px;
   display:flex; align-items:center; gap:0;
   box-shadow:0 4px 24px rgba(0,0,0,.12);
-  transform:translate(-50%,120%);
+  transform:translate(-50%,calc(100% + 48px));
   transition:transform .4s var(--ease);
   overflow:hidden;
 }
