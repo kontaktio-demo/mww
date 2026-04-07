@@ -374,9 +374,9 @@ h1 .hero-title-light,.hero h1 { color:rgba(255,255,255,.95); }
   transform:translateY(-6px);
   box-shadow:var(--shadow-md);
 }
-.dist-icon { display:flex; margin-bottom:14px; color:var(--primary); }
-.dist-card h3 { font-size:1.05rem; margin-bottom:.6rem; color:var(--primary); }
-.dist-card p  { font-size:.88rem; color:var(--text-muted); line-height:1.65; }
+.dist-icon { display:flex; margin-bottom:14px; color:var(--primary); position:relative; z-index:1; }
+.dist-card h3 { font-size:1.05rem; margin-bottom:.6rem; color:var(--primary); position:relative; z-index:1; }
+.dist-card p  { font-size:.88rem; color:var(--text-muted); line-height:1.65; position:relative; z-index:1; }
 
 .services-grid {
   display:grid; gap:28px;
