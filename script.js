@@ -231,10 +231,10 @@ function initForm() {
     }
 
     // Sanitize values
-    sanitizeInput(nameVal);
-    sanitizeInput(emailVal);
-    sanitizeInput(phoneVal);
-    sanitizeInput(msgVal);
+    nameVal = sanitizeInput(nameVal);
+    emailVal = sanitizeInput(emailVal);
+    phoneVal = sanitizeInput(phoneVal);
+    msgVal = sanitizeInput(msgVal);
 
     _formSubmitCount++;
     _formLastSubmit = now;
@@ -344,25 +344,25 @@ function initCookieConsent() {
 }
 
 function initBackToTop() {
-  const btn = document.getElementById('backToTop');
+  var btn = document.getElementById('backToTop');
   if (!btn) return;
 
-  const update = () => {
+  var update = function () {
     btn.classList.toggle('visible', window.scrollY > 600);
   };
 
   window.addEventListener('scroll', update, { passive: true });
   update();
 
-  btn.addEventListener('click', () => {
+  btn.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
 function initShineEffects() {
-  const cards = document.querySelectorAll('.dist-card, .dev-card, .testimonial-card, .partner-card');
-  cards.forEach(card => {
-    const shine = document.createElement('div');
+  var cards = document.querySelectorAll('.dist-card, .dev-card, .testimonial-card, .partner-card');
+  cards.forEach(function (card) {
+    var shine = document.createElement('div');
     shine.className = 'shine-layer';
     shine.setAttribute('aria-hidden', 'true');
     card.appendChild(shine);

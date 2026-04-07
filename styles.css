@@ -1353,7 +1353,6 @@ body::after {
   overflow: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
-  tab-index: -1;
 }
 
 /* ── Enhanced hover glow for dist-icon ── */
