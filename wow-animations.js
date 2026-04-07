@@ -101,6 +101,22 @@
     });
   }
 
+  // ── Unified scroll loop ──
+  var scrollModules = [];
+  var scrollTicking = false;
+
+  function onScroll() {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      requestAnimationFrame(function () {
+        for (var i = 0; i < scrollModules.length; i++) {
+          scrollModules[i]();
+        }
+        scrollTicking = false;
+      });
+    }
+  }
+
   function initHeroParallax() {
     var hero = document.querySelector('.hero');
     if (!hero) return;
@@ -135,9 +151,7 @@
       }
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -159,9 +173,7 @@
       });
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -175,7 +187,6 @@
       elements.forEach(function (el) {
         var progress = getViewportProgress(el);
         var transforms = [];
-        var extraStyles = {};
 
         var speed = parseFloat(el.dataset.parallaxSpeed);
         if (!isNaN(speed)) {
@@ -212,9 +223,7 @@
       });
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -239,9 +248,7 @@
       });
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -264,9 +271,7 @@
       });
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -294,9 +299,7 @@
       });
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -314,9 +317,7 @@
       });
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -339,9 +340,7 @@
       });
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -414,7 +413,6 @@
           'left:' + shape.x + ';top:' + shape.y + ';' +
           'width:' + shape.size + 'px;height:' + shape.size + 'px;' +
           'opacity:' + shape.opacity + ';' +
-          'will-change:transform;transition:transform .1s linear;' +
           innerStyle;
 
         parent.appendChild(el);
@@ -433,9 +431,7 @@
       });
     }
 
-    window.addEventListener('scroll', function () {
-      requestAnimationFrame(update);
-    }, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -452,7 +448,7 @@
       bar.style.transform = 'scaleX(' + progress + ')';
     }
 
-    window.addEventListener('scroll', update, { passive: true });
+    scrollModules.push(update);
     update();
   }
 
@@ -536,6 +532,11 @@
     initStatGlow();
     initHeroTyping();
     initSmoothScroll();
+
+    // Single unified scroll listener for all parallax modules
+    if (scrollModules.length) {
+      window.addEventListener('scroll', onScroll, { passive: true });
+    }
   }
 
   if (document.readyState === 'loading') {
