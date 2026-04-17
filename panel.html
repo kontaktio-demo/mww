@@ -14,6 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="config.js"></script>
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
     a { text-decoration:none; color:inherit; }
@@ -135,9 +136,6 @@
   <div class="login-box">
     <div class="login-logo">MWW Mieszkanie</div>
     <p class="login-sub">Panel pracownika - zaloguj się, aby zarządzać ofertami.</p>
-    <p style="font-size:.72rem;color:#ef4444;background:#fff3f3;border:1px solid #fca5a5;border-radius:4px;padding:8px 10px;margin-bottom:16px;line-height:1.5;">
-      <strong>Uwaga:</strong> Ten panel służy wyłącznie do celów demonstracyjnych. Przed wdrożeniem produkcyjnym należy wdrożyć uwierzytelnianie po stronie serwera.
-    </p>
     <div class="form-group">
       <label for="lUser">Nazwa użytkownika</label>
       <input type="text" id="lUser" placeholder="mww" autocomplete="username">
@@ -259,52 +257,96 @@
 <script>
 'use strict';
 
-const STORAGE_KEY   = 'mww_listings';
-const ADMIN_KEY     = 'mww_admin_logged_in';
-const CORRECT_USER  = 'mww';
-const CORRECT_PASS  = 'admin2024';
+function getToken() {
+  try { return sessionStorage.getItem('mww_admin_token') || ''; } catch(e) { return ''; }
+}
 
-const DEFAULT_LISTINGS = [
-  {id:1, type:'sprzedaz', category:'mieszkanie', title:'Apartament na Śródmieściu', price:450000, currency:'PLN', area:62, rooms:3, floor:4, totalFloors:8, address:'ul. Piotrkowska, Śródmieście, Łódź', img:'images/hero-bg.webp', desc:'Przestronny apartament z widokiem na Piotrkowską, po remoncie, balkon.', active:true},
-  {id:2, type:'wynajem', category:'mieszkanie', title:'Mieszkanie 2-pokojowe Bałuty', price:2200, currency:'PLN/mies', area:45, rooms:2, floor:2, totalFloors:5, address:'ul. Zgierska, Bałuty, Łódź', img:'images/about-secondary.webp', desc:'Przytulne mieszkanie, pełne wyposażenie, dostęp do internetu.', active:true},
-  {id:3, type:'sprzedaz', category:'dom', title:'Dom jednorodzinny Retkinia', price:720000, currency:'PLN', area:160, rooms:5, floor:0, totalFloors:2, address:'ul. Wycieczkowa, Retkinia, Łódź', img:'images/about-photo.webp', desc:'Murowany dom z ogrodem, garaż, stan deweloperski.', active:true},
-  {id:4, type:'sprzedaz', category:'mieszkanie', title:'Kawalerka Górna', price:185000, currency:'PLN', area:28, rooms:1, floor:3, totalFloors:6, address:'ul. Rzgowska, Górna, Łódź', img:'images/section-bg-1.webp', desc:'Idealna inwestycja, blisko komunikacji, stan do odświeżenia.', active:true},
-  {id:5, type:'wynajem', category:'lokal', title:'Lokal usługowy Śródmieście', price:4500, currency:'PLN/mies', area:80, rooms:0, floor:0, totalFloors:0, address:'ul. Narutowicza, Śródmieście, Łódź', img:'images/hero-bg.webp', desc:'Lokal w centrum, witryna, zaplecze, idealne na sklep lub biuro.', active:true},
-  {id:6, type:'sprzedaz', category:'dzialka', title:'Działka budowlana Widzew', price:280000, currency:'PLN', area:800, rooms:0, floor:0, totalFloors:0, address:'Widzew, Łódź', img:'images/section-bg-1.webp', desc:'Działka z pozwoleniem na budowę, media na granicy.', active:true},
-  {id:7, type:'wynajem', category:'biuro', title:'Biuro coworkingowe Polesie', price:1800, currency:'PLN/mies', area:35, rooms:0, floor:1, totalFloors:4, address:'ul. Żeromskiego, Polesie, Łódź', img:'images/about-secondary.webp', desc:'Nowoczesne biuro z szybkim internetem, dostęp 24/7, klimatyzacja.', active:true},
-  {id:8, type:'sprzedaz', category:'mieszkanie', title:'Apartament premium Śródmieście', price:890000, currency:'PLN', area:95, rooms:4, floor:7, totalFloors:10, address:'ul. Sienkiewicza, Śródmieście, Łódź', img:'images/about-photo.webp', desc:'Luksusowy apartament, panoramiczny widok, wysokie standardy.', active:true},
-  {id:9, type:'wynajem', category:'mieszkanie', title:'Mieszkanie 3-pokojowe Śródmieście', price:3400, currency:'PLN/mies', area:72, rooms:3, floor:3, totalFloors:7, address:'ul. Kilińskiego, Śródmieście, Łódź', img:'images/hero-bg.webp', desc:'Przestronne mieszkanie, po remoncie, dostępne od zaraz.', active:true},
-];
+function setToken(token) {
+  try { sessionStorage.setItem('mww_admin_token', token); } catch(e) {}
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-  try {
-    if (localStorage.getItem(ADMIN_KEY) === '1') {
-      showDashboard();
-    }
-  } catch {}
+function clearToken() {
+  try { sessionStorage.removeItem('mww_admin_token'); } catch(e) {}
+}
+
+function authHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + getToken()
+  };
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (getToken()) {
+    verifyToken();
+  }
 
   document.getElementById('loginBtn').addEventListener('click', doLogin);
-  document.getElementById('lPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+  document.getElementById('lPass').addEventListener('keydown', function(e) { if (e.key === 'Enter') doLogin(); });
   document.getElementById('logoutBtn').addEventListener('click', doLogout);
   document.getElementById('addBtn').addEventListener('click', addListing);
 });
 
-function doLogin() {
-  const user = document.getElementById('lUser').value.trim();
-  const pass = document.getElementById('lPass').value;
-  const err  = document.getElementById('loginError');
-  if (user === CORRECT_USER && pass === CORRECT_PASS) {
-    try { localStorage.setItem(ADMIN_KEY, '1'); } catch {}
-    err.classList.remove('show');
-    showDashboard();
-  } else {
-    err.classList.add('show');
-    document.getElementById('lPass').value = '';
+async function verifyToken() {
+  try {
+    var url = MWW_CONFIG.API_BASE_URL + MWW_CONFIG.ENDPOINTS.AUTH_VERIFY;
+    var res = await fetch(url, { headers: authHeaders() });
+    if (res.ok) {
+      showDashboard();
+    } else {
+      clearToken();
+    }
+  } catch(e) {
+    console.warn('Nie udało się zweryfikować sesji:', e);
+    // Nie wylogowuj przy błędzie sieci — token może być nadal ważny
   }
 }
 
+async function doLogin() {
+  var user = document.getElementById('lUser').value.trim();
+  var pass = document.getElementById('lPass').value;
+  var err  = document.getElementById('loginError');
+  var btn  = document.getElementById('loginBtn');
+
+  if (!user || !pass) {
+    err.textContent = 'Wpisz nazwę użytkownika i hasło.';
+    err.classList.add('show');
+    return;
+  }
+
+  btn.textContent = 'Logowanie...';
+  btn.disabled = true;
+
+  try {
+    var url = MWW_CONFIG.API_BASE_URL + MWW_CONFIG.ENDPOINTS.AUTH_LOGIN;
+    var res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: user, password: pass })
+    });
+
+    if (res.ok) {
+      var data = await res.json();
+      setToken(data.token);
+      err.classList.remove('show');
+      showDashboard();
+    } else {
+      var errData = await res.json().catch(function() { return {}; });
+      err.textContent = errData.message || 'Nieprawidłowa nazwa użytkownika lub hasło.';
+      err.classList.add('show');
+      document.getElementById('lPass').value = '';
+    }
+  } catch(e) {
+    err.textContent = 'Nie można połączyć się z serwerem. Spróbuj ponownie.';
+    err.classList.add('show');
+  }
+
+  btn.textContent = 'Zaloguj się';
+  btn.disabled = false;
+}
+
 function doLogout() {
-  try { localStorage.removeItem(ADMIN_KEY); } catch {}
+  clearToken();
   document.getElementById('dashboard').style.display = 'none';
   document.getElementById('loginWrap').style.display = 'flex';
   document.getElementById('lUser').value = '';
@@ -317,88 +359,143 @@ function showDashboard() {
   renderTable();
 }
 
-function getListings() {
+async function getListings() {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length) return parsed;
+    var url = MWW_CONFIG.API_BASE_URL + MWW_CONFIG.ENDPOINTS.OFFERS_ALL;
+    var res = await fetch(url, { headers: authHeaders() });
+    if (res.ok) {
+      var data = await res.json();
+      return Array.isArray(data) ? data : [];
     }
-  } catch {}
-  return [...DEFAULT_LISTINGS];
+    if (res.status === 401) {
+      clearToken();
+      doLogout();
+    }
+  } catch(e) {
+    console.warn('Błąd pobierania ofert:', e);
+    alert('Nie udało się pobrać ofert z serwera. Sprawdź połączenie.');
+  }
+  return [];
 }
 
-function saveListings(data) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch {}
-}
-
-function addListing() {
-  const title = document.getElementById('fTitle').value.trim();
-  const price = parseInt(document.getElementById('fPrice').value) || 0;
-  const area  = parseInt(document.getElementById('fArea').value) || 0;
-  const addr  = document.getElementById('fAddr').value.trim();
+async function addListing() {
+  var title = document.getElementById('fTitle').value.trim();
+  var price = parseInt(document.getElementById('fPrice').value) || 0;
+  var area  = parseInt(document.getElementById('fArea').value) || 0;
+  var addr  = document.getElementById('fAddr').value.trim();
 
   if (!title || !price || !area || !addr) {
     alert('Proszę wypełnić wymagane pola: Tytuł, Cena, Powierzchnia, Adres.');
     return;
   }
 
-  const floorStr = document.getElementById('fFloor').value.trim();
-  const floorParts = floorStr.split('/').map(Number);
-  const floor = floorParts[0] || 0;
-  const totalFloors = floorParts[1] || 0;
+  var floorStr = document.getElementById('fFloor').value.trim();
+  var floorParts = floorStr.split('/').map(Number);
+  var floor = floorParts[0] || 0;
+  var totalFloors = floorParts[1] || 0;
 
-  const listing = {
-    id:         Date.now(),
+  var listing = {
     type:       document.getElementById('fType').value,
     category:   document.getElementById('fCat').value,
-    title,
-    price,
+    title:      title,
+    price:      price,
     currency:   document.getElementById('fCurrency').value.trim() || 'PLN',
-    area,
+    area:       area,
     rooms:      parseInt(document.getElementById('fRooms').value) || 0,
-    floor,
-    totalFloors,
+    floor:      floor,
+    totalFloors: totalFloors,
     address:    addr,
-    img:        document.getElementById('fImg').value.trim() || 'images/about-photo.webp',
+    img:        document.getElementById('fImg').value.trim() || '',
     desc:       document.getElementById('fDesc').value.trim(),
     active:     document.getElementById('fStatus').value === 'true',
   };
 
-  const listings = getListings();
-  listings.push(listing);
-  saveListings(listings);
+  var btn = document.getElementById('addBtn');
+  btn.textContent = 'Dodawanie...';
+  btn.disabled = true;
 
-  ['fTitle','fPrice','fArea','fRooms','fFloor','fAddr','fImg','fDesc'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('fCurrency').value = 'PLN';
-  document.getElementById('fRooms').value = '0';
+  try {
+    var url = MWW_CONFIG.API_BASE_URL + MWW_CONFIG.ENDPOINTS.OFFERS_CREATE;
+    var res = await fetch(url, {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify(listing)
+    });
 
-  const msg = document.getElementById('addSuccess');
-  msg.classList.add('show');
-  setTimeout(() => msg.classList.remove('show'), 3000);
+    if (res.ok) {
+      ['fTitle','fPrice','fArea','fRooms','fFloor','fAddr','fImg','fDesc'].forEach(function(id) {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('fCurrency').value = 'PLN';
+      document.getElementById('fRooms').value = '0';
 
-  renderTable();
+      var msg = document.getElementById('addSuccess');
+      msg.classList.add('show');
+      setTimeout(function() { msg.classList.remove('show'); }, 3000);
+
+      renderTable();
+    } else if (res.status === 401) {
+      clearToken();
+      doLogout();
+    } else {
+      alert('Nie udało się dodać oferty. Spróbuj ponownie.');
+    }
+  } catch(e) {
+    alert('Błąd połączenia z serwerem.');
+  }
+
+  btn.textContent = 'Dodaj ofertę';
+  btn.disabled = false;
 }
 
-function deleteListing(id) {
+async function deleteListing(id) {
   if (!confirm('Czy na pewno chcesz usunąć tę ofertę?')) return;
-  const listings = getListings().filter(l => l.id !== id);
-  saveListings(listings);
-  renderTable();
+
+  try {
+    var url = MWW_CONFIG.API_BASE_URL + MWW_CONFIG.ENDPOINTS.OFFERS + '/' + id;
+    var res = await fetch(url, {
+      method: 'DELETE',
+      headers: authHeaders()
+    });
+
+    if (res.ok) {
+      renderTable();
+    } else if (res.status === 401) {
+      clearToken();
+      doLogout();
+    } else {
+      alert('Nie udało się usunąć oferty.');
+    }
+  } catch(e) {
+    alert('Błąd połączenia z serwerem.');
+  }
 }
 
-function toggleActive(id) {
-  const listings = getListings().map(l => l.id === id ? {...l, active: !l.active} : l);
-  saveListings(listings);
-  renderTable();
+async function toggleActive(id) {
+  try {
+    var url = MWW_CONFIG.API_BASE_URL + MWW_CONFIG.ENDPOINTS.OFFERS + '/' + id + '/toggle';
+    var res = await fetch(url, {
+      method: 'PATCH',
+      headers: authHeaders()
+    });
+
+    if (res.ok) {
+      renderTable();
+    } else if (res.status === 401) {
+      clearToken();
+      doLogout();
+    } else {
+      alert('Nie udało się zmienić statusu oferty.');
+    }
+  } catch(e) {
+    alert('Błąd połączenia z serwerem.');
+  }
 }
 
-function renderTable() {
-  const listings = getListings();
-  const tbody = document.getElementById('tableBody');
-  const empty = document.getElementById('emptyState');
+async function renderTable() {
+  var listings = await getListings();
+  var tbody = document.getElementById('tableBody');
+  var empty = document.getElementById('emptyState');
 
   document.getElementById('totalCount').textContent = listings.length;
 
@@ -409,28 +506,27 @@ function renderTable() {
   }
   empty.style.display = 'none';
 
-  tbody.innerHTML = listings.map(l => {
-    const fmtPrice = new Intl.NumberFormat('pl-PL').format(l.price);
-    const typeClass = l.type === 'sprzedaz' ? 'badge-sale' : 'badge-rent';
-    const typeLabel = l.type === 'sprzedaz' ? 'Sprzedaż' : 'Wynajem';
-    const statusClass = l.active !== false ? 'badge-active' : 'badge-inactive';
-    const statusLabel = l.active !== false ? 'Aktywna' : 'Nieaktywna';
-    const toggleLabel = l.active !== false ? 'Dezaktywuj' : 'Aktywuj';
+  tbody.innerHTML = listings.map(function(l) {
+    var fmtPrice = new Intl.NumberFormat('pl-PL').format(l.price);
+    var typeClass = l.type === 'sprzedaz' ? 'badge-sale' : 'badge-rent';
+    var typeLabel = l.type === 'sprzedaz' ? 'Sprzedaż' : 'Wynajem';
+    var statusClass = l.active !== false ? 'badge-active' : 'badge-inactive';
+    var statusLabel = l.active !== false ? 'Aktywna' : 'Nieaktywna';
+    var toggleLabel = l.active !== false ? 'Dezaktywuj' : 'Aktywuj';
 
-    return `
-      <tr>
-        <td><img class="tbl-thumb" src="${l.img}" alt="" loading="lazy" onerror="this.style.display='none'"></td>
-        <td><strong>${l.title}</strong><br><span style="color:var(--text-muted);font-size:.72rem">${l.category}</span></td>
-        <td><span class="badge ${typeClass}">${typeLabel}</span></td>
-        <td>${fmtPrice} ${l.currency}</td>
-        <td>${l.area} m²</td>
-        <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${l.address}</td>
-        <td><span class="badge ${statusClass}">${statusLabel}</span></td>
-        <td>
-          <button class="tbl-btn" onclick="toggleActive(${l.id})">${toggleLabel}</button>
-          <button class="tbl-btn tbl-btn-del" onclick="deleteListing(${l.id})">Usuń</button>
-        </td>
-      </tr>`;
+    return '<tr>' +
+      '<td><img class="tbl-thumb" src="' + l.img + '" alt="" loading="lazy" onerror="this.style.display=\'none\'"></td>' +
+      '<td><strong>' + l.title + '</strong><br><span style="color:var(--text-muted);font-size:.72rem">' + l.category + '</span></td>' +
+      '<td><span class="badge ' + typeClass + '">' + typeLabel + '</span></td>' +
+      '<td>' + fmtPrice + ' ' + l.currency + '</td>' +
+      '<td>' + l.area + ' m²</td>' +
+      '<td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + l.address + '</td>' +
+      '<td><span class="badge ' + statusClass + '">' + statusLabel + '</span></td>' +
+      '<td>' +
+        '<button class="tbl-btn" onclick="toggleActive(' + l.id + ')">' + toggleLabel + '</button>' +
+        '<button class="tbl-btn tbl-btn-del" onclick="deleteListing(' + l.id + ')">Usuń</button>' +
+      '</td>' +
+    '</tr>';
   }).join('');
 }
 </script>
