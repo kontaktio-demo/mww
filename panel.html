@@ -297,7 +297,8 @@ async function verifyToken() {
       clearToken();
     }
   } catch(e) {
-    clearToken();
+    console.warn('Nie udało się zweryfikować sesji:', e);
+    // Nie wylogowuj przy błędzie sieci — token może być nadal ważny
   }
 }
 
@@ -372,6 +373,7 @@ async function getListings() {
     }
   } catch(e) {
     console.warn('Błąd pobierania ofert:', e);
+    alert('Nie udało się pobrać ofert z serwera. Sprawdź połączenie.');
   }
   return [];
 }

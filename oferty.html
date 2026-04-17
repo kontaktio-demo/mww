@@ -271,8 +271,18 @@ async function loadListings() {
       allListings = [];
     }
   } catch (err) {
-    console.warn('Nie udało się pobrać ofert z API — wyświetlam pustą listę.', err);
+    console.warn('Nie udało się pobrać ofert z API:', err);
     allListings = [];
+
+    var grid = document.getElementById('listingsGrid');
+    grid.innerHTML = '<div class="no-results">' +
+      '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+      '<h3>Nie można załadować ofert</h3>' +
+      '<p>Wystąpił problem z połączeniem. Spróbuj odświeżyć stronę.</p>' +
+      '</div>';
+    document.getElementById('resultsCount').textContent = '0';
+    document.getElementById('loadMoreWrap').style.display = 'none';
+    return;
   }
 
   renderListings();
