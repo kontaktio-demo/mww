@@ -2,10 +2,11 @@
 
 const router = require('express').Router();
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+const supabase = require('../db');
 const auth = require('../middleware/auth');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
+const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES = process.env.JWT_EXPIRES_IN || '24h';
 
 /**
@@ -21,8 +22,13 @@ router.post('/login', async (req, res) => {
       return res.status(400).json({ message: 'Podaj nazwę użytkownika i hasło.' });
     }
 
-    const user = await User.findOne({ username: username.toLowerCase().trim() });
-    if (!user) {
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('username', String(username).toLowerCase().trim())
+      .single();
+
+    if (error || !user) {
       return res.status(401).json({ message: 'Nieprawidłowa nazwa użytkownika lub hasło.' });
     }
 
@@ -30,17 +36,19 @@ router.post('/login', async (req, res) => {
       return res.status(403).json({ message: 'Konto jest dezaktywowane.' });
     }
 
-    const isMatch = await user.comparePassword(password);
+    const isMatch = await bcrypt.compare(String(password), user.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Nieprawidłowa nazwa użytkownika lub hasło.' });
     }
 
     // Update last login
-    user.lastLogin = new Date();
-    await user.save();
+    await supabase
+      .from('users')
+      .update({ last_login: new Date().toISOString() })
+      .eq('id', user.id);
 
     const token = jwt.sign(
-      { id: user._id, role: user.role },
+      { id: user.id, role: user.role },
       JWT_SECRET,
       { expiresIn: JWT_EXPIRES }
     );
@@ -48,7 +56,7 @@ router.post('/login', async (req, res) => {
     res.json({
       token,
       user: {
-        id: user._id,
+        id: user.id,
         username: user.username,
         role: user.role,
       },
@@ -68,7 +76,7 @@ router.get('/verify', auth, (req, res) => {
   res.json({
     valid: true,
     user: {
-      id: req.user._id,
+      id: req.user.id,
       username: req.user.username,
       role: req.user.role,
     },
@@ -87,18 +95,31 @@ router.post('/change-password', auth, async (req, res) => {
       return res.status(400).json({ message: 'Podaj aktualne i nowe hasło.' });
     }
 
-    if (newPassword.length < 6) {
+    if (String(newPassword).length < 6) {
       return res.status(400).json({ message: 'Nowe hasło musi mieć minimum 6 znaków.' });
     }
 
-    const user = await User.findById(req.user._id);
-    const isMatch = await user.comparePassword(currentPassword);
+    // Fetch full user with password
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('*')
+      .eq('id', req.user.id)
+      .single();
+
+    if (error || !user) {
+      return res.status(404).json({ message: 'Użytkownik nie znaleziony.' });
+    }
+
+    const isMatch = await bcrypt.compare(String(currentPassword), user.password);
     if (!isMatch) {
       return res.status(401).json({ message: 'Aktualne hasło jest nieprawidłowe.' });
     }
 
-    user.password = newPassword;
-    await user.save();
+    const hashed = await bcrypt.hash(String(newPassword), 12);
+    await supabase
+      .from('users')
+      .update({ password: hashed })
+      .eq('id', user.id);
 
     res.json({ message: 'Hasło zostało zmienione.' });
   } catch (err) {

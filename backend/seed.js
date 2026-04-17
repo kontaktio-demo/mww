@@ -1,42 +1,59 @@
 'use strict';
 
 /**
- * Seed script – creates default admin user if none exists.
+ * Seed script – creates default admin user in Supabase if none exists.
  *
  * Usage:
- *   MONGODB_URI=... ADMIN_USERNAME=... ADMIN_PASSWORD=... node seed.js
+ *   SUPABASE_URL=... SUPABASE_SERVICE_KEY=... ADMIN_USERNAME=... ADMIN_PASSWORD=... node seed.js
  */
 
 require('dotenv').config();
-const mongoose = require('mongoose');
-const User = require('./models/User');
+const bcrypt = require('bcryptjs');
+const supabase = require('./db');
 
-const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mww';
-const ADMIN_USER = process.env.ADMIN_USERNAME || 'mww';
-const ADMIN_PASS = process.env.ADMIN_PASSWORD || 'MWW2024!Secure';
+const ADMIN_USER = process.env.ADMIN_USERNAME;
+const ADMIN_PASS = process.env.ADMIN_PASSWORD;
+
+if (!ADMIN_USER || !ADMIN_PASS) {
+  console.error('✗ ADMIN_USERNAME and ADMIN_PASSWORD environment variables are required.');
+  process.exit(1);
+}
 
 async function seed() {
   try {
-    await mongoose.connect(MONGO_URI);
-    console.log('✓ Connected to MongoDB');
+    const username = ADMIN_USER.toLowerCase().trim();
 
-    const existing = await User.findOne({ username: ADMIN_USER.toLowerCase() });
+    // Check if user already exists
+    const { data: existing } = await supabase
+      .from('users')
+      .select('id')
+      .eq('username', username)
+      .single();
+
     if (existing) {
-      console.log(`✓ Admin user "${ADMIN_USER}" already exists – skipping.`);
-    } else {
-      await User.create({
-        username: ADMIN_USER.toLowerCase(),
-        password: ADMIN_PASS,
-        role: 'admin',
-        active: true,
-      });
-      console.log(`✓ Admin user "${ADMIN_USER}" created successfully.`);
+      console.log('✓ Admin user already exists – skipping.');
+      return;
     }
+
+    // Hash password
+    const hashed = await bcrypt.hash(String(ADMIN_PASS), 12);
+
+    const { error } = await supabase.from('users').insert({
+      username,
+      password: hashed,
+      role: 'admin',
+      active: true,
+    });
+
+    if (error) {
+      console.error('✗ Seed error:', error.message);
+      process.exit(1);
+    }
+
+    console.log('✓ Admin user created successfully.');
   } catch (err) {
     console.error('✗ Seed error:', err.message);
-  } finally {
-    await mongoose.disconnect();
-    console.log('✓ Disconnected from MongoDB');
+    process.exit(1);
   }
 }
 

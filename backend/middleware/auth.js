@@ -1,9 +1,10 @@
 'use strict';
 
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const supabase = require('../db');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret-change-me';
+const JWT_SECRET = process.env.JWT_SECRET;
+// JWT_SECRET is validated at startup in server.js
 
 /**
  * Middleware: verifies JWT token from Authorization header.
@@ -18,10 +19,17 @@ async function authMiddleware(req, res, next) {
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
-    const user = await User.findById(decoded.id).select('-password');
-    if (!user || !user.active) {
+
+    const { data: user, error } = await supabase
+      .from('users')
+      .select('id, username, role, active')
+      .eq('id', decoded.id)
+      .single();
+
+    if (error || !user || !user.active) {
       return res.status(401).json({ error: 'Użytkownik nieaktywny lub nie istnieje.' });
     }
+
     req.user = user;
     next();
   } catch {

@@ -3,12 +3,20 @@
 require('dotenv').config();
 
 const express = require('express');
-const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
 const rateLimit = require('express-rate-limit');
+
+// Validate critical env vars early
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
+  console.error('✗ FATAL: JWT_SECRET must be set and at least 32 characters long.');
+  process.exit(1);
+}
+
+// This import also validates SUPABASE_URL / SUPABASE_SERVICE_KEY
+const supabase = require('./db');
 
 const authRoutes = require('./routes/auth');
 const offerRoutes = require('./routes/offers');
@@ -19,7 +27,6 @@ const app = express();
 // ─── Security ────────────────────────────────────────────
 app.use(helmet({
   crossOriginResourcePolicy: { policy: 'cross-origin' },
-  contentSecurityPolicy: false,
 }));
 
 // ─── CORS ────────────────────────────────────────────────
@@ -30,7 +37,6 @@ const allowedOrigins = (process.env.CORS_ORIGINS || '')
 
 app.use(cors({
   origin(origin, cb) {
-    // Allow requests with no origin (mobile apps, curl, Render health checks)
     if (!origin) return cb(null, true);
     if (allowedOrigins.length === 0) return cb(null, true);
     if (allowedOrigins.includes(origin)) return cb(null, true);
@@ -43,7 +49,7 @@ app.use(cors({
 
 // ─── Rate limiting ───────────────────────────────────────
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 min
+  windowMs: 15 * 60 * 1000,
   max: 200,
   standardHeaders: true,
   legacyHeaders: false,
@@ -79,8 +85,19 @@ app.use('/api/offers', offerRoutes);
 app.use('/api/images', imageRoutes);
 
 // ─── Health check ────────────────────────────────────────
-app.get('/api/health', (_req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+app.get('/api/health', async (_req, res) => {
+  // Quick Supabase connectivity check
+  let dbOk = false;
+  try {
+    const { error } = await supabase.from('users').select('id').limit(1);
+    dbOk = !error;
+  } catch { /* ignore */ }
+
+  res.json({
+    status: dbOk ? 'ok' : 'degraded',
+    database: dbOk ? 'connected' : 'error',
+    timestamp: new Date().toISOString(),
+  });
 });
 
 // Root
@@ -88,6 +105,7 @@ app.get('/', (_req, res) => {
   res.json({
     name: 'MWW Backend API',
     version: '1.0.0',
+    database: 'Supabase (PostgreSQL)',
     endpoints: {
       health: '/api/health',
       offers: '/api/offers',
@@ -115,21 +133,11 @@ app.use((err, _req, res, _next) => {
   });
 });
 
-// ─── Database & Start ────────────────────────────────────
+// ─── Start ───────────────────────────────────────────────
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mww';
 
-mongoose
-  .connect(MONGO_URI)
-  .then(() => {
-    console.log('✓ MongoDB connected');
-    app.listen(PORT, () => {
-      console.log(`✓ MWW Backend running on port ${PORT}`);
-    });
-  })
-  .catch(err => {
-    console.error('✗ MongoDB connection failed:', err.message);
-    process.exit(1);
-  });
+app.listen(PORT, () => {
+  console.log(`✓ MWW Backend running on port ${PORT} (Supabase)`);
+});
 
 module.exports = app;
