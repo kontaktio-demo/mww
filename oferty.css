@@ -298,6 +298,17 @@ body {
 .listing-footer {
   display: flex; gap: 8px;
 }
+.listing-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.listing-card-link:hover { color: inherit; }
+.listing-footer-outside {
+  display: flex; gap: 8px;
+  padding: 0 16px 16px;
+}
 .btn-ask {
   flex: 1;
   padding: 9px 0;
@@ -622,7 +633,8 @@ body {
   .listing-card {
     margin-bottom: 0;
   }
-  .listing-footer {
+  .listing-footer,
+  .listing-footer-outside {
     flex-direction: column;
   }
   .btn-ask {
