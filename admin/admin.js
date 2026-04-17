@@ -634,7 +634,7 @@ function renderAddForm(prefill) {
           <label>Ogrzewanie</label>
           <select id="fHeatingType">
             <option value="">– brak –</option>
-            ${['miejskie','gazowe','elektryczne','kominkowe','podłogowe','pompа ciepła','inne'].map(t =>
+            ${['miejskie','gazowe','elektryczne','kominkowe','podłogowe','pompa ciepła','inne'].map(t =>
               `<option value="${t}" ${o.heatingType === t ? 'selected' : ''}>${t}</option>`
             ).join('')}
           </select>

@@ -32,7 +32,8 @@ router.post('/upload', auth, upload.single('image'), async (req, res) => {
       return res.status(400).json({ error: 'Nie przesłano pliku.' });
     }
 
-    const alt = req.body.alt || '';
+    const rawAlt = req.body.alt;
+    const alt = typeof rawAlt === 'string' ? rawAlt : '';
     const result = await processImage(req.file.buffer, req.file.originalname, alt);
 
     res.json({
