@@ -1,7 +1,7 @@
 'use strict';
 
 /* ============================================================
-   MWW Admin Panel – Main Application Logic
+   MWW Admin Panel - Main Application Logic
    ============================================================ */
 
 // ─── State ───────────────────────────────────────────────
@@ -46,7 +46,7 @@ function formatPrice(n) {
   return new Intl.NumberFormat('pl-PL').format(n || 0);
 }
 function formatDate(d) {
-  if (!d) return '–';
+  if (!d) return '-';
   return new Date(d).toLocaleDateString('pl-PL', { day: '2-digit', month: '2-digit', year: 'numeric' });
 }
 function escHtml(str) {
@@ -248,7 +248,7 @@ function navigateTo(page) {
 // ─── Dashboard ───────────────────────────────────────────
 async function renderDashboard() {
   const content = $('#pageContent');
-  content.innerHTML = '<div class="stats-grid"><div class="stat-card"><div class="stat-number">–</div><div class="stat-label">Ładowanie...</div></div></div>';
+  content.innerHTML = '<div class="stats-grid"><div class="stat-card"><div class="stat-number">-</div><div class="stat-label">Ładowanie...</div></div></div>';
 
   try {
     const [stats, offers] = await Promise.all([
@@ -335,7 +335,7 @@ function categoryLabel(cat) {
     lokal: 'Lokale', biuro: 'Biura', garaz: 'Garaże',
     magazyn: 'Magazyny', inne: 'Inne',
   };
-  return map[cat] || cat || '–';
+  return map[cat] || cat || '-';
 }
 
 function getOfferThumb(offer) {
@@ -422,7 +422,7 @@ function renderOffersTable(searchTerm, filterType, filterStatus) {
                   <td>${o.area || 0} m²</td>
                   <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(o.address)}</td>
                   <td><span class="badge ${o.active !== false ? 'badge-active' : 'badge-inactive'}">${o.active !== false ? 'Aktywna' : 'Nieaktywna'}</span></td>
-                  <td>${o.featured ? '<span class="badge badge-featured">★</span>' : '–'}</td>
+                  <td>${o.featured ? '<span class="badge badge-featured">★</span>' : '-'}</td>
                   <td>${o.views || 0}</td>
                   <td>
                     <div class="btn-group">
@@ -613,7 +613,7 @@ function renderAddForm(prefill) {
         <div class="form-field">
           <label>Rodzaj budynku</label>
           <select id="fBuildingType">
-            <option value="">– brak –</option>
+            <option value="">- brak -</option>
             ${['blok','kamienica','apartamentowiec','dom wolnostojący','bliźniak','szeregowiec','loft','plomba'].map(t =>
               `<option value="${t}" ${o.buildingType === t ? 'selected' : ''}>${t}</option>`
             ).join('')}
@@ -622,7 +622,7 @@ function renderAddForm(prefill) {
         <div class="form-field">
           <label>Materiał budynku</label>
           <select id="fBuildingMaterial">
-            <option value="">– brak –</option>
+            <option value="">- brak -</option>
             ${['cegła','wielka płyta','beton','drewno','pustak','silikat','inne'].map(t =>
               `<option value="${t}" ${o.buildingMaterial === t ? 'selected' : ''}>${t}</option>`
             ).join('')}
@@ -633,7 +633,7 @@ function renderAddForm(prefill) {
         <div class="form-field">
           <label>Ogrzewanie</label>
           <select id="fHeatingType">
-            <option value="">– brak –</option>
+            <option value="">- brak -</option>
             ${['miejskie','gazowe','elektryczne','kominkowe','podłogowe','pompa ciepła','inne'].map(t =>
               `<option value="${t}" ${o.heatingType === t ? 'selected' : ''}>${t}</option>`
             ).join('')}
@@ -642,7 +642,7 @@ function renderAddForm(prefill) {
         <div class="form-field">
           <label>Stan</label>
           <select id="fCondition">
-            <option value="">– brak –</option>
+            <option value="">- brak -</option>
             ${['do zamieszkania','do remontu','deweloperski','po remoncie','w budowie','surowy'].map(t =>
               `<option value="${t}" ${o.condition === t ? 'selected' : ''}>${t}</option>`
             ).join('')}
@@ -651,7 +651,7 @@ function renderAddForm(prefill) {
         <div class="form-field">
           <label>Parking</label>
           <select id="fParking">
-            <option value="">– brak –</option>
+            <option value="">- brak -</option>
             ${['garaż','miejsce podziemne','miejsce naziemne','brak'].map(t =>
               `<option value="${t}" ${o.parking === t ? 'selected' : ''}>${t}</option>`
             ).join('')}
@@ -693,7 +693,7 @@ function renderAddForm(prefill) {
         <div class="form-field">
           <label>Typ działki</label>
           <select id="fPlotType">
-            <option value="">– brak –</option>
+            <option value="">- brak -</option>
             ${['budowlana','rolna','rekreacyjna','leśna','inwestycyjna','siedliskowa'].map(t =>
               `<option value="${t}" ${o.plotType === t ? 'selected' : ''}>${t}</option>`
             ).join('')}
@@ -726,15 +726,15 @@ function renderAddForm(prefill) {
       </div>
       <div class="form-row">
         <div class="form-field">
-          <label>Agent – imię</label>
+          <label>Agent - imię</label>
           <input type="text" id="fAgentName" value="${escHtml(o.agentName || '')}">
         </div>
         <div class="form-field">
-          <label>Agent – telefon</label>
+          <label>Agent - telefon</label>
           <input type="text" id="fAgentPhone" value="${escHtml(o.agentPhone || '')}">
         </div>
         <div class="form-field">
-          <label>Agent – email</label>
+          <label>Agent - email</label>
           <input type="email" id="fAgentEmail" value="${escHtml(o.agentEmail || '')}">
         </div>
       </div>
@@ -1027,7 +1027,7 @@ async function renderPreview() {
   content.innerHTML = `
     <div class="card" style="margin-bottom:24px">
       <div class="card-header">
-        <div class="card-title">Podgląd strony – tak wyglądają oferty na stronie</div>
+        <div class="card-title">Podgląd strony - tak wyglądają oferty na stronie</div>
       </div>
       <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px">
         Poniżej widzisz podgląd ${activeOffers.length} aktywnych ofert tak jak będą wyglądać na stronie ofert.
@@ -1114,7 +1114,7 @@ function previewSingle(id) {
   ].filter(Boolean);
 
   content.innerHTML = `
-    <button class="btn btn-outline" onclick="renderPreview()" style="margin-bottom:16px">← Wróć do listy</button>
+    <button class="btn btn-outline" onclick="renderPreview()" style="margin-bottom:16px"><- Wróć do listy</button>
 
     <div class="preview-container">
       <div class="preview-card">
@@ -1272,7 +1272,7 @@ function renderSettings() {
   fetch(API() + EP().HEALTH)
     .then(r => r.json())
     .then(data => {
-      $('#healthStatus').innerHTML = `<span style="color:var(--success)">✓ Backend online</span> — ${data.timestamp || ''}`;
+      $('#healthStatus').innerHTML = `<span style="color:var(--success)">✓ Backend online</span> - ${data.timestamp || ''}`;
     })
     .catch(() => {
       $('#healthStatus').innerHTML = '<span style="color:var(--danger)">✗ Backend offline lub niedostępny</span>';
