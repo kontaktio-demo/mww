@@ -639,7 +639,13 @@ function bindFilters() {
   });
   document.getElementById('sortSelect').addEventListener('change', applyFilters);
   document.getElementById('loadMoreBtn').addEventListener('click', () => { displayed += PAGE_SIZE; paint(); });
-  document.getElementById('filterCity').addEventListener('keydown', e => { if (e.key === 'Enter') applyFilters(); });
+
+  const filterBar = document.querySelector('.filter-inner');
+  if (filterBar) {
+    filterBar.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && (e.target.tagName === 'INPUT')) applyFilters();
+    });
+  }
 
   document.getElementById('listingsGrid').addEventListener('click', e => {
     const askBtn = e.target.closest('.btn-ask-small');
