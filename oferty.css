@@ -902,12 +902,12 @@ body {
   .nav { padding: 0 20px; }
   .nav-links {
     display: flex; flex-direction: column;
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    position: fixed; inset: 0;
     width: 100%;
     background: rgba(255,255,255,.98);
     backdrop-filter: blur(20px);
     padding: 80px 28px 40px;
-    transform: translateX(110%);
+    transform: translateX(100%);
     transition: transform .4s cubic-bezier(.25,.46,.45,.94);
     z-index: 900;
     gap: 20px;
