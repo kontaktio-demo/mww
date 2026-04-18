@@ -26,7 +26,7 @@
       --font-sans:'Inter',system-ui,sans-serif;
       --font-heading:'Inter',system-ui,sans-serif;
     }
-    body { font-family:var(--font-sans); color:var(--text); background:var(--bg); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+    body { font-family:var(--font-sans); color:var(--text); background:var(--bg); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; }
     .nav {
       position:sticky; top:0; z-index:800;
       display:flex; align-items:center; justify-content:space-between;
@@ -63,7 +63,7 @@
     .prose .info-box { background:var(--bg-soft); border:1px solid var(--border-soft); border-radius:var(--radius-lg); padding:20px 24px; margin:20px 0; font-size:.88rem; }
     .prose .info-box strong { display:block; margin-bottom:6px; }
     .updated { font-size:.78rem; color:var(--text-muted); margin-top:40px; padding-top:20px; border-top:1px solid var(--border-soft); }
-    .footer { background:var(--primary); color:rgba(255,255,255,.65); font-size:.82rem; position:relative; overflow:hidden; }
+    .footer { background:var(--primary); color:rgba(255,255,255,.65); font-size:.82rem; position:relative; overflow:hidden; margin-top:auto; }
     .footer::before { content:''; position:absolute; inset:0; background:url('images/hero-bg.webp') top center/cover no-repeat; opacity:.06; filter:grayscale(100%); pointer-events:none; }
     .footer-bottom { padding:18px 40px; position:relative; z-index:1; background:rgba(0,0,0,.15); }
     .footer-bottom-inner { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; }
