@@ -797,7 +797,7 @@ function bindNav() {
     hamburger.classList.contains('open') ? closeMenu() : openMenu();
   });
 
-  navLinks.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', closeMenu));
+  navLinks.addEventListener('click', e => { if (e.target.closest('.nav-link')) closeMenu(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
   document.addEventListener('click', e => {
     if (navLinks.classList.contains('open') && !hamburger.contains(e.target) && !navLinks.contains(e.target)) closeMenu();
