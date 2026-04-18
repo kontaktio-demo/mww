@@ -79,7 +79,7 @@
     </div>
     <div class="filter-group">
       <label for="filterCity">Dzielnica / lokalizacja</label>
-      <input type="text" id="filterCity" placeholder="np. Śródmieście">
+      <input type="text" id="filterCity" placeholder="np. Śródmieście" maxlength="100">
     </div>
     <div class="filter-group">
       <label>Cena (PLN)</label>
@@ -295,12 +295,37 @@ function applyFilters() {
   const type  = document.getElementById('filterType').value;
   const cat   = document.getElementById('filterCat').value;
   const city  = document.getElementById('filterCity').value.toLowerCase().trim();
-  const pMin  = parseInt(document.getElementById('filterPriceMin').value) || 0;
-  const pMax  = parseInt(document.getElementById('filterPriceMax').value) || Infinity;
-  const aMin  = parseInt(document.getElementById('filterAreaMin').value) || 0;
-  const aMax  = parseInt(document.getElementById('filterAreaMax').value) || Infinity;
   const rooms = document.getElementById('filterRooms').value;
   const sort  = document.getElementById('sortSelect').value;
+
+  const priceMinEl = document.getElementById('filterPriceMin');
+  const priceMaxEl = document.getElementById('filterPriceMax');
+  const areaMinEl  = document.getElementById('filterAreaMin');
+  const areaMaxEl  = document.getElementById('filterAreaMax');
+
+  let pMin = Math.max(0, parseInt(priceMinEl.value) || 0);
+  let pMax = parseInt(priceMaxEl.value) || Infinity;
+  let aMin = Math.max(0, parseInt(areaMinEl.value) || 0);
+  let aMax = parseInt(areaMaxEl.value) || Infinity;
+
+  if (pMax !== Infinity) pMax = Math.max(0, pMax);
+  if (aMax !== Infinity) aMax = Math.max(0, aMax);
+
+  if (pMin > 0 && pMax !== Infinity && pMin > pMax) {
+    const tmp = pMin;
+    pMin = pMax;
+    pMax = tmp;
+    priceMinEl.value = pMin;
+    priceMaxEl.value = pMax;
+  }
+
+  if (aMin > 0 && aMax !== Infinity && aMin > aMax) {
+    const tmp = aMin;
+    aMin = aMax;
+    aMax = tmp;
+    areaMinEl.value = aMin;
+    areaMaxEl.value = aMax;
+  }
 
   filtered = allListings.filter(l => {
     if (type && l.type !== type) return false;
@@ -675,7 +700,13 @@ function bindModal() {
   submitBtn.addEventListener('click', () => {
     const name  = document.getElementById('mName').value.trim();
     const phone = document.getElementById('mPhone').value.trim();
+    const email = document.getElementById('mEmail').value.trim();
     if (!name || !phone) { alert('Proszę podać imię i telefon.'); return; }
+    if (name.length < 2 || name.length > 100) { alert('Imię powinno mieć od 2 do 100 znaków.'); return; }
+    const phoneClean = phone.replace(/[\s\-\(\)]/g, '');
+    if (!/^\+?\d{7,15}$/.test(phoneClean)) { alert('Proszę podać poprawny numer telefonu.'); return; }
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Proszę podać poprawny adres e-mail.'); return; }
+    submitBtn.disabled = true;
     submitBtn.textContent = 'Wysłano zapytanie';
     submitBtn.setAttribute('aria-label', 'Zapytanie zostało wysłane');
     submitBtn.style.background = '#22c55e';
@@ -683,6 +714,7 @@ function bindModal() {
       closeModal();
       submitBtn.textContent = 'Wyślij zapytanie';
       submitBtn.style.background = '';
+      submitBtn.disabled = false;
       ['mName','mPhone','mEmail','mMsg'].forEach(id => { document.getElementById(id).value = ''; });
     }, 2000);
   });
@@ -701,9 +733,29 @@ function bindNav() {
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('navLinks');
   if (!hamburger || !navLinks) return;
+
+  const openMenu = () => {
+    hamburger.classList.add('open');
+    navLinks.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMenu = () => {
+    hamburger.classList.remove('open');
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
   hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', navLinks.classList.contains('open'));
+    hamburger.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  navLinks.querySelectorAll('.nav-link').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  document.addEventListener('click', e => {
+    if (navLinks.classList.contains('open') && !hamburger.contains(e.target) && !navLinks.contains(e.target)) closeMenu();
   });
 }
 

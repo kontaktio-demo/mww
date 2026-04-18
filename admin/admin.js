@@ -4,7 +4,6 @@
    MWW Admin Panel - Main Application Logic
    ============================================================ */
 
-// ─── State ───────────────────────────────────────────────
 const state = {
   token: '',
   user: null,
@@ -15,7 +14,6 @@ const state = {
   uploadedImages: [],  // images for new offer form
 };
 
-// ─── Helpers ─────────────────────────────────────────────
 const $ = (sel) => document.querySelector(sel);
 const $$ = (sel) => document.querySelectorAll(sel);
 const API = () => ADMIN_CONFIG.API_BASE_URL;
@@ -55,7 +53,6 @@ function escHtml(str) {
   return div.innerHTML;
 }
 
-// ─── Toast notifications ─────────────────────────────────
 function initToasts() {
   if (!$('.toast-container')) {
     const c = document.createElement('div');
@@ -72,7 +69,6 @@ function toast(msg, type) {
   setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 4000);
 }
 
-// ─── API Calls ───────────────────────────────────────────
 async function apiGet(endpoint) {
   const res = await fetch(API() + endpoint, { headers: authHeaders() });
   if (res.status === 401) { clearToken(); showLogin(); throw new Error('Unauthorized'); }
@@ -136,7 +132,6 @@ async function uploadMultipleImages(files) {
   return data.images;
 }
 
-// ─── Auth ────────────────────────────────────────────────
 function showLogin() {
   $('#loginScreen').style.display = 'flex';
   $('#app').style.display = 'none';
@@ -212,7 +207,6 @@ function doLogout() {
   $('#loginError').textContent = '';
 }
 
-// ─── Navigation ──────────────────────────────────────────
 function navigateTo(page) {
   state.currentPage = page;
 
@@ -245,7 +239,6 @@ function navigateTo(page) {
   }
 }
 
-// ─── Dashboard ───────────────────────────────────────────
 async function renderDashboard() {
   const content = $('#pageContent');
   content.innerHTML = '<div class="stats-grid"><div class="stat-card"><div class="stat-number">-</div><div class="stat-label">Ładowanie...</div></div></div>';
@@ -354,7 +347,6 @@ function getOfferImg(offer) {
   return offer.img || '';
 }
 
-// ─── Offers List ─────────────────────────────────────────
 async function renderOffers() {
   const content = $('#pageContent');
   content.innerHTML = '<p style="color:var(--text-muted)">Ładowanie ofert...</p>';
@@ -464,7 +456,6 @@ function renderOffersTable(searchTerm, filterType, filterStatus) {
   });
 }
 
-// ─── Offer CRUD ──────────────────────────────────────────
 async function toggleOffer(id) {
   try {
     await apiPatch(EP().OFFERS + '/' + id + '/toggle', {});
@@ -496,7 +487,6 @@ async function deleteOffer(id) {
   }
 }
 
-// ─── Add Offer Form ──────────────────────────────────────
 function renderAddForm(prefill) {
   state.uploadedImages = prefill ? (prefill.images || []) : [];
   const o = prefill || {};
@@ -1004,7 +994,6 @@ async function submitEditOffer(id) {
   btn.disabled = false;
 }
 
-// ─── Edit Modal / Inline Edit ────────────────────────────
 async function openEditModal(id) {
   const offer = state.offers.find(o => (o._id || o.id) === id);
   if (!offer) { toast('Nie znaleziono oferty.', 'error'); return; }
@@ -1014,7 +1003,6 @@ async function openEditModal(id) {
   renderAddForm(offer);
 }
 
-// ─── Preview ─────────────────────────────────────────────
 async function renderPreview() {
   const content = $('#pageContent');
 
@@ -1199,7 +1187,6 @@ function previewSingle(id) {
   `;
 }
 
-// ─── Settings ────────────────────────────────────────────
 function renderSettings() {
   const content = $('#pageContent');
   content.innerHTML = `
@@ -1279,7 +1266,6 @@ function renderSettings() {
     });
 }
 
-// ─── Lightbox ────────────────────────────────────────────
 function openLightbox(src) {
   if (!src) return;
   const lb = $('#lightbox');
@@ -1292,7 +1278,6 @@ function closeLightbox() {
   $('#lightboxImg').src = '';
 }
 
-// ─── Init ────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   // Login
   $('#loginBtn').addEventListener('click', doLogin);

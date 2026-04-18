@@ -84,11 +84,15 @@ body {
 .hamburger {
   display: none; flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer; padding: 4px;
+  position: relative; z-index: 950;
 }
 .hamburger span {
   display: block; width: 22px; height: 1.5px;
   background: var(--primary); transition: all .3s;
 }
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
 .page-header {
   padding: 48px 40px 32px;
@@ -898,18 +902,19 @@ body {
   .nav { padding: 0 20px; }
   .nav-links {
     display: flex; flex-direction: column;
-    position: fixed; top: 0; right: 0; bottom: 0;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
     width: 100%;
     background: rgba(255,255,255,.98);
     backdrop-filter: blur(20px);
-    padding: 90px 28px 40px;
+    padding: 80px 28px 40px;
     transform: translateX(110%);
     transition: transform .4s cubic-bezier(.25,.46,.45,.94);
     z-index: 900;
     gap: 20px;
+    overflow-y: auto;
   }
   .nav-links.open { transform: translateX(0); }
-  .nav-link { font-size: 1rem; }
+  .nav-link { font-size: 1.1rem; padding: 8px 0; }
   .hamburger { display: flex; }
   .filter-bar { padding: 16px 20px; position: relative; top: 0; }
   .filter-inner { gap: 8px; }

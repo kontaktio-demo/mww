@@ -5,8 +5,6 @@ const supabase = require('../db');
 const auth = require('../middleware/auth');
 const { deleteImageFiles } = require('../utils/imageProcessor');
 
-// ─── Helpers ─────────────────────────────────────────────
-
 /** Escape special characters for Postgres ILIKE pattern */
 function escapeILike(str) {
   return String(str).replace(/[%_\\]/g, c => '\\' + c);
@@ -190,9 +188,7 @@ function rowToApi(r) {
   };
 }
 
-// ─────────────────────────────────────────────────────────
 // PUBLIC ROUTES
-// ─────────────────────────────────────────────────────────
 
 /**
  * GET /api/offers
@@ -308,9 +304,7 @@ router.get('/stats', async (_req, res) => {
   }
 });
 
-// ─────────────────────────────────────────────────────────
 // ADMIN - GET ALL (before /:id to avoid conflict)
-// ─────────────────────────────────────────────────────────
 
 router.get('/all', auth, async (_req, res) => {
   try {
@@ -327,9 +321,7 @@ router.get('/all', auth, async (_req, res) => {
   }
 });
 
-// ─────────────────────────────────────────────────────────
 // PUBLIC - single offer (after /all and /stats)
-// ─────────────────────────────────────────────────────────
 
 router.get('/:id', async (req, res) => {
   try {
@@ -362,9 +354,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// ─────────────────────────────────────────────────────────
 // ADMIN - CRUD
-// ─────────────────────────────────────────────────────────
 
 router.post('/', auth, async (req, res) => {
   try {
