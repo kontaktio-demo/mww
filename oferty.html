@@ -913,7 +913,7 @@ function initCookieConsent() {
   document.getElementById('cookieSave').addEventListener('click', () => {
     const analytics = document.getElementById('cookieAnalytics').checked;
     const marketing = document.getElementById('cookieMarketing').checked;
-    const prefs = {necessary:true, analytics:analytics, marketing:marketing};
+    const prefs = {necessary:true, analytics, marketing};
     applyCookieConsent(prefs);
     consent.classList.remove('show');
   });
