@@ -1,11 +1,5 @@
-/* ============================================================
-   MWW MIESZKANIE — HOMEPAGE STYLESHEET
-   Minimalistyczny styl, mocna typografia, czysta paleta.
-   Paleta: biel / czerń / złoto / grafit.
-   Font: Manrope (geometryczny, bez kursywy, bold 700–800).
-   ============================================================ */
 
-/* ---------- Reset & base ---------- */
+
 *,
 *::before,
 *::after {
@@ -43,7 +37,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
   -webkit-text-size-adjust: 100%;
+}
+
+section[id], div[id], article[id] {
+  scroll-margin-top: calc(var(--nav-h) + 12px);
 }
 
 body {
@@ -97,7 +96,6 @@ i {
   color: #fff;
 }
 
-/* ---------- Typography ---------- */
 h1, h2, h3, h4 {
   font-family: 'Manrope', 'Inter', sans-serif;
   font-weight: 800;
@@ -134,7 +132,6 @@ p { font-weight: 400; }
   transform: translateY(-2px);
 }
 
-/* ---------- Layout helpers ---------- */
 .container {
   width: 100%;
   max-width: var(--container);
@@ -168,7 +165,6 @@ p { font-weight: 400; }
 
 .bg-alt { background: var(--c-bg-alt); }
 
-/* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -228,7 +224,6 @@ p { font-weight: 400; }
 .btn-sm { padding: 11px 20px; font-size: 0.85rem; }
 .btn-full { width: 100%; }
 
-/* ---------- Preloader ---------- */
 #preloader {
   position: fixed;
   inset: 0;
@@ -280,9 +275,6 @@ p { font-weight: 400; }
   font-weight: 600;
 }
 
-/* ============================================================
-   NAVIGATION — sticky + glassmorphism
-   ============================================================ */
 .nav {
   position: fixed;
   top: 0;
@@ -380,9 +372,6 @@ p { font-weight: 400; }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ============================================================
-   HERO — full-screen Łódź photo + dark overlay
-   ============================================================ */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -500,9 +489,6 @@ p { font-weight: 400; }
   50%      { opacity: 1; transform: scaleY(1); }
 }
 
-/* ============================================================
-   USP — "Dlaczego my" — image bg + dark overlay
-   ============================================================ */
 .usp {
   position: relative;
   padding: clamp(80px, 10vw, 140px) 0;
@@ -512,8 +498,7 @@ p { font-weight: 400; }
 .usp-bg {
   position: absolute;
   inset: 0;
-  /* Solid dark backdrop — no photo here so the hero image is followed by a
-     non-photo section before the next visual block (about). */
+  
   background:
     radial-gradient(120% 80% at 50% 0%, rgba(212, 177, 115, 0.08), transparent 60%),
     linear-gradient(180deg, #0e0e10 0%, #14141a 100%);
@@ -569,9 +554,6 @@ p { font-weight: 400; }
   line-height: 1.65;
 }
 
-/* ============================================================
-   ABOUT — split layout with Łódź photo background
-   ============================================================ */
 .about {
   position: relative;
   background: var(--c-bg);
@@ -620,16 +602,14 @@ p { font-weight: 400; }
   box-shadow: var(--shadow-lg);
   transition: transform 0.6s var(--ease);
 }
-/* Main image — tall portrait of Łódź architecture, anchored top-left,
-   takes ~70% width, ~85% height. Reads as the primary visual. */
+
 .about-img-main {
   top: 0;
   left: 0;
   width: 70%;
   height: 85%;
 }
-/* Secondary image — landscape interior shot, offset to bottom-right
-   with a small overlap and a soft frame against the page background. */
+
 .about-img-secondary {
   width: 56%;
   height: 42%;
@@ -699,9 +679,6 @@ p { font-weight: 400; }
 .features-list strong { display: block; font-weight: 700; color: var(--c-ink); margin-bottom: 2px; }
 .features-list span { font-size: 0.88rem; color: var(--c-mute); }
 
-/* ============================================================
-   SERVICES — kafelki
-   ============================================================ */
 .services {
   background: var(--c-bg);
 }
@@ -778,9 +755,6 @@ p { font-weight: 400; }
   transform: translateX(4px);
 }
 
-/* ============================================================
-   PROCESS — 4 steps with Łódź photo background
-   ============================================================ */
 .process {
   position: relative;
   color: #fff;
@@ -848,9 +822,6 @@ p { font-weight: 400; }
   line-height: 1.7;
 }
 
-/* ============================================================
-   AGENT
-   ============================================================ */
 .agent-section { background: var(--c-bg-alt); }
 .agent-visual {
   position: relative;
@@ -913,9 +884,6 @@ p { font-weight: 400; }
 }
 .agent-credentials svg { color: var(--c-gold); }
 
-/* ============================================================
-   TESTIMONIALS
-   ============================================================ */
 .testimonials { background: var(--c-bg); }
 
 .testimonials-grid {
@@ -953,9 +921,6 @@ p { font-weight: 400; }
 .testimonial-card footer strong { font-weight: 800; color: var(--c-ink); }
 .testimonial-card footer span { font-size: 0.85rem; color: var(--c-mute); }
 
-/* ============================================================
-   PARTNERS
-   ============================================================ */
 .partners { background: var(--c-bg-alt); }
 .partners-grid {
   display: grid;
@@ -993,9 +958,6 @@ p { font-weight: 400; }
 .partner-card strong { font-weight: 800; font-size: 0.95rem; color: var(--c-ink); }
 .partner-card span { font-size: 0.78rem; color: var(--c-mute); }
 
-/* ============================================================
-   CONTACT
-   ============================================================ */
 .contact { background: var(--c-bg); }
 .contact-layout {
   display: grid;
@@ -1127,9 +1089,6 @@ p { font-weight: 400; }
   line-height: 1.5;
 }
 
-/* ============================================================
-   FOOTER — dark, minimal, 3 columns
-   ============================================================ */
 .footer {
   background: var(--c-dark);
   color: rgba(255, 255, 255, 0.7);
@@ -1151,11 +1110,7 @@ p { font-weight: 400; }
   pointer-events: none;
   z-index: 0;
 }
-/* Dark gradient overlay on top of the photo:
-   - Strong at the very top so the seam with the previous (light) section
-     reads as a clean fade-to-dark instead of a hard line.
-   - Slightly lifted in the middle so the Łódź photo shows through.
-   - Solid dark again at the bottom for legibility of the footer-bottom bar. */
+
 .footer::after {
   content: '';
   position: absolute;
@@ -1260,9 +1215,6 @@ p { font-weight: 400; }
   color: rgba(255, 255, 255, 0.45);
 }
 
-/* ============================================================
-   STICKY BAR (mobile)
-   ============================================================ */
 .sticky-bar {
   position: fixed;
   bottom: 16px;
@@ -1303,9 +1255,6 @@ p { font-weight: 400; }
   justify-content: center;
 }
 
-/* ============================================================
-   COOKIE CONSENT
-   ============================================================ */
 .cookie-consent {
   position: fixed;
   bottom: 20px;
@@ -1365,9 +1314,6 @@ p { font-weight: 400; }
 .cookie-check input { margin-top: 4px; accent-color: var(--c-ink); }
 .cookie-check strong { color: var(--c-ink); font-weight: 700; }
 
-/* ============================================================
-   REVEAL ANIMATIONS — subtle fade-up + slide
-   ============================================================ */
 .reveal {
   opacity: 0;
   transform: translateY(28px);
@@ -1397,9 +1343,6 @@ p { font-weight: 400; }
   }
 }
 
-/* ============================================================
-   BACKGROUND EFFECTS — particle canvas + scroll decorations
-   ============================================================ */
 #bgParticles {
   position: fixed;
   inset: 0;
@@ -1456,9 +1399,6 @@ p { font-weight: 400; }
   #bgParticles { opacity: 0.5; }
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 1100px) {
   .usp-grid { grid-template-columns: repeat(2, 1fr); }
   .process-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1533,15 +1473,15 @@ p { font-weight: 400; }
   .cookie-actions .cookie-btn { flex: 1; }
 }
 
-/* ============================================================
-   SERVICE DETAIL SUBPAGES (sprzedaz/wynajem/skup/...)
-   ============================================================ */
 .service-hero {
   position: relative;
   padding: 180px 28px 100px;
   color: #fff;
   overflow: hidden;
   isolation: isolate;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(212, 177, 115, 0.10), transparent 60%),
+    linear-gradient(180deg, #0e0e10 0%, #14141a 100%);
 }
 .service-hero-bg {
   position: absolute;
@@ -1550,13 +1490,9 @@ p { font-weight: 400; }
   background-position: center;
   background-repeat: no-repeat;
   z-index: 0;
+  display: none;
 }
-.service-hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 14, 0.55) 0%, rgba(10, 10, 14, 0.78) 60%, rgba(10, 10, 14, 0.92) 100%);
-}
+.service-hero-bg::after { content: none; }
 .service-hero-inner {
   position: relative;
   z-index: 2;
@@ -1610,7 +1546,6 @@ p { font-weight: 400; }
   flex-wrap: wrap;
 }
 
-/* Intro / explainer text block */
 .service-intro {
   padding: clamp(70px, 8vw, 110px) 0;
   background: var(--c-bg);
@@ -1646,7 +1581,6 @@ p { font-weight: 400; }
   box-shadow: var(--shadow-lg);
 }
 
-/* How it works steps (light variant) */
 .service-howto {
   background: var(--c-bg-alt);
   padding: clamp(70px, 8vw, 110px) 0;
@@ -1695,7 +1629,6 @@ p { font-weight: 400; }
   line-height: 1.65;
 }
 
-/* Benefits list */
 .service-benefits {
   padding: clamp(70px, 8vw, 110px) 0;
   background: var(--c-bg);
@@ -1741,7 +1674,6 @@ p { font-weight: 400; }
   line-height: 1.65;
 }
 
-/* FAQ accordion-like */
 .service-faq {
   background: var(--c-bg-alt);
   padding: clamp(70px, 8vw, 110px) 0;
@@ -1772,44 +1704,43 @@ p { font-weight: 400; }
   line-height: 1.7;
 }
 
-/* CTA banner */
 .service-cta {
   position: relative;
   padding: clamp(70px, 8vw, 110px) 0;
-  color: #fff;
-  background: var(--c-dark);
+  color: var(--c-ink);
+  background: var(--c-bg);
   overflow: hidden;
 }
-.service-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(10, 10, 14, 0.85), rgba(10, 10, 14, 0.93)),
-    url('images/lodz-tlo-cta.webp') center/cover no-repeat;
-  background-image:
-    linear-gradient(180deg, rgba(10, 10, 14, 0.85), rgba(10, 10, 14, 0.93)),
-    image-set(
-      url('images/lodz-tlo-cta.avif') type('image/avif'),
-      url('images/lodz-tlo-cta.webp') type('image/webp')
-    );
-  opacity: 1;
-  z-index: 0;
-}
+.service-cta::before { content: none; }
 .service-cta .container {
   position: relative;
   z-index: 1;
+  max-width: 880px;
   text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, var(--c-bg-alt) 100%);
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  padding: clamp(40px, 6vw, 64px) clamp(24px, 5vw, 56px);
+  box-shadow: var(--shadow-md);
+}
+.service-cta .container::before {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--c-gold);
+  border-radius: 2px;
+  margin: 0 auto 18px;
 }
 .service-cta h2 {
   font-size: clamp(1.7rem, 3vw, 2.4rem);
-  color: #fff;
+  color: var(--c-ink);
   font-weight: 800;
   margin-bottom: 14px;
   line-height: 1.2;
 }
 .service-cta p {
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--c-mute);
   max-width: 640px;
   margin: 0 auto 30px;
   font-size: 1.02rem;
@@ -1820,6 +1751,14 @@ p { font-weight: 400; }
   gap: 14px;
   flex-wrap: wrap;
   justify-content: center;
+}
+.service-cta-actions .btn-ghost-light {
+  border-color: var(--c-ink);
+  color: var(--c-ink);
+}
+.service-cta-actions .btn-ghost-light:hover {
+  background: var(--c-ink);
+  color: #fff;
 }
 
 @media (max-width: 960px) {
@@ -1834,14 +1773,6 @@ p { font-weight: 400; }
   .service-cta-actions .btn { width: 100%; }
 }
 
-/* ============================================================
-   PHOTO SLOTS — AVIF (primary) + WebP (fallback) via image-set,
-   plus mobile-optimized variants under @media (max-width: 768px).
-   Backgrounds without a custom dark/light overlay use the plain
-   form; otherwise the overlay is repeated alongside the image-set.
-   ============================================================ */
-
-/* About — main: Łódź architecture (city sense of place) */
 .about-img-main--photo {
   background-image: url('images/lodz-architektura-2.webp');
   background-image: image-set(
@@ -1850,7 +1781,6 @@ p { font-weight: 400; }
   );
 }
 
-/* About — secondary inset: interior photo (what we sell/let) */
 .about-img-secondary--photo {
   background-image: url('images/wnetrze-1.webp');
   background-image: image-set(
@@ -1859,7 +1789,6 @@ p { font-weight: 400; }
   );
 }
 
-/* Agent — portrait/interior */
 .agent-photo--photo {
   background-image: url('images/agentka-portret.webp');
   background-image: image-set(
@@ -1868,7 +1797,6 @@ p { font-weight: 400; }
   );
 }
 
-/* Service hero backgrounds — one variant per subpage */
 .service-hero-bg--sprzedaz {
   background-image: url('images/lodz-architektura-1.webp');
   background-image: image-set(
@@ -1912,9 +1840,6 @@ p { font-weight: 400; }
   );
 }
 
-/* --------------------------------------------------------------
-   Mobile-optimized variants — load smaller files on phones/tablets.
-   -------------------------------------------------------------- */
 @media (max-width: 768px) {
   .about-img-main--photo {
     background-image: url('images/lodz-architektura-2-mobile.webp');
@@ -2005,9 +1930,6 @@ p { font-weight: 400; }
   }
 }
 
-/* ============================================================
-   SERVICE INTRO `.visual` photos — one per subpage, AVIF + WebP.
-   ============================================================ */
 .service-visual--sprzedaz {
   background-image: url('images/oferta-sprzedaz.webp');
   background-image: image-set(
@@ -2016,17 +1938,17 @@ p { font-weight: 400; }
   );
 }
 .service-visual--wynajem {
-  background-image: url('images/oferta-wynajem.webp');
+  background-image: url('images/wnetrze-2.webp');
   background-image: image-set(
-    url('images/oferta-wynajem.avif') type('image/avif'),
-    url('images/oferta-wynajem.webp') type('image/webp')
+    url('images/wnetrze-2.avif') type('image/avif'),
+    url('images/wnetrze-2.webp') type('image/webp')
   );
 }
 .service-visual--skup {
-  background-image: url('images/oferta-skup.webp');
+  background-image: url('images/lodz-architektura-3.webp');
   background-image: image-set(
-    url('images/oferta-skup.avif') type('image/avif'),
-    url('images/oferta-skup.webp') type('image/webp')
+    url('images/lodz-architektura-3.avif') type('image/avif'),
+    url('images/lodz-architektura-3.webp') type('image/webp')
   );
 }
 .service-visual--off-market {
@@ -2060,17 +1982,17 @@ p { font-weight: 400; }
     );
   }
   .service-visual--wynajem {
-    background-image: url('images/oferta-wynajem-mobile.webp');
+    background-image: url('images/wnetrze-2-mobile.webp');
     background-image: image-set(
-      url('images/oferta-wynajem-mobile.avif') type('image/avif'),
-      url('images/oferta-wynajem-mobile.webp') type('image/webp')
+      url('images/wnetrze-2-mobile.avif') type('image/avif'),
+      url('images/wnetrze-2-mobile.webp') type('image/webp')
     );
   }
   .service-visual--skup {
-    background-image: url('images/oferta-skup-mobile.webp');
+    background-image: url('images/lodz-architektura-3-mobile.webp');
     background-image: image-set(
-      url('images/oferta-skup-mobile.avif') type('image/avif'),
-      url('images/oferta-skup-mobile.webp') type('image/webp')
+      url('images/lodz-architektura-3-mobile.avif') type('image/avif'),
+      url('images/lodz-architektura-3-mobile.webp') type('image/webp')
     );
   }
   .service-visual--off-market {
@@ -2095,16 +2017,178 @@ p { font-weight: 400; }
     );
   }
 
-  /* Local Łódź panorama scales well; swap to mobile crop on small screens. */
-  .service-cta::before {
-    background-image:
-      linear-gradient(180deg, rgba(10, 10, 14, 0.85), rgba(10, 10, 14, 0.93)),
-      url('images/lodz-tlo-cta-mobile.webp');
-    background-image:
-      linear-gradient(180deg, rgba(10, 10, 14, 0.85), rgba(10, 10, 14, 0.93)),
-      image-set(
-        url('images/lodz-tlo-cta-mobile.avif') type('image/avif'),
-        url('images/lodz-tlo-cta-mobile.webp') type('image/webp')
-      );
-  }
+}
+
+.about--solo { padding: clamp(80px, 10vw, 130px) 0; }
+.about--solo .about-bg { opacity: 0.25; }
+.about-solo {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.about-solo-header { max-width: 820px; margin: 0 auto 56px; }
+.about-solo-header h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 14px 0 22px;
+}
+.about-solo-lead {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  color: var(--c-mute);
+  line-height: 1.7;
+}
+.about-solo-lead strong { color: var(--c-ink); }
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 56px;
+  padding: 32px clamp(20px, 3vw, 40px);
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.about-stat { text-align: center; }
+.about-stat-num {
+  display: block;
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 800;
+  color: var(--c-ink);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.about-stat-num .stat-number { display: inline; }
+.about-stat-label {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.86rem;
+  color: var(--c-mute);
+  line-height: 1.45;
+}
+.about-pillars {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  text-align: left;
+  margin-bottom: 44px;
+}
+.about-pillar {
+  background: #fff;
+  border: 1px solid var(--c-line);
+  border-radius: var(--radius);
+  padding: 28px 26px;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.about-pillar:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(184, 146, 74, 0.4);
+}
+.about-pillar-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--c-bg-alt);
+  color: var(--c-gold);
+  margin-bottom: 14px;
+}
+.about-pillar h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--c-ink);
+}
+.about-pillar p {
+  color: var(--c-mute);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+.about-solo-cta {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media (max-width: 900px) {
+  .about-stats { grid-template-columns: repeat(2, 1fr); }
+  .about-pillars { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; padding: 22px 16px; }
+}
+
+.tel-confirm-overlay {
+  position: fixed; inset: 0;
+  background: rgba(10, 10, 14, 0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: tcfade 0.2s ease;
+}
+.tel-confirm-overlay.open { display: flex; }
+@keyframes tcfade { from { opacity: 0; } to { opacity: 1; } }
+.tel-confirm-modal {
+  background: #fff;
+  border-radius: var(--radius-lg);
+  max-width: 420px;
+  width: 100%;
+  padding: 28px 26px 22px;
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+  animation: tcpop 0.25s var(--ease);
+}
+@keyframes tcpop { from { transform: translateY(8px) scale(0.98); opacity: 0; } to { transform: none; opacity: 1; } }
+.tel-confirm-icon {
+  width: 56px; height: 56px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--c-bg-alt);
+  color: var(--c-gold);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.tel-confirm-modal h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  color: var(--c-ink);
+}
+.tel-confirm-num {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 10px 0 6px;
+  color: var(--c-ink);
+  letter-spacing: 0.01em;
+}
+.tel-confirm-modal p {
+  color: var(--c-mute);
+  font-size: 0.92rem;
+  margin-bottom: 22px;
+}
+.tel-confirm-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.tel-confirm-actions .btn { width: 100%; padding: 13px 16px; font-size: 0.95rem; }
+
+@media (min-width: 1600px) {
+  :root { --container: 1360px; }
+}
+@media (min-width: 2000px) {
+  :root { --container: 1480px; }
+  body { font-size: 17px; }
 }
