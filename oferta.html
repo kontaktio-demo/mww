@@ -11,7 +11,7 @@
   <meta name="description" id="metaDesc" content="Szczegóły oferty nieruchomości - MWW Mieszkanie, biuro nieruchomości Łódź.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" id="canonicalLink" href="">
-  <!-- Open Graph -->
+  
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="MWW Mieszkanie">
   <meta property="og:title" id="ogTitle" content="Oferta - MWW Mieszkanie">
@@ -19,7 +19,7 @@
   <meta property="og:image" id="ogImage" content="">
   <meta property="og:url" id="ogUrl" content="">
   <meta property="og:locale" content="pl_PL">
-  <!-- Twitter Card -->
+  
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" id="twTitle" content="Oferta - MWW Mieszkanie">
   <meta name="twitter:description" id="twDesc" content="Szczegóły oferty nieruchomości - MWW Mieszkanie">
@@ -32,17 +32,10 @@
   <link rel="stylesheet" href="/oferta-detail.css">
   <link rel="stylesheet" href="/wow-animations.css">
   <script src="/config.js"></script>
-  <!-- JSON-LD Structured Data (filled dynamically) -->
+  
   <script type="application/ld+json" id="jsonLd">{}</script>
 </head>
 <body>
-
-<div id="adminBar" class="admin-bar admin-bar-hidden">
-  Zalogowany jako pracownik &nbsp;|&nbsp;
-  <a href="/panel.html">Panel zarządzania ofertami</a>
-  &nbsp;|&nbsp;
-  <a href="#" id="adminLogout">Wyloguj</a>
-</div>
 
 <header class="nav" id="nav">
   <a href="/index.html" class="logo" aria-label="MWW Mieszkanie - strona główna">MWW <strong>Mieszkanie</strong></a>
@@ -68,7 +61,6 @@
   </div>
 </header>
 
-<!-- Breadcrumbs for SEO -->
 <nav class="breadcrumbs" aria-label="Ścieżka nawigacji">
   <div class="breadcrumbs-inner">
     <a href="/index.html">Strona główna</a>
@@ -79,7 +71,6 @@
   </div>
 </nav>
 
-<!-- Loading state -->
 <div id="offerLoading" class="offer-loading">
   <div class="offer-loading-inner">
     <div class="skeleton-block skeleton-gallery"></div>
@@ -87,7 +78,6 @@
   </div>
 </div>
 
-<!-- Error state -->
 <div id="offerError" class="offer-error" style="display:none">
   <div class="offer-error-inner">
     <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
@@ -97,12 +87,10 @@
   </div>
 </div>
 
-<!-- Main offer content (filled by JS) -->
 <main id="offerContent" class="offer-page" style="display:none" itemscope itemtype="https://schema.org/RealEstateListing">
   <article id="offerArticle"></article>
 </main>
 
-<!-- Contact Modal -->
 <div id="modalOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
   <div class="modal" style="position:relative">
     <button class="modal-close" id="modalClose" aria-label="Zamknij">
@@ -130,7 +118,6 @@
   </div>
 </div>
 
-<!-- Cookie Consent -->
 <div id="cookieConsent" class="cookie-consent" role="dialog" aria-labelledby="cookieTitle" aria-modal="true">
   <div class="cookie-inner">
     <div class="cookie-text">
@@ -551,7 +538,6 @@ function renderOffer(l) {
 document.addEventListener('DOMContentLoaded', function() {
   bindNav();
   bindModal();
-  checkAdminBar();
   initCookieConsent();
   loadOffer();
 });
@@ -685,21 +671,7 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-function checkAdminBar() {
-  try {
-    if (sessionStorage.getItem('mww_admin_token')) {
-      document.getElementById('adminBar').classList.remove('admin-bar-hidden');
-    }
-  } catch {}
-  var logoutBtn = document.getElementById('adminLogout');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      sessionStorage.removeItem('mww_admin_token');
-      document.getElementById('adminBar').classList.add('admin-bar-hidden');
-    });
-  }
-}
+function checkAdminBar() {}
 
 function initCookieConsent() {
   var consent = document.getElementById('cookieConsent');

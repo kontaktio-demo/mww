@@ -1,14 +1,5 @@
-/* ============================================================
-   MWW MIESZKANIE — /oferty + /oferta — STYLESHEET
-   Spójny wizualnie ze stroną główną:
-   - Manrope, paleta biel / czerń / złoto / grafit
-   - Sticky nav z efektem szkła, kafelki (12–16px radius, miękki cień)
-   - Subtelny hover scale 1.02, złote akcenty
-   - Wszystkie istniejące nazwy klas zachowane (oferty.js i oferta-detail.css
-     na nich polegają — logika backendu NIE jest ruszana).
-   ============================================================ */
 
-/* ---------- Reset ---------- */
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 a       { text-decoration: none; color: inherit; transition: color .25s ease; }
 button  { background: none; border: none; cursor: pointer; font: inherit; color: inherit; }
@@ -16,17 +7,16 @@ img     { display: block; max-width: 100%; }
 ul      { list-style: none; }
 em, i   { font-style: normal; }
 
-/* ---------- Design tokens ---------- */
 :root {
   --bg:          #ffffff;
   --bg-soft:     #f6f5f2;
   --bg-alt:      #f1efe9;
-  --primary:     #0e0e10;     /* ink */
+  --primary:     #0e0e10;     
   --primary-d:   #000000;
   --primary-l:   #2a2a2e;
   --accent:      #6b6b73;
-  --accent-blue: #2563eb;     /* focus only */
-  --accent-green:#16a34a;     /* feature check icons */
+  --accent-blue: #2563eb;     
+  --accent-green:#16a34a;     
   --gold:        #b8924a;
   --gold-soft:   #d4b173;
   --text:        #2a2a2e;
@@ -54,7 +44,6 @@ em, i   { font-style: normal; }
 
 ::selection { background: var(--gold); color: #fff; }
 
-/* ---------- Body ---------- */
 body {
   font-family: var(--font-sans);
   font-weight: 500;
@@ -68,7 +57,7 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding-top: var(--nav-h);   /* fixed nav */
+  padding-top: var(--nav-h);   
 }
 
 h1, h2, h3, h4 {
@@ -79,9 +68,6 @@ h1, h2, h3, h4 {
   line-height: 1.1;
 }
 
-/* ============================================================
-   NAVIGATION — fixed sticky + glassmorphism (matches homepage)
-   ============================================================ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 800;
   display: flex; align-items: center; justify-content: space-between;
@@ -158,7 +144,6 @@ h1, h2, h3, h4 {
 }
 .btn-sm { padding: 11px 20px; font-size: .85rem; }
 
-/* Hamburger */
 .hamburger {
   display: none; flex-direction: column; justify-content: center; gap: 5px;
   width: 42px; height: 42px; padding: 0 10px;
@@ -174,9 +159,6 @@ h1, h2, h3, h4 {
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* ============================================================
-   PAGE HEADER — hero-mini with Łódź photo + dark overlay
-   ============================================================ */
 .page-header {
   position: relative;
   padding: clamp(70px, 9vw, 110px) 40px clamp(50px, 6vw, 80px);
@@ -224,9 +206,6 @@ h1, h2, h3, h4 {
 .page-header p a { color: var(--gold-soft); }
 .page-header p a:hover { color: #fff; }
 
-/* ============================================================
-   FILTER BAR — sticky pod nav
-   ============================================================ */
 .filter-bar {
   background: #fff;
   border-bottom: 1px solid var(--border-soft);
@@ -289,9 +268,6 @@ h1, h2, h3, h4 {
 }
 .filter-reset:hover { color: var(--gold); }
 
-/* ============================================================
-   LISTINGS PAGE
-   ============================================================ */
 .listings-page {
   max-width: 1240px; margin: 0 auto;
   padding: 48px 40px 60px;
@@ -322,9 +298,6 @@ h1, h2, h3, h4 {
 }
 .listings-sort select:focus { outline: none; border-color: var(--primary); }
 
-/* ============================================================
-   LISTING CARD — zaokrąglony, miękki cień, subtelny hover
-   ============================================================ */
 .listings-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -565,7 +538,6 @@ h1, h2, h3, h4 {
 .btn-save.saved         { background: #fef2f2; border-color: #ef4444; color: #ef4444; }
 .btn-save.saved svg     { fill: #ef4444; }
 
-/* ---------- Skeleton ---------- */
 @keyframes shimmer {
   0%   { background-position: -400px 0; }
   100% { background-position: 400px 0; }
@@ -612,9 +584,6 @@ h1, h2, h3, h4 {
 }
 .btn-load-more:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
 
-/* ============================================================
-   DETAIL OVERLAY (in-page modal preview)
-   ============================================================ */
 .detail-overlay {
   position: fixed; inset: 0; z-index: 1500;
   background: rgba(10, 10, 14, .65);
@@ -918,9 +887,6 @@ h1, h2, h3, h4 {
 }
 .detail-video-link:hover { background: var(--primary); color: #fff; transform: translateY(-2px); }
 
-/* ============================================================
-   FOOTER — dark, minimal (matches homepage)
-   ============================================================ */
 .footer {
   background: var(--dark);
   color: rgba(255, 255, 255, .7);
@@ -929,7 +895,7 @@ h1, h2, h3, h4 {
   margin-top: auto;
   padding-top: 80px;
 }
-.footer::before { content: none; }   /* removed blurred photo overlay for clean look */
+.footer::before { content: none; }   
 
 .footer-top {
   padding: 0 40px 60px;
@@ -1014,9 +980,6 @@ h1, h2, h3, h4 {
   color: rgba(255, 255, 255, .45);
 }
 
-/* ============================================================
-   MODAL
-   ============================================================ */
 .modal-overlay {
   position: fixed; inset: 0; z-index: 2000;
   background: rgba(10, 10, 14, .55);
@@ -1069,7 +1032,6 @@ h1, h2, h3, h4 {
   box-shadow: 0 10px 24px rgba(184, 146, 74, .35);
 }
 
-/* ---------- Form fields (modal) ---------- */
 .form-group { margin-bottom: 16px; }
 .form-group label {
   display: block;
@@ -1098,9 +1060,6 @@ h1, h2, h3, h4 {
 }
 .form-group textarea { resize: vertical; min-height: 90px; }
 
-/* ============================================================
-   COOKIE CONSENT (matches homepage)
-   ============================================================ */
 .cookie-consent {
   position: fixed; bottom: 24px; left: 24px; right: 24px;
   max-width: 920px; margin: 0 auto;
@@ -1157,9 +1116,6 @@ h1, h2, h3, h4 {
 .cookie-check strong { color: var(--primary); font-weight: 700; }
 .cookie-actions-panel { justify-content: flex-start; }
 
-/* ============================================================
-   ADMIN BAR
-   ============================================================ */
 .admin-bar {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 1000;
@@ -1172,10 +1128,6 @@ h1, h2, h3, h4 {
 .admin-bar a:hover { color: var(--gold); }
 .admin-bar-hidden  { display: none; }
 
-/* When admin bar is visible, push the nav down (handled by JS class on <body>;
-   if not present, this is just safe defaults). */
-
-/* ---------- Active button states ---------- */
 .btn-primary:active,
 .btn-ask:active,
 .btn-ask-small:active,
@@ -1183,9 +1135,6 @@ h1, h2, h3, h4 {
 .filter-btn:active     { transform: translateY(1px); }
 .btn-load-more:active  { transform: translateY(1px); }
 
-/* ============================================================
-   ACCESSIBILITY
-   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -1193,9 +1142,6 @@ h1, h2, h3, h4 {
   }
 }
 
-/* ============================================================
-   RESPONSIVE
-   ============================================================ */
 @media (max-width: 1100px) {
   .listings-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid   { grid-template-columns: 1.4fr 1fr 1fr; }

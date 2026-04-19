@@ -1,8 +1,5 @@
-/* ============================================================
-   oferta-detail.css – Styles for individual offer page (/oferta)
-   ============================================================ */
 
-/* Breadcrumbs */
+
 .breadcrumbs {
   background: var(--bg-soft);
   border-bottom: 1px solid var(--border-soft);
@@ -39,7 +36,6 @@
   max-width: 400px;
 }
 
-/* Loading skeleton */
 .offer-loading {
   max-width: 1200px;
   margin: 40px auto;
@@ -65,7 +61,6 @@
   100% { background-position: -200% 0; }
 }
 
-/* Error state */
 .offer-error {
   min-height: 60vh;
   display: flex;
@@ -92,7 +87,6 @@
   font-size: .92rem;
 }
 
-/* Offer page layout */
 .offer-page {
   max-width: 1200px;
   margin: 0 auto;
@@ -100,7 +94,6 @@
   flex: 1;
 }
 
-/* Top section: gallery + summary */
 .offer-top {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
@@ -108,7 +101,6 @@
   margin-bottom: 32px;
 }
 
-/* Gallery */
 .offer-gallery {
   border-radius: var(--radius-xl);
   overflow: hidden;
@@ -141,7 +133,6 @@
   overflow-x: auto;
 }
 
-/* Summary sidebar */
 .offer-summary {
   display: flex;
   flex-direction: column;
@@ -187,7 +178,6 @@
   margin-top: 2px;
 }
 
-/* Quick stats */
 .offer-quick-stats {
   display: flex;
   gap: 16px;
@@ -214,14 +204,12 @@
   letter-spacing: .04em;
 }
 
-/* CTA buttons */
 .offer-cta {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
 
-/* Agent */
 .offer-agent {
   display: flex;
   align-items: center;
@@ -232,7 +220,6 @@
   border-top: 1px solid var(--border-soft);
 }
 
-/* Content sections */
 .offer-section {
   background: #fff;
   border: 1px solid var(--border-soft);
@@ -278,7 +265,6 @@
   background: var(--bg-soft);
 }
 
-/* Back link */
 .offer-back-wrap {
   margin-top: 32px;
   padding-top: 24px;
@@ -297,7 +283,6 @@
   color: var(--primary);
 }
 
-/* ─── Responsive ─── */
 @media (max-width: 900px) {
   .breadcrumbs { padding: 10px 20px; }
   .offer-page { padding: 24px 20px 48px; }

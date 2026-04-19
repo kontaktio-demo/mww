@@ -120,9 +120,7 @@
 
   function boot() {
     initParticleCanvas();
-    // Wave dividers were removed — simple, clean section transitions
-    // read better than ornamental SVG curves between contrasting
-    // (image vs. dark) sections.
+
     initScrollDecorations();
   }
 

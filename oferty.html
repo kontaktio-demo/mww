@@ -9,6 +9,15 @@
   <meta name="theme-color" content="#1a1a1a">
   <title>Aktualne Oferty - MWW Mieszkanie</title>
   <meta name="description" content="Przeglądaj aktualne oferty nieruchomości MWW Mieszkanie w Łodzi. Mieszkania, domy, działki, lokale komercyjne - sprzedaż i wynajem.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.MWWmieszkanie.pl/oferty.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Aktualne oferty nieruchomości - MWW Mieszkanie Łódź">
+  <meta property="og:description" content="Mieszkania, domy, działki, lokale - sprzedaż i wynajem w Łodzi.">
+  <meta property="og:url" content="https://www.MWWmieszkanie.pl/oferty.html">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:site_name" content="MWW Mieszkanie">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2'><path d='M3 22V8L12 2l9 6v14'/><line x1='9' y1='22' x2='9' y2='14'/><line x1='15' y1='22' x2='15' y2='14'/><rect x='9' y='14' width='6' height='8'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,13 +27,6 @@
   <script src="/config.js"></script>
 </head>
 <body>
-
-<div id="adminBar" class="admin-bar admin-bar-hidden">
-  Zalogowany jako pracownik &nbsp;|&nbsp;
-  <a href="panel.html">Panel zarządzania ofertami</a>
-  &nbsp;|&nbsp;
-  <a href="#" id="adminLogout">Wyloguj</a>
-</div>
 
 <header class="nav" id="nav">
   <a href="index.html" class="logo" aria-label="MWW Mieszkanie - strona główna">MWW <strong>Mieszkanie</strong></a>
@@ -886,21 +888,7 @@ function bindNav() {
   });
 }
 
-function checkAdminBar() {
-  try {
-    if (sessionStorage.getItem('mww_admin_token')) {
-      document.getElementById('adminBar').classList.remove('admin-bar-hidden');
-    }
-  } catch {}
-  var logoutBtn = document.getElementById('adminLogout');
-  if (logoutBtn) {
-    logoutBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      sessionStorage.removeItem('mww_admin_token');
-      document.getElementById('adminBar').classList.add('admin-bar-hidden');
-    });
-  }
-}
+function checkAdminBar() {}
 
 function initCookieConsent() {
   const consent = document.getElementById('cookieConsent');
