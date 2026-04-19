@@ -1,8 +1,8 @@
 /* ============================================================
-   MWW MIESZKANIE — PREMIUM HOMEPAGE STYLESHEET
-   Style: minimal, luxurious, modern.
-   Palette: white / black / gold / graphite.
-   Font: Manrope (premium, geometric, no italics, bold 700–800).
+   MWW MIESZKANIE — HOMEPAGE STYLESHEET
+   Minimalistyczny styl, mocna typografia, czysta paleta.
+   Paleta: biel / czerń / złoto / grafit.
+   Font: Manrope (geometryczny, bez kursywy, bold 700–800).
    ============================================================ */
 
 /* ---------- Reset & base ---------- */
@@ -89,7 +89,7 @@ button {
 
 em,
 i {
-  font-style: normal; /* zero italics — premium spec */
+  font-style: normal;
 }
 
 ::selection {
@@ -684,7 +684,7 @@ p { font-weight: 400; }
 .features-list span { font-size: 0.88rem; color: var(--c-mute); }
 
 /* ============================================================
-   SERVICES — premium tile grid
+   SERVICES — kafelki
    ============================================================ */
 .services {
   background: var(--c-bg);
