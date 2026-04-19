@@ -397,30 +397,8 @@ function initSmoothAnchors() {
 }
 
 /* ---------- BASIC FRONT-END PROTECTION ----------
- * NOTE: client-side protection cannot stop a determined attacker; real security
- * is enforced by HTTP headers and the API. These hooks discourage casual
- * inspection / right-click copying of the marketing site.
- * ---------------------------------------------------- */
-function initBasicProtection() {
-  // Disable right-click context menu (allow on form fields)
-  document.addEventListener('contextmenu', (e) => {
-    const t = e.target;
-    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
-    e.preventDefault();
-  });
-  // Disable common devtools/save shortcuts
-  document.addEventListener('keydown', (e) => {
-    const k = e.key;
-    if (k === 'F12') { e.preventDefault(); return; }
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (k === 'I' || k === 'J' || k === 'C' || k === 'i' || k === 'j' || k === 'c')) {
-      e.preventDefault();
-    }
-    if ((e.ctrlKey || e.metaKey) && (k === 'U' || k === 'u' || k === 'S' || k === 's')) {
-      e.preventDefault();
-    }
-  });
-  // Block image dragging (asset hot-linking deterrent)
-  document.addEventListener('dragstart', (e) => {
-    if (e.target && e.target.tagName === 'IMG') e.preventDefault();
-  });
-}
+ * The actual hardening lives in `mww-shield.js`, which is included
+ * on every page so the marketing site does not leak stack traces
+ * or internal endpoints to casual visitors. Kept here as a no-op
+ * for backward compatibility with the original boot sequence. */
+function initBasicProtection() { /* handled by mww-shield.js */ }

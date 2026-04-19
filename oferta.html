@@ -571,7 +571,6 @@ async function loadOffer() {
     setSeoMeta(offer);
     renderOffer(offer);
   } catch (err) {
-    console.warn('Nie udało się pobrać oferty:', err);
     showError();
   }
 }
@@ -671,8 +670,6 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-function checkAdminBar() {}
-
 function initCookieConsent() {
   var consent = document.getElementById('cookieConsent');
   if (!consent) return;
@@ -699,6 +696,7 @@ function initCookieConsent() {
   });
 }
 </script>
+<script src="/mww-shield.js" defer></script>
 <script src="/wow-animations.js"></script>
 </body>
 </html>

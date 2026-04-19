@@ -349,7 +349,6 @@ document.addEventListener('DOMContentLoaded', () => {
   bindFilters();
   bindNav();
   bindModal();
-  checkAdminBar();
   initCookieConsent();
 });
 
@@ -374,7 +373,6 @@ async function loadListings() {
     const data = await res.json();
     allListings = Array.isArray(data) ? data.filter(l => l.active !== false) : [];
   } catch (err) {
-    console.warn('Nie udało się pobrać ofert z API:', err);
     allListings = [];
     grid.innerHTML = '<div class="no-results">' +
       '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
@@ -888,8 +886,6 @@ function bindNav() {
   });
 }
 
-function checkAdminBar() {}
-
 function initCookieConsent() {
   const consent = document.getElementById('cookieConsent');
   if (!consent) return;
@@ -922,6 +918,7 @@ function initCookieConsent() {
   });
 }
 </script>
+<script src="mww-shield.js" defer></script>
 <script src="wow-animations.js"></script>
 </body>
 </html>

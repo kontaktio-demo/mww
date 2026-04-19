@@ -1116,18 +1116,6 @@ h1, h2, h3, h4 {
 .cookie-check strong { color: var(--primary); font-weight: 700; }
 .cookie-actions-panel { justify-content: flex-start; }
 
-.admin-bar {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000;
-  background: var(--primary); color: rgba(255, 255, 255, .85);
-  padding: 8px 36px;
-  display: flex; align-items: center; justify-content: space-between;
-  font-size: .82rem; font-weight: 600;
-}
-.admin-bar a       { color: rgba(255, 255, 255, .85); }
-.admin-bar a:hover { color: var(--gold); }
-.admin-bar-hidden  { display: none; }
-
 .btn-primary:active,
 .btn-ask:active,
 .btn-ask-small:active,
@@ -1203,8 +1191,6 @@ h1, h2, h3, h4 {
   .footer-grid .footer-col:last-child  { grid-column: span 2; }
   .footer-bottom        { padding: 22px 22px; }
   .footer-bottom-inner  { justify-content: center; text-align: center; }
-
-  .admin-bar { padding: 8px 20px; font-size: .78rem; }
 }
 
 @media (max-width: 540px) {
