@@ -1385,19 +1385,37 @@ p { font-weight: 400; }
   .nav { padding: 0 22px; }
   .nav-links {
     position: fixed;
-    inset: var(--nav-h) 0 0 0;
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(20px);
+    top: var(--nav-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(100vh - var(--nav-h));
+    height: calc(100dvh - var(--nav-h));
+    background: #ffffff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 28px;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 0;
     transform: translateX(100%);
     transition: transform 0.45s var(--ease);
-    padding: 60px 24px;
+    padding: 24px 28px calc(32px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    border-top: 1px solid rgba(230, 228, 221, 0.9);
   }
   .nav-links.open { transform: translateX(0); }
-  .nav-link { font-size: 1.1rem; }
+  .nav-link {
+    font-size: 1.05rem;
+    width: 100%;
+    padding: 18px 4px;
+    text-align: left;
+    border-bottom: 1px solid rgba(230, 228, 221, 0.7);
+  }
+  .nav-link::after { display: none; }
+  .nav-link:last-child { border-bottom: none; }
   .hamburger { display: flex; }
   .nav-cta { display: none; }
 
