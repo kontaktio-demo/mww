@@ -477,6 +477,7 @@ p { font-weight: 400; }
   font-weight: 600;
   letter-spacing: 0.32em;
   text-transform: uppercase;
+  pointer-events: none;
 }
 .hero-scroll .scroll-line {
   width: 1px;
@@ -487,6 +488,17 @@ p { font-weight: 400; }
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.4; transform: scaleY(0.6); }
   50%      { opacity: 1; transform: scaleY(1); }
+}
+
+/* On short viewports (e.g. 14" laptops) the absolutely-positioned scroll
+   indicator can overlap the hero CTA buttons. Hide it and reduce the
+   hero's vertical padding so the content fits comfortably. */
+@media (max-height: 820px) {
+  .hero { padding-top: 110px; padding-bottom: 70px; }
+  .hero-scroll { display: none; }
+}
+@media (max-height: 680px) {
+  .hero { padding-top: 96px; padding-bottom: 56px; }
 }
 
 .usp {
