@@ -91,7 +91,7 @@ h1, h2, h3, h4 {
   color: var(--primary);
   flex-shrink: 0;
 }
-.logo picture { display: contents; }
+.logo picture { display: inline-flex; }
 .logo img {
   height: 56px;
   width: 56px;
@@ -980,7 +980,7 @@ h1, h2, h3, h4 {
   line-height: 0;
   margin-bottom: 18px;
 }
-.footer-logo picture { display: contents; }
+.footer-logo picture { display: inline-flex; }
 .footer-logo img {
   width: 88px;
   height: 88px;
