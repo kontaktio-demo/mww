@@ -952,26 +952,26 @@ input:focus, textarea:focus, select:focus {
 .footer, footer.footer {
   background: var(--color-surface) !important;
   color: var(--color-ink-2) !important;
-  padding-top: 80px !important;
+  padding-top: 48px !important;
   border-top: 1px solid var(--color-line-soft) !important;
 }
-.footer-top { padding-bottom: 60px; }
+.footer-top { padding-bottom: 32px; }
 .footer-bottom {
   border-top: 1px solid var(--color-line) !important;
-  padding: 24px 0 !important;
-  font-size: 0.82rem;
+  padding: 16px 0 !important;
+  font-size: 0.74rem;
 }
 .footer-bottom-inner {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   color: var(--color-ink-mute) !important;
 }
 .footer-grid {
   display: grid !important;
-  grid-template-columns: 1.5fr 1fr 1fr 1.2fr !important;
-  gap: clamp(28px, 4vw, 56px) !important;
+  grid-template-columns: 1.6fr 1fr 1fr 1.2fr !important;
+  gap: clamp(20px, 3vw, 36px) !important;
 }
 @media (max-width: 880px) {
   .footer-grid { grid-template-columns: 1fr 1fr !important; }
@@ -980,30 +980,43 @@ input:focus, textarea:focus, select:focus {
   .footer-grid { grid-template-columns: 1fr !important; }
 }
 
+.footer-brand p {
+  font-size: 0.82rem !important;
+  line-height: 1.55 !important;
+  margin: 8px 0 0 !important;
+  max-width: 320px;
+}
 .footer-logo, .footer-logo strong { color: var(--color-ink) !important; }
+.footer-logo {
+  font-size: 1rem !important;
+  letter-spacing: -0.01em;
+}
 .footer p, .footer address, .footer span, .footer a {
   color: var(--color-ink-2) !important;
   font-family: 'Inter', sans-serif !important;
+  font-size: 0.84rem;
 }
 .footer h4 {
   color: var(--color-ink) !important;
   font-family: 'Inter', sans-serif !important;
   font-weight: 600 !important;
-  font-size: 0.82rem !important;
+  font-size: 0.78rem !important;
   text-transform: none;
   letter-spacing: 0 !important;
-  margin-bottom: 1rem;
+  margin-bottom: 0.7rem;
 }
-.footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.footer-col a { color: var(--color-ink-2) !important; }
+.footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.footer-col a { color: var(--color-ink-2) !important; font-size: 0.84rem; }
 .footer-col a:hover { color: var(--color-ink) !important; }
+.footer-address p { margin: 0 0 4px !important; line-height: 1.5 !important; }
 .footer-bottom-inner a { color: var(--color-ink-mute) !important; }
 .footer-bottom-inner a:hover { color: var(--color-ink) !important; }
+.footer-bottom-inner p { margin: 0; font-size: 0.74rem; }
 
-.footer-social { display: flex; gap: 10px; margin-top: 1rem; }
+.footer-social { display: flex; gap: 8px; margin-top: 14px; }
 .social-btn {
-  width: 38px;
-  height: 38px;
+  width: 32px;
+  height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1377,6 +1390,9 @@ body.oferty,
   position: absolute;
   bottom: 28px;
   left: 50%;
+  right: auto !important;
+  margin: 0 !important;
+  width: max-content;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -2369,114 +2385,3 @@ body.oferty,
   .page-header h1 { font-size: 1.85rem !important; }
 }
 
-/* =====================================================================
-   31. UNIFIED MINIMALIST FOOTER — same on every page
-   ===================================================================== */
-footer.footer.footer-mini {
-  background: var(--color-surface) !important;
-  border-top: 1px solid var(--color-line-soft) !important;
-  padding: 0 !important;
-  color: var(--color-ink-2) !important;
-}
-.footer-mini-inner {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 36px clamp(20px, 4vw, 40px) 28px;
-  display: grid;
-  grid-template-columns: 1.4fr 1.2fr 0.8fr;
-  gap: clamp(20px, 4vw, 48px);
-  align-items: start;
-}
-.footer-mini-brand .footer-logo {
-  display: inline-block;
-  font-family: 'Manrope', 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.02em;
-  color: var(--color-ink) !important;
-  text-decoration: none;
-  margin-bottom: 8px;
-}
-.footer-mini-brand .footer-logo strong {
-  color: var(--color-ink) !important;
-  font-weight: 800;
-}
-.footer-mini-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.86rem !important;
-  color: var(--color-ink-mute) !important;
-  margin: 0;
-  line-height: 1.5;
-}
-.footer-mini-contact {
-  font-style: normal;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.88rem !important;
-}
-.footer-mini-contact a {
-  color: var(--color-ink) !important;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 200ms var(--ease);
-}
-.footer-mini-contact a:hover {
-  color: var(--color-accent) !important;
-}
-.footer-mini-contact span {
-  color: var(--color-ink-mute) !important;
-  font-size: 0.84rem !important;
-}
-.footer-mini-links {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.88rem !important;
-}
-.footer-mini-links a {
-  color: var(--color-ink-2) !important;
-  text-decoration: none;
-  transition: color 200ms var(--ease);
-}
-.footer-mini-links a:hover {
-  color: var(--color-ink) !important;
-}
-.footer-mini-bottom {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 16px clamp(20px, 4vw, 40px);
-  border-top: 1px solid var(--color-line-soft);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.78rem !important;
-  color: var(--color-ink-mute) !important;
-}
-.footer-mini-bottom a {
-  color: var(--color-ink-mute) !important;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 200ms var(--ease);
-}
-.footer-mini-bottom a:hover {
-  color: var(--color-ink) !important;
-}
-@media (max-width: 720px) {
-  .footer-mini-inner {
-    grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 30px 20px 24px;
-  }
-  .footer-mini-bottom {
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-    padding: 14px 20px;
-  }
-}

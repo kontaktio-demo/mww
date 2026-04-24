@@ -54,13 +54,11 @@
 @keyframes heroFadeSlideUp {
   from {
     opacity: 0;
-    transform: translateY(50px);
-    filter: blur(8px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
   }
 }
 
@@ -86,19 +84,19 @@
 }
 
 .hero-content.visible .hero-eyebrow {
-  animation: heroFadeSlideUp .85s var(--ease) .15s both;
+  animation: heroFadeSlideUp .7s var(--ease) .05s both;
 }
 .hero-content.visible h1 .hero-title-light {
-  animation: heroTitleReveal 1s var(--ease) .35s both;
+  animation: heroFadeSlideUp .7s var(--ease) .12s both;
 }
 .hero-content.visible h1 .hero-title-accent {
-  animation: heroTitleReveal 1.1s var(--ease) .55s both;
+  animation: heroFadeSlideUp .7s var(--ease) .18s both;
 }
 .hero-content.visible .hero-subtitle {
-  animation: heroFadeSlideUp .9s var(--ease) .8s both;
+  animation: heroFadeSlideUp .7s var(--ease) .25s both;
 }
 .hero-content.visible .hero-actions {
-  animation: heroFadeSlideUp .9s var(--ease) 1.05s both;
+  animation: heroFadeSlideUp .7s var(--ease) .32s both;
 }
 
 @keyframes shimmer {
@@ -119,7 +117,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: heroTitleReveal 1.1s var(--ease) .55s both,
+  animation: heroFadeSlideUp .7s var(--ease) .18s both,
              shimmer 4s ease-in-out 2.5s infinite;
 }
 
@@ -719,7 +717,7 @@
     -webkit-background-clip: unset;
     background-clip: unset;
     -webkit-text-fill-color: #ffffff;
-    animation: heroTitleReveal 1.1s var(--ease) .55s both;
+    animation: heroFadeSlideUp .7s var(--ease) .18s both;
   }
 }
 
