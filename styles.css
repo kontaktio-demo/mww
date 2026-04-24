@@ -9,23 +9,26 @@
 }
 
 :root {
+  /* Paleta dobrana pod logo: grafitowy okrąg + mroźna srebrno-niebieska obwódka.
+     "gold" zostawione jako nazwa zmiennej (akcent), ale wartość jest teraz
+     chłodnym, dystyngowanym steel-blue, który koresponduje z logo. */
   --c-bg: #ffffff;
-  --c-bg-alt: #f6f5f2;
-  --c-ink: #0e0e10;
-  --c-ink-soft: #2a2a2e;
-  --c-graphite: #3a3a3f;
-  --c-mute: #6b6b73;
-  --c-line: #e6e4dd;
-  --c-gold: #b8924a;
-  --c-gold-soft: #d4b173;
-  --c-dark: #111114;
-  --c-dark-2: #1a1a1f;
-  --c-logo-gray: #2f2f2f;
-  --c-logo-gray-2: #262626;
+  --c-bg-alt: #f3f5f9;
+  --c-ink: #0f1118;
+  --c-ink-soft: #232732;
+  --c-graphite: #363a45;
+  --c-mute: #6b7280;
+  --c-line: #e2e6ee;
+  --c-gold: #4f7fb0;          /* główny akcent - polished steel blue */
+  --c-gold-soft: #a9c8e3;     /* mroźny błękit - kolor obwódki logo */
+  --c-dark: #0f1218;
+  --c-dark-2: #181c25;
+  --c-logo-gray: #2a2c33;
+  --c-logo-gray-2: #1f2127;
 
-  --shadow-sm: 0 4px 16px rgba(14, 14, 16, 0.06);
-  --shadow-md: 0 10px 30px rgba(14, 14, 16, 0.08);
-  --shadow-lg: 0 20px 50px rgba(14, 14, 16, 0.12);
+  --shadow-sm: 0 4px 16px rgba(15, 17, 24, 0.06);
+  --shadow-md: 0 10px 30px rgba(15, 17, 24, 0.09);
+  --shadow-lg: 0 20px 50px rgba(15, 17, 24, 0.14);
 
   --radius-sm: 10px;
   --radius: 14px;
@@ -195,12 +198,12 @@ p { font-weight: 400; }
 .btn-primary {
   background: var(--c-ink);
   color: #fff;
-  box-shadow: 0 8px 22px rgba(14, 14, 16, 0.18);
+  box-shadow: 0 8px 22px rgba(15, 17, 24, 0.18);
 }
 .btn-primary:hover {
   background: var(--c-gold);
   color: #fff;
-  box-shadow: 0 12px 28px rgba(184, 146, 74, 0.35);
+  box-shadow: 0 12px 28px rgba(79, 127, 176, 0.35);
 }
 
 .btn-outline {
@@ -253,9 +256,27 @@ p { font-weight: 400; }
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 22px;
+  margin-bottom: 28px;
+  position: relative;
 }
-.preloader-logo picture { display: inline-flex; }
+.preloader-logo::before {
+  /* Mroźna aureola podkreślająca obwódkę logo */
+  content: '';
+  position: absolute;
+  inset: -22px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(169, 200, 227, 0.22) 0%, rgba(169, 200, 227, 0) 70%);
+  pointer-events: none;
+  animation: frostPulse 3.6s var(--ease) infinite;
+}
+@keyframes frostPulse {
+  0%, 100% { transform: scale(0.96); opacity: 0.7; }
+  50%      { transform: scale(1.04); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader-logo::before { animation: none; }
+}
+.preloader-logo picture { display: inline-flex; position: relative; z-index: 1; }
 .preloader-logo img {
   width: 110px;
   height: 110px;
@@ -264,7 +285,7 @@ p { font-weight: 400; }
 .preloader-bar {
   width: 220px;
   height: 2px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   margin: 0 auto;
   overflow: hidden;
   border-radius: 2px;
@@ -272,7 +293,7 @@ p { font-weight: 400; }
 .preloader-fill {
   width: 40%;
   height: 100%;
-  background: var(--c-gold);
+  background: linear-gradient(90deg, var(--c-gold-soft), var(--c-gold));
   animation: preload 1.4s infinite var(--ease);
 }
 @keyframes preload {
@@ -300,19 +321,20 @@ p { font-weight: 400; }
   align-items: center;
   justify-content: space-between;
   padding: 0 36px;
-  background: rgba(47, 47, 47, 0.78);
+  /* Tło zgrane z grafitem ze środka logo, leciutko schłodzone */
+  background: rgba(42, 44, 51, 0.78);
   backdrop-filter: saturate(160%) blur(18px);
   -webkit-backdrop-filter: saturate(160%) blur(18px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(169, 200, 227, 0.08);
   transition: background 0.4s var(--ease),
               box-shadow 0.4s var(--ease),
               border-color 0.4s var(--ease);
 }
 
 .nav.scrolled {
-  background: rgba(47, 47, 47, 0.92);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.25);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
+  background: rgba(31, 33, 39, 0.94);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.32);
+  border-bottom-color: rgba(169, 200, 227, 0.14);
 }
 
 .logo {
@@ -321,14 +343,22 @@ p { font-weight: 400; }
   line-height: 0;
   color: var(--c-ink);
   flex-shrink: 0;
+  position: relative;
 }
-.logo picture { display: inline-flex; }
+.logo picture {
+  display: inline-flex;
+  position: relative;
+  /* Mroźny halo-glow pod logo, podkręcający srebrno-niebieską obwódkę */
+  filter: drop-shadow(0 0 14px rgba(169, 200, 227, 0.28));
+  transition: filter 0.4s var(--ease);
+}
 .logo img {
   height: 72px;
   width: 72px;
   display: block;
   transition: transform 0.4s var(--ease);
 }
+.logo:hover picture { filter: drop-shadow(0 0 18px rgba(169, 200, 227, 0.55)); }
 .logo:hover img { transform: scale(1.04); }
 .logo:hover { color: var(--c-ink); }
 
@@ -375,14 +405,14 @@ p { font-weight: 400; }
   margin-right: 8px;
   vertical-align: middle;
   transform: translateY(-1px);
-  box-shadow: 0 0 0 0 rgba(184, 146, 74, .5);
+  box-shadow: 0 0 0 0 rgba(79, 127, 176, .5);
   animation: featuredPulse 2.4s var(--ease) infinite;
 }
 .nav-link-featured::after { background: var(--c-gold); }
 .nav-link-featured:hover { color: var(--c-gold); }
 @keyframes featuredPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(184, 146, 74, .45); }
-  50%      { box-shadow: 0 0 0 5px rgba(184, 146, 74, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79, 127, 176, .45); }
+  50%      { box-shadow: 0 0 0 5px rgba(79, 127, 176, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-link-featured::before { animation: none; }
@@ -402,12 +432,12 @@ p { font-weight: 400; }
 .nav .nav-cta.btn-primary {
   background: var(--c-gold);
   color: #fff;
-  box-shadow: 0 8px 22px rgba(184, 146, 74, 0.35);
+  box-shadow: 0 8px 22px rgba(79, 127, 176, 0.35);
 }
 .nav .nav-cta.btn-primary:hover {
   background: var(--c-gold-soft);
   color: #fff;
-  box-shadow: 0 12px 28px rgba(184, 146, 74, 0.45);
+  box-shadow: 0 12px 28px rgba(79, 127, 176, 0.45);
 }
 .nav-cta-icon { transform: translateY(-1px); }
 
@@ -451,10 +481,12 @@ p { font-weight: 400; }
   position: absolute;
   inset: -8% 0 0 0;
   background-image:
-    linear-gradient(180deg, rgba(10, 10, 14, 0.55) 0%, rgba(10, 10, 14, 0.7) 60%, rgba(10, 10, 14, 0.85) 100%),
+    /* dolny chłodny gradient + leciutki niebieskawy "lift" przy górze */
+    radial-gradient(80% 50% at 50% 0%, rgba(79, 127, 176, 0.18), transparent 70%),
+    linear-gradient(180deg, rgba(12, 14, 22, 0.55) 0%, rgba(12, 14, 22, 0.72) 60%, rgba(12, 14, 22, 0.88) 100%),
     url('images/hero-bg.webp');
-  background-size: cover;
-  background-position: center 30%;
+  background-size: cover, cover, cover;
+  background-position: center top, center, center 30%;
   background-repeat: no-repeat;
   will-change: transform;
   z-index: 0;
@@ -475,7 +507,7 @@ p { font-weight: 400; }
   color: var(--c-gold-soft);
   margin-bottom: 26px;
   padding: 8px 18px;
-  border: 1px solid rgba(212, 177, 115, 0.45);
+  border: 1px solid rgba(169, 200, 227, 0.45);
   border-radius: 999px;
   backdrop-filter: blur(6px);
 }
@@ -489,10 +521,30 @@ p { font-weight: 400; }
 }
 
 .hero-title-light { font-weight: 500; color: rgba(255, 255, 255, 0.92); display: block; }
-.hero-title-accent { color: #fff; display: block; }
+.hero-title-accent {
+  color: #fff;
+  display: block;
+  background: linear-gradient(120deg, #ffffff 0%, var(--c-gold-soft) 55%, #ffffff 100%);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: heroAccentSheen 9s var(--ease) infinite;
+}
+@keyframes heroAccentSheen {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-accent { animation: none; }
+}
 .hero-title-accent::after {
   content: '.';
-  color: var(--c-gold);
+  color: var(--c-gold-soft);
+  -webkit-text-fill-color: var(--c-gold-soft);
+  text-shadow: 0 0 24px rgba(169, 200, 227, 0.55);
 }
 
 .hero-subtitle {
@@ -570,8 +622,9 @@ p { font-weight: 400; }
   inset: 0;
   
   background:
-    radial-gradient(120% 80% at 50% 0%, rgba(212, 177, 115, 0.08), transparent 60%),
-    linear-gradient(180deg, #0e0e10 0%, #14141a 100%);
+    radial-gradient(120% 80% at 50% 0%, rgba(169, 200, 227, 0.10), transparent 60%),
+    radial-gradient(80% 60% at 100% 100%, rgba(79, 127, 176, 0.08), transparent 60%),
+    linear-gradient(180deg, #0f1218 0%, #161b25 100%);
   z-index: 0;
 }
 .usp .container { position: relative; z-index: 2; }
@@ -599,7 +652,7 @@ p { font-weight: 400; }
 .usp-card:hover {
   transform: translateY(-6px) scale(1.02);
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(212, 177, 115, 0.5);
+  border-color: rgba(169, 200, 227, 0.5);
 }
 
 .usp-icon {
@@ -608,7 +661,7 @@ p { font-weight: 400; }
   justify-content: center;
   width: 52px;
   height: 52px;
-  border: 1px solid rgba(212, 177, 115, 0.5);
+  border: 1px solid rgba(169, 200, 227, 0.5);
   border-radius: 12px;
   color: var(--c-gold-soft);
   margin-bottom: 22px;
@@ -633,10 +686,10 @@ p { font-weight: 400; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(180deg, rgba(246, 245, 242, 0.95), rgba(246, 245, 242, 0.92)),
+    linear-gradient(180deg, rgba(243, 245, 249, 0.95), rgba(243, 245, 249, 0.92)),
     url('images/lodz-panorama-2.webp');
   background-image:
-    linear-gradient(180deg, rgba(246, 245, 242, 0.95), rgba(246, 245, 242, 0.92)),
+    linear-gradient(180deg, rgba(243, 245, 249, 0.95), rgba(243, 245, 249, 0.92)),
     image-set(
       url('images/lodz-panorama-2.avif') type('image/avif'),
       url('images/lodz-panorama-2.webp') type('image/webp')
@@ -763,7 +816,7 @@ p { font-weight: 400; }
   border-radius: var(--radius);
   padding: 40px 32px;
   border: 1px solid var(--c-line);
-  box-shadow: 0 10px 30px rgba(14, 14, 16, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 17, 24, 0.06);
   transition: transform 0.5s var(--ease),
               box-shadow 0.4s var(--ease),
               border-color 0.4s var(--ease);
@@ -772,8 +825,8 @@ p { font-weight: 400; }
 }
 .service-card:hover {
   transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 18px 40px rgba(14, 14, 16, 0.1);
-  border-color: rgba(184, 146, 74, 0.35);
+  box-shadow: 0 18px 40px rgba(15, 17, 24, 0.1);
+  border-color: rgba(79, 127, 176, 0.35);
 }
 
 .service-icon {
@@ -790,7 +843,7 @@ p { font-weight: 400; }
 }
 .service-card:hover .service-icon {
   color: var(--c-gold);
-  border-color: rgba(184, 146, 74, 0.4);
+  border-color: rgba(79, 127, 176, 0.4);
 }
 
 .service-card h3 {
@@ -835,10 +888,10 @@ p { font-weight: 400; }
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(180deg, rgba(10, 10, 14, 0.82), rgba(10, 10, 14, 0.88)),
+    linear-gradient(180deg, rgba(12, 14, 22, 0.82), rgba(12, 14, 22, 0.88)),
     url('images/lodz-panorama-1.webp');
   background-image:
-    linear-gradient(180deg, rgba(10, 10, 14, 0.82), rgba(10, 10, 14, 0.88)),
+    linear-gradient(180deg, rgba(12, 14, 22, 0.82), rgba(12, 14, 22, 0.88)),
     image-set(
       url('images/lodz-panorama-1.avif') type('image/avif'),
       url('images/lodz-panorama-1.webp') type('image/webp')
@@ -873,7 +926,7 @@ p { font-weight: 400; }
 }
 .process-step:hover {
   transform: translateY(-6px) scale(1.02);
-  border-color: rgba(212, 177, 115, 0.5);
+  border-color: rgba(169, 200, 227, 0.5);
   background: rgba(255, 255, 255, 0.07);
 }
 
@@ -1013,7 +1066,7 @@ p { font-weight: 400; }
 .partner-card:hover {
   transform: translateY(-4px) scale(1.02);
   box-shadow: var(--shadow-md);
-  border-color: rgba(184, 146, 74, 0.35);
+  border-color: rgba(79, 127, 176, 0.35);
 }
 .partner-icon {
   width: 56px;
@@ -1189,7 +1242,10 @@ p { font-weight: 400; }
   align-items: center;
   line-height: 0;
 }
-.footer-logo picture { display: inline-flex; }
+.footer-logo picture {
+  display: inline-flex;
+  filter: drop-shadow(0 0 18px rgba(169, 200, 227, 0.32));
+}
 .footer-logo img {
   width: 88px;
   height: 88px;
@@ -1449,7 +1505,7 @@ p { font-weight: 400; }
     bottom: 0;
     height: calc(100vh - var(--nav-h));
     height: calc(100dvh - var(--nav-h));
-    background: #2f2f2f;
+    background: #2a2c33;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
     flex-direction: column;
@@ -1545,7 +1601,7 @@ p { font-weight: 400; }
   color: #fff;
   overflow: hidden;
   isolation: isolate;
-  background: #0e0e10;
+  background: #0f1218;
 }
 .service-hero-bg {
   position: absolute;
@@ -1559,7 +1615,7 @@ p { font-weight: 400; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10, 10, 14, 0.78) 0%, rgba(10, 10, 14, 0.72) 50%, rgba(10, 10, 14, 0.92) 100%);
+  background: linear-gradient(180deg, rgba(12, 14, 22, 0.78) 0%, rgba(12, 14, 22, 0.72) 50%, rgba(12, 14, 22, 0.92) 100%);
 }
 .service-hero-inner {
   position: relative;
@@ -1669,7 +1725,7 @@ p { font-weight: 400; }
 .howto-step:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(184, 146, 74, 0.4);
+  border-color: rgba(79, 127, 176, 0.4);
 }
 .howto-step .num {
   display: inline-flex;
@@ -1717,7 +1773,7 @@ p { font-weight: 400; }
 .benefit-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(184, 146, 74, 0.4);
+  border-color: rgba(79, 127, 176, 0.4);
 }
 .benefit-icon {
   display: inline-flex;
@@ -1933,10 +1989,10 @@ p { font-weight: 400; }
 
   .about-bg {
     background-image:
-      linear-gradient(180deg, rgba(246, 245, 242, 0.95), rgba(246, 245, 242, 0.92)),
+      linear-gradient(180deg, rgba(243, 245, 249, 0.95), rgba(243, 245, 249, 0.92)),
       url('images/lodz-panorama-2-mobile.webp');
     background-image:
-      linear-gradient(180deg, rgba(246, 245, 242, 0.95), rgba(246, 245, 242, 0.92)),
+      linear-gradient(180deg, rgba(243, 245, 249, 0.95), rgba(243, 245, 249, 0.92)),
       image-set(
         url('images/lodz-panorama-2-mobile.avif') type('image/avif'),
         url('images/lodz-panorama-2-mobile.webp') type('image/webp')
@@ -1944,10 +2000,10 @@ p { font-weight: 400; }
   }
   .process-bg {
     background-image:
-      linear-gradient(180deg, rgba(10, 10, 14, 0.82), rgba(10, 10, 14, 0.88)),
+      linear-gradient(180deg, rgba(12, 14, 22, 0.82), rgba(12, 14, 22, 0.88)),
       url('images/lodz-panorama-1-mobile.webp');
     background-image:
-      linear-gradient(180deg, rgba(10, 10, 14, 0.82), rgba(10, 10, 14, 0.88)),
+      linear-gradient(180deg, rgba(12, 14, 22, 0.82), rgba(12, 14, 22, 0.88)),
       image-set(
         url('images/lodz-panorama-1-mobile.avif') type('image/avif'),
         url('images/lodz-panorama-1-mobile.webp') type('image/webp')
@@ -2128,7 +2184,7 @@ p { font-weight: 400; }
 .about-pillar:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(184, 146, 74, 0.4);
+  border-color: rgba(79, 127, 176, 0.4);
 }
 .about-pillar-icon {
   display: inline-flex;
@@ -2164,7 +2220,7 @@ p { font-weight: 400; }
 
 .tel-confirm-overlay {
   position: fixed; inset: 0;
-  background: rgba(10, 10, 14, 0.6);
+  background: rgba(12, 14, 22, 0.6);
   backdrop-filter: blur(4px);
   display: none;
   align-items: center;
@@ -2322,7 +2378,7 @@ p { font-weight: 400; }
 .highlight-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(184, 146, 74, 0.4);
+  border-color: rgba(79, 127, 176, 0.4);
 }
 .highlight-num {
   display: block;
@@ -2386,7 +2442,7 @@ p { font-weight: 400; }
   color: rgba(255, 255, 255, 0.88);
 }
 .checklist--dark li::before {
-  background: rgba(212, 177, 115, 0.16);
+  background: rgba(169, 200, 227, 0.16);
 }
 
 .perks-grid {
@@ -2409,7 +2465,7 @@ p { font-weight: 400; }
 .perk-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(184, 146, 74, 0.4);
+  border-color: rgba(79, 127, 176, 0.4);
 }
 .perk-card .benefit-icon { margin: 0; width: 56px; height: 56px; }
 .perk-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; color: var(--c-ink); }
@@ -2435,7 +2491,7 @@ p { font-weight: 400; }
 .benefit-row:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: rgba(184, 146, 74, 0.4);
+  border-color: rgba(79, 127, 176, 0.4);
 }
 .benefit-row .benefit-icon { margin: 0; }
 .benefit-row h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; color: var(--c-ink); }
@@ -2443,7 +2499,7 @@ p { font-weight: 400; }
 
 .service-cta--dark { background: var(--c-dark); }
 .service-cta--dark .container {
-  background: linear-gradient(180deg, #18181c 0%, #0e0e10 100%);
+  background: linear-gradient(180deg, #181c25 0%, #0f1218 100%);
   border-color: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
