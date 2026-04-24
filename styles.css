@@ -321,24 +321,12 @@ p { font-weight: 400; }
 }
 .preloader-inner { text-align: center; color: #fff; }
 .preloader-logo {
-  position: relative;
-  margin: 0 auto 30px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px 28px;
-  font-family: 'Unbounded', 'Manrope', 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.4rem, 6vw, 3.4rem);
-  letter-spacing: 0.04em;
-  line-height: 1;
-  color: #fff;
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 6px 24px rgba(189, 142, 68, 0.35);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin-bottom: 22px;
 }
+.preloader-logo strong { font-weight: 800; color: var(--c-gold); }
 .preloader-bar {
   width: 220px;
   height: 2px;
@@ -395,43 +383,13 @@ p { font-weight: 400; }
 }
 
 .logo {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  font-family: 'Unbounded', 'Manrope', 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
-  letter-spacing: 0.06em;
-  line-height: 1;
-  color: #fff;
-  flex-shrink: 0;
-  isolation: isolate;
-  padding: 4px 2px;
-  transition: opacity 0.3s var(--ease);
+  font-size: 1.18rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--c-ink);
 }
-.logo:hover { opacity: 0.92; }
-.logo .logo-mark {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.logo .logo-sub {
-  display: inline-block;
-  margin-left: 10px;
-  padding-left: 10px;
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-  font-size: 0.62em;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.78);
-}
-.logo:focus-visible {
-  outline: 2px solid rgba(214, 179, 120, 0.7);
-  outline-offset: 4px;
-  border-radius: 6px;
-}
+.logo strong { font-weight: 800; }
+.logo:hover { color: var(--c-ink); }
 
 .nav-links {
   display: flex;
@@ -1369,38 +1327,12 @@ p { font-weight: 400; }
 .footer-brand p strong { color: #fff; font-weight: 700; }
 
 .footer-logo {
-  position: relative;
-  display: inline-flex;
-  align-items: baseline;
-  font-family: 'Unbounded', 'Manrope', 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: clamp(1.8rem, 3vw, 2.4rem);
-  letter-spacing: 0.06em;
-  line-height: 1;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
   color: #fff;
-  padding: 4px 0;
-  transition: opacity 0.3s var(--ease);
 }
-.footer-logo:hover {
-  opacity: 0.92;
-}
-.footer-logo .logo-mark {
-  background: var(--gradient-gold);
-  -webkit-background-clip: text;
-          background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.footer-logo .logo-sub {
-  display: inline-block;
-  margin-left: 10px;
-  padding-left: 10px;
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
-  font-size: 0.5em;
-  font-weight: 600;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.7);
-}
+.footer-logo strong { font-weight: 800; color: var(--c-gold); }
 
 .footer-social {
   display: flex;
