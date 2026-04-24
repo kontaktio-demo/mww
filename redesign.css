@@ -2067,3 +2067,68 @@ body.oferty,
   background: var(--color-ink-2) !important;
   border-color: var(--color-ink-2) !important;
 }
+
+/* ---------------------------------------------------------------------
+   18. SYMMETRIC TILE GRIDS
+   ---------------------------------------------------------------------
+   Pin service / partner grids so an even number of cards never breaks
+   into "row of 4 + leftover row of 2" on the homepage. 6 items render
+   as a clean 3+3 (and 2+2+2 on tablet, 1-per on mobile). Same idea for
+   any howto grid that may have 3 items but a 4-column rule from
+   styles.css.
+   ------------------------------------------------------------------- */
+.services-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+.partners-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+.howto-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+}
+
+@media (max-width: 960px) {
+  .services-grid,
+  .partners-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 580px) {
+  .services-grid,
+  .partners-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ---------------------------------------------------------------------
+   19. READABILITY OF TEXT OVER PHOTOS
+   ---------------------------------------------------------------------
+   Strengthen the hero overlay so headline / lead are legible against
+   any photo, and add a subtle text-shadow on white-on-photo copy.
+   ------------------------------------------------------------------- */
+.hero-bg::after, .hero::before {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.45) 45%,
+    rgba(0, 0, 0, 0.62) 100%
+  ) !important;
+}
+
+.hero-content,
+.hero-content h1,
+.hero-content .hero-title,
+.hero-content .hero-subtitle,
+.hero-content .lead,
+.hero-content p {
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+}
+
+/* Listing card photo overlays — make the price / badge text crisp
+   against any thumbnail. */
+.listing-price,
+.listing-badges,
+.listing-badges .badge,
+.featured-star {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
