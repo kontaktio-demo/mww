@@ -1,5 +1,5 @@
 /* =====================================================================
-   MWW Mieszkanie — REDESIGN (light premium minimalist)
+   MWW Mieszkanie — REDESIGN (light, clean, minimal)
    ---------------------------------------------------------------------
    Loaded LAST on every page. Overrides palette, typography and key
    component styling on top of styles.css / oferty.css /
@@ -8,7 +8,7 @@
    intentionally left untouched — only colours / typography / spacing
    inherit from this stylesheet).
 
-   Aesthetic: clean, premium, minimal real-estate agency
+   Aesthetic: clean, minimal real-estate agency
    (Knight Frank / Sotheby's / Engel & Völkers).
    Pure white backgrounds, generous whitespace, strong sans-serif
    typography, single restrained blue accent.
@@ -63,7 +63,7 @@
   --gradient-navy-soft:  var(--color-surface);
   --gradient-navy-line:  var(--color-line);
 
-  /* Subtle premium shadows */
+  /* Subtle shadows */
   --shadow-xs:      0 1px 2px rgba(0, 0, 0, 0.04);
   --shadow-sm:      0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-md:      0 4px 20px rgba(0, 0, 0, 0.05);
@@ -154,7 +154,7 @@ html { scroll-behavior: smooth; }
 }
 
 /* ---------------------------------------------------------------------
-   3. TYPOGRAPHY — strong, clean, premium sans
+   3. TYPOGRAPHY — strong, clean sans
    ------------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6,
 .hero-title, .hero h1,
@@ -168,21 +168,23 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1, .hero-title, .hero h1 {
-  font-weight: 800 !important;
-  letter-spacing: -0.03em !important;
-  font-size: clamp(2.4rem, 5.4vw, 4.8rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.025em !important;
+  font-size: clamp(2.2rem, 4.8vw, 4rem) !important;
+  line-height: 1.1 !important;
 }
 
 h2, .section-title, .section-header h2 {
-  font-weight: 700 !important;
-  font-size: clamp(1.8rem, 3.6vw, 3rem) !important;
-  letter-spacing: -0.025em !important;
+  font-weight: 600 !important;
+  font-size: clamp(1.7rem, 3.2vw, 2.6rem) !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.2 !important;
 }
 
 h3 {
-  font-weight: 700 !important;
-  font-size: clamp(1.2rem, 1.6vw, 1.5rem) !important;
-  letter-spacing: -0.015em !important;
+  font-weight: 600 !important;
+  font-size: clamp(1.15rem, 1.4vw, 1.35rem) !important;
+  letter-spacing: -0.01em !important;
   color: var(--color-ink) !important;
 }
 
@@ -228,17 +230,17 @@ a {
 }
 a:hover { color: var(--color-accent-hover); }
 
-/* Eyebrow / category labels — minimalist uppercase */
+/* Eyebrow / category labels — small, calm */
 .eyebrow, .label-tag, .section-eyebrow,
 .hero-eyebrow, .service-hero-eyebrow {
   font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 0.72rem !important;
-  letter-spacing: 0.18em !important;
-  text-transform: uppercase !important;
-  color: var(--color-accent) !important;
+  font-weight: 500 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.04em !important;
+  text-transform: none !important;
+  color: var(--color-ink-mute) !important;
   background: none !important;
-  -webkit-text-fill-color: var(--color-accent) !important;
+  -webkit-text-fill-color: var(--color-ink-mute) !important;
   font-style: normal !important;
 }
 
@@ -262,7 +264,7 @@ a:hover { color: var(--color-accent-hover); }
 }
 
 /* ---------------------------------------------------------------------
-   4. LAYOUT — generous whitespace, premium spacing
+   4. LAYOUT — generous whitespace, calm spacing
    ------------------------------------------------------------------- */
 section, .section {
   padding-top: clamp(80px, 10vw, 140px) !important;
@@ -359,21 +361,21 @@ section, .section {
 
 .nav-cta {
   font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 0.88rem !important;
   letter-spacing: 0 !important;
   text-transform: none !important;
   background: var(--color-ink) !important;
   color: var(--color-white) !important;
   border: 1px solid var(--color-ink) !important;
-  padding: 11px 20px !important;
-  border-radius: 999px !important;
+  padding: 10px 18px !important;
+  border-radius: 10px !important;
   box-shadow: none !important;
   transition: background 220ms var(--ease), transform 220ms var(--ease) !important;
 }
 .nav-cta:hover {
-  background: var(--color-accent) !important;
-  border-color: var(--color-accent) !important;
+  background: var(--color-ink-2) !important;
+  border-color: var(--color-ink-2) !important;
   transform: translateY(-1px);
 }
 .nav-cta-icon { display: none !important; }
@@ -401,11 +403,11 @@ section, .section {
 .preloader-fill { background: var(--color-ink) !important; }
 .preloader-text {
   font-family: 'Inter', sans-serif !important;
-  font-weight: 500 !important;
+  font-weight: 400 !important;
   color: var(--color-ink-mute) !important;
-  font-size: 0.78rem !important;
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
+  font-size: 0.85rem !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
 }
 
 /* ---------------------------------------------------------------------
@@ -434,7 +436,7 @@ section, .section {
   content: '' !important;
   position: absolute !important;
   inset: 0 !important;
-  background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.30) 50%, rgba(0,0,0,0.55) 100%) !important;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.45) 100%) !important;
   z-index: 1;
   pointer-events: none;
 }
@@ -543,12 +545,12 @@ section, .section {
 button.btn,
 a.btn {
   font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
   font-size: 0.92rem !important;
   letter-spacing: 0 !important;
   text-transform: none !important;
-  border-radius: 999px !important;
-  padding: 13px 26px !important;
+  border-radius: 10px !important;
+  padding: 12px 22px !important;
   border: 1px solid transparent !important;
   background: var(--color-ink) !important;
   color: var(--color-white) !important;
@@ -561,8 +563,8 @@ a.btn {
   cursor: pointer;
 }
 .btn:hover {
-  background: var(--color-accent) !important;
-  border-color: var(--color-accent) !important;
+  background: var(--color-ink-2) !important;
+  border-color: var(--color-ink-2) !important;
   color: var(--color-white) !important;
   transform: translateY(-1px);
 }
@@ -573,8 +575,8 @@ a.btn {
   color: var(--color-white) !important;
 }
 .btn-primary:hover {
-  background: var(--color-accent) !important;
-  border-color: var(--color-accent) !important;
+  background: var(--color-ink-2) !important;
+  border-color: var(--color-ink-2) !important;
 }
 
 .btn-outline {
@@ -583,23 +585,23 @@ a.btn {
   color: var(--color-ink) !important;
 }
 .btn-outline:hover {
-  background: var(--color-ink) !important;
+  background: var(--color-surface) !important;
   border-color: var(--color-ink) !important;
-  color: var(--color-white) !important;
+  color: var(--color-ink) !important;
 }
 
 .btn-ghost-light {
   background: transparent !important;
-  border-color: rgba(255,255,255,0.55) !important;
+  border-color: rgba(255,255,255,0.5) !important;
   color: var(--color-white) !important;
 }
 .btn-ghost-light:hover {
-  background: var(--color-white) !important;
-  color: var(--color-ink) !important;
-  border-color: var(--color-white) !important;
+  background: rgba(255,255,255,0.12) !important;
+  color: var(--color-white) !important;
+  border-color: rgba(255,255,255,0.8) !important;
 }
 
-.btn-lg { padding: 16px 32px !important; font-size: 1rem !important; }
+.btn-lg { padding: 14px 28px !important; font-size: 0.98rem !important; }
 .btn-full { width: 100% !important; }
 
 /* Service / "Dowiedz się więcej →" link */
@@ -618,7 +620,7 @@ a.btn {
 }
 
 /* ---------------------------------------------------------------------
-   9. CARDS — minimal premium
+   9. CARDS — minimal
    ------------------------------------------------------------------- */
 .usp-card, .service-card, .process-step,
 .partner-card, .testimonial-card,
@@ -690,14 +692,14 @@ a.btn {
 /* Process number */
 .process-number {
   font-family: 'Manrope', sans-serif !important;
-  font-weight: 800 !important;
-  font-size: 2.4rem !important;
-  color: var(--color-accent) !important;
+  font-weight: 600 !important;
+  font-size: 1.6rem !important;
+  color: var(--color-ink-mute) !important;
   background: none !important;
-  -webkit-text-fill-color: var(--color-accent) !important;
-  letter-spacing: -0.04em !important;
+  -webkit-text-fill-color: var(--color-ink-mute) !important;
+  letter-spacing: 0 !important;
   line-height: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 /* Grids */
@@ -863,10 +865,10 @@ a.btn {
 .contact-details strong {
   display: block;
   color: var(--color-ink) !important;
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  text-transform: none;
+  letter-spacing: 0;
   margin-bottom: 4px;
 }
 .contact-details a { color: var(--color-ink) !important; font-weight: 500; }
@@ -925,13 +927,14 @@ input:focus, textarea:focus, select:focus {
    13. FOOTER
    ------------------------------------------------------------------- */
 .footer, footer.footer {
-  background: var(--color-ink) !important;
-  color: rgba(255,255,255,0.75) !important;
+  background: var(--color-surface) !important;
+  color: var(--color-ink-2) !important;
   padding-top: 80px !important;
+  border-top: 1px solid var(--color-line-soft) !important;
 }
 .footer-top { padding-bottom: 60px; }
 .footer-bottom {
-  border-top: 1px solid rgba(255,255,255,0.10) !important;
+  border-top: 1px solid var(--color-line) !important;
   padding: 24px 0 !important;
   font-size: 0.82rem;
 }
@@ -940,7 +943,7 @@ input:focus, textarea:focus, select:focus {
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
-  color: rgba(255,255,255,0.6) !important;
+  color: var(--color-ink-mute) !important;
 }
 .footer-grid {
   display: grid !important;
@@ -954,22 +957,25 @@ input:focus, textarea:focus, select:focus {
   .footer-grid { grid-template-columns: 1fr !important; }
 }
 
-.footer-logo, .footer-logo strong { color: var(--color-white) !important; }
+.footer-logo, .footer-logo strong { color: var(--color-ink) !important; }
 .footer p, .footer address, .footer span, .footer a {
-  color: rgba(255,255,255,0.7) !important;
+  color: var(--color-ink-2) !important;
   font-family: 'Inter', sans-serif !important;
 }
 .footer h4 {
-  color: var(--color-white) !important;
+  color: var(--color-ink) !important;
   font-family: 'Inter', sans-serif !important;
   font-weight: 600 !important;
-  font-size: 0.78rem !important;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
+  font-size: 0.82rem !important;
+  text-transform: none;
+  letter-spacing: 0 !important;
   margin-bottom: 1rem;
 }
 .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
-.footer-col a:hover { color: var(--color-white) !important; }
+.footer-col a { color: var(--color-ink-2) !important; }
+.footer-col a:hover { color: var(--color-ink) !important; }
+.footer-bottom-inner a { color: var(--color-ink-mute) !important; }
+.footer-bottom-inner a:hover { color: var(--color-ink) !important; }
 
 .footer-social { display: flex; gap: 10px; margin-top: 1rem; }
 .social-btn {
@@ -978,16 +984,16 @@ input:focus, textarea:focus, select:focus {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255,255,255,0.18) !important;
-  background: transparent !important;
+  border: 1px solid var(--color-line) !important;
+  background: var(--color-white) !important;
   border-radius: 999px;
-  color: rgba(255,255,255,0.85) !important;
+  color: var(--color-ink) !important;
   transition: background 220ms var(--ease), color 220ms var(--ease), border-color 220ms var(--ease);
 }
 .social-btn:hover {
-  background: var(--color-white) !important;
-  color: var(--color-ink) !important;
-  border-color: var(--color-white) !important;
+  background: var(--color-ink) !important;
+  color: var(--color-white) !important;
+  border-color: var(--color-ink) !important;
 }
 
 /* ---------------------------------------------------------------------
@@ -1044,7 +1050,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ---------------------------------------------------------------------
-   15. IMAGES — premium treatment
+   15. IMAGES — soft treatment
    ------------------------------------------------------------------- */
 img, .visual, [role="img"] {
   border-radius: var(--radius);
@@ -1094,7 +1100,7 @@ img, .visual, [role="img"] {
 .service-hero-bg--wycena         { background-image: url('images/lodz-architektura-6.webp') !important; }
 
 /* ---------------------------------------------------------------------
-   16. ANIMATIONS — subtle premium reveals
+   16. ANIMATIONS — subtle reveals
    ------------------------------------------------------------------- */
 .reveal {
   opacity: 0;
