@@ -202,8 +202,8 @@ h1, h2, h3, h4 {
 .page-header::before {
   content: ''; position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(10, 10, 14, .55) 0%, rgba(10, 10, 14, .75) 70%, rgba(10, 10, 14, .9) 100%),
-    url('images/hero-bg.webp') center 35% / cover no-repeat;
+    linear-gradient(180deg, rgba(10, 10, 14, .35) 0%, rgba(10, 10, 14, .55) 60%, rgba(10, 10, 14, .78) 100%),
+    url('images/lodz-panorama-1.webp') center 40% / cover no-repeat;
   z-index: 0;
 }
 .page-header::after {
