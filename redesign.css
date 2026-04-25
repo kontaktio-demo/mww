@@ -2228,6 +2228,7 @@ body.oferty,
   background-image: url('images/lodz-panorama-1.webp') !important;
   background-size: cover !important;
   background-position: center !important;
+  filter: brightness(0.78) saturate(0.95) !important;
   z-index: 0 !important;
 }
 .page-header::after {
@@ -2236,9 +2237,9 @@ body.oferty,
   position: absolute !important;
   inset: 0 !important;
   background: linear-gradient(180deg,
-    rgba(10, 10, 14, 0.55) 0%,
-    rgba(10, 10, 14, 0.65) 60%,
-    rgba(10, 10, 14, 0.78) 100%) !important;
+    rgba(10, 10, 14, 0.70) 0%,
+    rgba(10, 10, 14, 0.78) 60%,
+    rgba(10, 10, 14, 0.88) 100%) !important;
   z-index: 1 !important;
 }
 .page-header-inner {
@@ -2248,10 +2249,11 @@ body.oferty,
 .page-header h1 {
   color: var(--color-white) !important;
   -webkit-text-fill-color: var(--color-white) !important;
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.45);
 }
 .page-header p {
-  color: rgba(255, 255, 255, 0.86) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.55), 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 .page-header p a {
   color: var(--color-white) !important;
