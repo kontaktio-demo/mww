@@ -100,11 +100,24 @@ body {
 
 html { scroll-behavior: smooth; }
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: var(--color-white); }
-::-webkit-scrollbar-thumb { background: var(--color-line); border-radius: 8px; border: 2px solid var(--color-white); }
-::-webkit-scrollbar-thumb:hover { background: var(--color-ink-mute); }
-* { scrollbar-color: var(--color-line) var(--color-white); }
+@media (pointer: fine) {
+  * { scrollbar-width: thin; scrollbar-color: rgba(0, 0, 0, 0.18) transparent; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; background: transparent; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.16);
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    transition: background-color 200ms ease;
+  }
+  ::-webkit-scrollbar-thumb:hover { background-color: rgba(0, 0, 0, 0.34); }
+  ::-webkit-scrollbar-corner { background: transparent; }
+}
+
+@media (pointer: coarse) {
+  * { scrollbar-width: auto; scrollbar-color: auto; }
+}
 
 ::selection      { background: var(--color-accent-soft); color: var(--color-ink); }
 ::-moz-selection { background: var(--color-accent-soft); color: var(--color-ink); }
