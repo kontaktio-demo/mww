@@ -1446,6 +1446,13 @@ body.oferty,
   padding: 0 !important;
   max-width: 720px;
   margin: 0 auto;
+  background: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+.service-cta .container::before {
+  background: var(--color-accent, #c9a86b) !important;
 }
 .service-cta h2 {
   color: var(--color-white) !important;
