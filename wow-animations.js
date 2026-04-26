@@ -193,6 +193,118 @@
     }, 4000);
   }
 
+  function initPageTransitions() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    if (!document.body.classList.contains('preloading')) {
+      document.body.classList.add('page-entering');
+      setTimeout(function () { document.body.classList.remove('page-entering'); }, 700);
+    }
+
+    var overlay = document.createElement('div');
+    overlay.className = 'page-transition-overlay';
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(overlay);
+
+    function isInternalNavigable(a) {
+      if (!a || !a.href) return false;
+      if (a.target && a.target !== '' && a.target !== '_self') return false;
+      if (a.hasAttribute('download')) return false;
+      var href = a.getAttribute('href') || '';
+      if (!href || href.charAt(0) === '#') return false;
+      if (/^(mailto:|tel:|javascript:)/i.test(href)) return false;
+      var url;
+      try { url = new URL(a.href, location.href); } catch (_) { return false; }
+      if (url.origin !== location.origin) return false;
+      if (url.pathname === location.pathname && url.search === location.search) return false;
+      return true;
+    }
+
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented) return;
+      if (e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a');
+      if (!isInternalNavigable(a)) return;
+
+      e.preventDefault();
+      var dest = a.href;
+      overlay.classList.add('is-active');
+      setTimeout(function () { window.location.href = dest; }, 280);
+    }, false);
+
+    window.addEventListener('pageshow', function (ev) {
+      overlay.classList.remove('is-active');
+      if (ev.persisted) {
+        document.body.classList.add('page-entering');
+        setTimeout(function () { document.body.classList.remove('page-entering'); }, 700);
+      }
+    });
+  }
+
+  function initSmoothAnchorScroll() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var navEl = document.getElementById('nav');
+    function navOffset() { return (navEl ? navEl.offsetHeight : 78) + 16; }
+
+    function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+    var animating = false;
+    function smoothScrollTo(targetY, duration) {
+      if (animating) return;
+      animating = true;
+      var startY = window.scrollY || window.pageYOffset;
+      var diff = targetY - startY;
+      if (Math.abs(diff) < 2) { animating = false; window.scrollTo(0, targetY); return; }
+      var dur = Math.max(450, Math.min(duration || (300 + Math.min(Math.abs(diff), 1400) * 0.55), 1300));
+      var start = null;
+
+      function step(ts) {
+        if (start === null) start = ts;
+        var elapsed = ts - start;
+        var t = Math.min(1, elapsed / dur);
+        var eased = easeOutCubic(t);
+        window.scrollTo(0, startY + diff * eased);
+        if (t < 1) {
+          requestAnimationFrame(step);
+        } else {
+          animating = false;
+        }
+      }
+      requestAnimationFrame(step);
+    }
+
+    document.documentElement.style.scrollBehavior = 'auto';
+
+    document.addEventListener('click', function (e) {
+      if (e.defaultPrevented) return;
+      if (e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href*="#"]');
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      var id = '';
+      if (href.charAt(0) === '#') {
+        id = href.slice(1);
+      } else {
+        try {
+          var u = new URL(a.href, location.href);
+          if (u.pathname === location.pathname && u.hash) id = u.hash.slice(1);
+        } catch (_) { return; }
+      }
+      if (!id) return;
+      var target = document.getElementById(id);
+      if (!target) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      var top = target.getBoundingClientRect().top + window.pageYOffset - navOffset();
+      smoothScrollTo(Math.max(0, top));
+      try { history.replaceState(null, '', '#' + id); } catch (_) {}
+    }, true);
+  }
+
   function boot() {
     initEnhancedReveal();
     initTiltCards();
@@ -201,6 +313,8 @@
     initScrollProgress();
     initStatGlow();
     initHeroTyping();
+    initSmoothAnchorScroll();
+    initPageTransitions();
   }
 
   if (document.readyState === 'loading') {

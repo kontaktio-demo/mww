@@ -808,3 +808,69 @@
 .page-header {
   animation: heroFadeSlideUp .8s var(--ease) .1s both;
 }
+
+/* ---------------------------------------------------------------------------
+   Smooth page entry / exit transitions
+   --------------------------------------------------------------------------- */
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+body.page-entering {
+  animation: pageFadeIn .5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: #ffffff;
+  z-index: 99998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
+}
+.page-transition-overlay.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Smoother reveal defaults — slightly longer, gentler */
+.reveal {
+  transition-duration: 1s !important;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+.reveal.reveal-scale,
+.reveal.reveal-blur,
+.reveal.reveal-zoom,
+.reveal.reveal-flip,
+.reveal.reveal-rotate {
+  transition-duration: 1.1s !important;
+}
+
+/* Smoother nav scrolled-state transition */
+.nav, header.nav, #nav {
+  transition: background-color .35s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow .35s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color .35s cubic-bezier(0.22, 1, 0.36, 1),
+              padding .35s cubic-bezier(0.22, 1, 0.36, 1) !important;
+  will-change: background-color, box-shadow;
+}
+
+/* Smoother preloader fade-out */
+#preloader {
+  transition: opacity .9s cubic-bezier(0.22, 1, 0.36, 1),
+              visibility .9s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+#preloader.hidden {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.page-entering { animation: none; }
+  .page-transition-overlay { display: none !important; }
+}
