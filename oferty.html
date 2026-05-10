@@ -224,6 +224,7 @@
           <li><a href="index.html#partnerzy">Nasi partnerzy</a></li>
           <li><a href="polityka-prywatnosci.html">Polityka prywatności</a></li>
           <li><a href="regulamin.html">Regulamin serwisu</a></li>
+          <li><a href="#" data-cookie-settings>Ustawienia plików cookies</a></li>
         </ul>
       </div>
 
@@ -252,7 +253,8 @@
 
   <div class="footer-bottom">
     <div class="container footer-bottom-inner">
-      <p>&copy; 2026 MWW Mieszkanie - Magdalena Wałowska-Wojtczak &nbsp;|&nbsp; NIP: 7262546896 &nbsp;|&nbsp; REGON: 388690768</p>
+      <p>&copy; <span id="copyright-year">2026</span> MWW Mieszkanie - Magdalena Wałowska-Wojtczak &nbsp;|&nbsp; NIP: 7262546896 &nbsp;|&nbsp; REGON: 388690768</p>
+      <p>Obowiązkowe ubezpieczenie OC pośrednika nieruchomości (art. 181 ust. 3 ustawy o gospodarce nieruchomościami).</p>
       <p>Stworzone przez <a href="https://kontaktio.pl" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:underline">kontaktio.pl</a></p>
     </div>
   </div>
@@ -294,36 +296,6 @@
   </div>
 </div>
 
-<div id="cookieConsent" class="cookie-consent" role="dialog" aria-labelledby="cookieTitle" aria-modal="true">
-  <div class="cookie-inner">
-    <div class="cookie-text">
-      <strong id="cookieTitle">Używamy plików cookies</strong>
-      <p>Ta strona używa plików cookie w celu zapewnienia najlepszej jakości usług. Możesz zaakceptować wszystkie, odmówić lub wybrać, które cookies akceptujesz.</p>
-    </div>
-    <div class="cookie-actions">
-      <button id="cookieCustomize" class="cookie-btn cookie-btn-ghost">Dostosuj</button>
-      <button id="cookieReject" class="cookie-btn cookie-btn-outline">Odmów</button>
-      <button id="cookieAccept" class="cookie-btn cookie-btn-primary">Akceptuj wszystkie</button>
-    </div>
-  </div>
-  <div id="cookieCustomPanel" class="cookie-custom-panel" hidden>
-    <div class="cookie-checks">
-      <label class="cookie-check">
-        <input type="checkbox" checked disabled> <span><strong>Niezbędne</strong> - wymagane do działania strony</span>
-      </label>
-      <label class="cookie-check">
-        <input type="checkbox" id="cookieAnalytics"> <span><strong>Analityczne</strong> - pomagają nam ulepszać stronę</span>
-      </label>
-      <label class="cookie-check">
-        <input type="checkbox" id="cookieMarketing"> <span><strong>Marketingowe</strong> - spersonalizowane treści i reklamy</span>
-      </label>
-    </div>
-    <div class="cookie-actions cookie-actions-panel">
-      <button id="cookieSave" class="cookie-btn cookie-btn-primary">Zapisz preferencje</button>
-    </div>
-  </div>
-</div>
-
 <script>
 'use strict';
 
@@ -358,32 +330,6 @@ function isOfferSaved(id) {
   return getSavedOffers().includes(id);
 }
 
-function setCookie(name, value, days) {
-  const d = new Date();
-  d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-  document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax;Secure';
-}
-function deleteCookie(name) {
-  document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;SameSite=Lax;Secure';
-}
-function getCookie(name) {
-  const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-  return v ? decodeURIComponent(v.pop()) : null;
-}
-function applyCookieConsent(prefs) {
-  setCookie('mww_cookie_consent', JSON.stringify(prefs), 365);
-  if (prefs.analytics) {
-    setCookie('mww_analytics', '1', 365);
-  } else {
-    deleteCookie('mww_analytics');
-  }
-  if (prefs.marketing) {
-    setCookie('mww_marketing', '1', 365);
-  } else {
-    deleteCookie('mww_marketing');
-  }
-}
-
 function resolveImg(src) {
   if (!src) return '';
   if (src.startsWith('/uploads/')) return MWW_CONFIG.API_BASE_URL + src;
@@ -406,7 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
   bindFilters();
   bindNav();
   bindModal();
-  initCookieConsent();
 });
 
 async function loadListings() {
@@ -530,7 +475,25 @@ function paint() {
           <p>Zmień filtry lub wyczyść wyszukiwanie, aby zobaczyć więcej ofert.</p>
         </div>`;
     } else {
-      grid.innerHTML = '';
+      grid.innerHTML = `
+        <div class="empty-state">
+          <div class="empty-state-icon" aria-hidden="true">
+            <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 22V8L12 2l9 6v14"/>
+              <line x1="9" y1="22" x2="9" y2="14"/>
+              <line x1="15" y1="22" x2="15" y2="14"/>
+              <rect x="9" y="14" width="6" height="8"/>
+              <circle cx="18" cy="6" r="3" fill="#fff"/>
+              <path d="M18 4.5v3M16.5 6h3"/>
+            </svg>
+          </div>
+          <h3>Aktualnie aktualizujemy bazę ofert</h3>
+          <p>Nie wyświetlamy obecnie ofert publicznie. Zapraszamy do bezpośredniego kontaktu - mamy dostęp do bazy nieruchomości off-market, które nie trafiają do publicznych portali.</p>
+          <div class="empty-state-cta">
+            <a href="index.html#kontakt" class="btn btn-primary">Skontaktuj się z nami</a>
+            <a href="off-market.html" class="btn btn-outline">Zostaw kryteria poszukiwań</a>
+          </div>
+        </div>`;
     }
     loadWrap.style.display = 'none';
     return;
@@ -965,39 +928,9 @@ function bindNav() {
   });
 }
 
-function initCookieConsent() {
-  const consent = document.getElementById('cookieConsent');
-  if (!consent) return;
-  if (getCookie('mww_cookie_consent')) return;
-  setTimeout(() => consent.classList.add('show'), 700);
-
-  document.getElementById('cookieAccept').addEventListener('click', () => {
-    const prefs = {necessary:true, analytics:true, marketing:true};
-    applyCookieConsent(prefs);
-    consent.classList.remove('show');
-  });
-
-  document.getElementById('cookieReject').addEventListener('click', () => {
-    const prefs = {necessary:true, analytics:false, marketing:false};
-    applyCookieConsent(prefs);
-    consent.classList.remove('show');
-  });
-
-  document.getElementById('cookieCustomize').addEventListener('click', () => {
-    const panel = document.getElementById('cookieCustomPanel');
-    panel.hidden = !panel.hidden;
-  });
-
-  document.getElementById('cookieSave').addEventListener('click', () => {
-    const analytics = document.getElementById('cookieAnalytics').checked;
-    const marketing = document.getElementById('cookieMarketing').checked;
-    const prefs = {necessary:true, analytics, marketing};
-    applyCookieConsent(prefs);
-    consent.classList.remove('show');
-  });
-}
 </script>
 <script src="mww-shield.js" defer></script>
+<script src="cookie-consent.js" defer></script>
 <script src="wow-animations.js"></script>
 </body>
 </html>

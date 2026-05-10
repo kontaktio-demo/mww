@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initForm();
   initStickyBar();
-  initCookieConsent();
   initTelConfirm();
   initSmoothAnchors();
 });
@@ -288,48 +287,6 @@ function initStickyBar() {
     bar.setAttribute('aria-hidden', 'true');
     try { localStorage.setItem(KEY, '1'); } catch {}
     window.removeEventListener('scroll', update);
-  });
-}
-
-function initCookieConsent() {
-  const consent = document.getElementById('cookieConsent');
-  if (!consent) return;
-  function setCookie(name, value, days) {
-    const d = new Date();
-    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
-    document.cookie = name + '=' + encodeURIComponent(value) + ';expires=' + d.toUTCString() + ';path=/;SameSite=Lax;Secure';
-  }
-  function deleteCookie(name) {
-    document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;SameSite=Lax;Secure';
-  }
-  function getCookie(name) {
-    const v = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
-    return v ? decodeURIComponent(v.pop()) : null;
-  }
-  function applyCookieConsent(prefs) {
-    setCookie('mww_cookie_consent', JSON.stringify(prefs), 365);
-    if (prefs.analytics) setCookie('mww_analytics', '1', 365); else deleteCookie('mww_analytics');
-    if (prefs.marketing) setCookie('mww_marketing', '1', 365); else deleteCookie('mww_marketing');
-  }
-  if (getCookie('mww_cookie_consent')) return;
-  setTimeout(() => consent.classList.add('show'), 600);
-  document.getElementById('cookieAccept').addEventListener('click', () => {
-    applyCookieConsent({necessary:true, analytics:true, marketing:true});
-    consent.classList.remove('show');
-  });
-  document.getElementById('cookieReject').addEventListener('click', () => {
-    applyCookieConsent({necessary:true, analytics:false, marketing:false});
-    consent.classList.remove('show');
-  });
-  document.getElementById('cookieCustomize').addEventListener('click', () => {
-    const panel = document.getElementById('cookieCustomPanel');
-    panel.hidden = !panel.hidden;
-  });
-  document.getElementById('cookieSave').addEventListener('click', () => {
-    const analytics = document.getElementById('cookieAnalytics').checked;
-    const marketing = document.getElementById('cookieMarketing').checked;
-    applyCookieConsent({necessary:true, analytics, marketing});
-    consent.classList.remove('show');
   });
 }
 

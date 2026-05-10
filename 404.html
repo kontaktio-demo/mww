@@ -2,34 +2,177 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Przekierowanie...</title>
-  <script>
-    (function() {
-      var path = window.location.pathname;
-      var match = path.match(/^\/oferta\/(.+?)(?:\/)?$/);
-      if (match) {
-        var slug = decodeURIComponent(match[1]);
-        window.location.replace('/oferta.html?slug=' + encodeURIComponent(slug));
-      } else {
-        document.title = 'Strona nie znaleziona - MWW Mieszkanie';
-        document.getElementById('content').style.display = 'block';
-      }
-    })();
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="theme-color" content="#1a1a1a">
+  <title>Nie znaleziono strony - MWW Mieszkanie</title>
+  <meta name="description" content="Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć na stronę główną biura nieruchomości MWW Mieszkanie w Łodzi.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e0e10' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 22V8L12 2l9 6v14'/><line x1='9' y1='22' x2='9' y2='14'/><line x1='15' y1='22' x2='15' y2='14'/><rect x='9' y='14' width='6' height='8'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800;900&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; text-align: center; padding: 60px 20px; background: #fafafa; color: #1a1a1a; }
-    .box { max-width: 480px; margin: 0 auto; }
-    h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-    p { color: #666; margin-bottom: 1.5rem; }
-    a { color: #2563eb; text-decoration: none; font-weight: 500; }
-    a:hover { text-decoration: underline; }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    a { text-decoration:none; color:inherit; }
+    :root {
+      --primary:#1a1a1a; --primary-d:#000;
+      --bg:#fff; --bg-alt:#f6f5f2;
+      --border:#e6e4dd; --border-soft:#efece5;
+      --text:#2a2a2a; --text-muted:#6b6b73;
+      --radius:6px; --radius-lg:12px;
+      --font-sans:'Inter',system-ui,sans-serif;
+      --font-heading:'Unbounded','Inter',system-ui,sans-serif;
+    }
+    body {
+      font-family:var(--font-sans); color:var(--text); background:var(--bg);
+      font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+      min-height:100vh; min-height:100dvh;
+      display:flex; flex-direction:column;
+    }
+    .nav {
+      position:sticky; top:0; z-index:800;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 40px; height:68px;
+      background:rgba(255,255,255,.97); border-bottom:1px solid var(--border-soft);
+      backdrop-filter:blur(12px);
+    }
+    .logo { font-family:var(--font-sans); font-size:1.18rem; font-weight:400; color:var(--primary); }
+    .logo strong { font-weight:800; }
+    .nav-links { display:flex; gap:28px; }
+    .nav-link { font-size:.82rem; font-weight:500; letter-spacing:.04em; text-transform:uppercase; color:var(--text-muted); transition:color .2s; }
+    .nav-link:hover { color:var(--primary); }
+    .btn {
+      display:inline-flex; align-items:center; gap:8px;
+      padding:12px 28px; font-size:.86rem; font-weight:600;
+      border-radius:999px; border:1.5px solid var(--primary);
+      transition:all .25s; cursor:pointer; font-family:var(--font-sans);
+    }
+    .btn-primary { background:var(--primary); color:#fff; }
+    .btn-primary:hover { background:var(--primary-d); transform:translateY(-1px); }
+    .btn-outline { background:#fff; color:var(--primary); }
+    .btn-outline:hover { background:var(--primary); color:#fff; transform:translateY(-1px); }
+
+    main {
+      flex:1; display:flex; align-items:center; justify-content:center;
+      padding:60px 24px; position:relative; overflow:hidden;
+    }
+    main::before {
+      content:''; position:absolute; inset:0;
+      background:url('images/lodz-panorama-2.webp') center/cover no-repeat;
+      opacity:.05; filter:grayscale(100%); pointer-events:none;
+    }
+    .err-wrap {
+      max-width:640px; text-align:center; position:relative; z-index:1;
+    }
+    .err-code {
+      font-family:var(--font-heading);
+      font-size:clamp(7rem, 18vw, 11rem);
+      font-weight:800;
+      line-height:1;
+      color:var(--primary);
+      letter-spacing:-0.04em;
+      margin-bottom:16px;
+    }
+    .err-eyebrow {
+      font-size:.78rem; font-weight:700; letter-spacing:.16em;
+      text-transform:uppercase; color:var(--text-muted);
+      margin-bottom:14px;
+    }
+    .err-title {
+      font-family:var(--font-heading);
+      font-size:clamp(1.4rem, 3vw, 1.9rem);
+      font-weight:700;
+      color:var(--primary);
+      margin-bottom:14px;
+      letter-spacing:-0.01em;
+    }
+    .err-desc {
+      font-size:1rem; color:var(--text-muted);
+      max-width:480px; margin:0 auto 36px;
+      line-height:1.7;
+    }
+    .err-cta {
+      display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
+    }
+    @media (max-width:600px) {
+      .nav { padding:0 20px; }
+      .nav-links { display:none; }
+      main { padding:40px 20px; }
+      .err-desc { font-size:.94rem; }
+      .err-cta { flex-direction:column; width:100%; max-width:320px; margin:0 auto; }
+      .err-cta .btn { width:100%; justify-content:center; }
+    }
+
+    footer {
+      background:var(--primary); color:rgba(255,255,255,.65); font-size:.82rem;
+      margin-top:auto;
+    }
+    .footer-bottom { padding:18px 40px; background:rgba(0,0,0,.15); }
+    .footer-bottom-inner {
+      max-width:1200px; margin:0 auto;
+      display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+    }
+    .footer-bottom a { color:inherit; text-decoration:underline; }
+    .footer-bottom a:hover { color:#fff; }
+    @media (max-width:768px) {
+      .footer-bottom { padding:16px 20px; }
+      .footer-bottom-inner { flex-direction:column; text-align:center; gap:4px; }
+    }
   </style>
 </head>
 <body>
-  <div id="content" class="box" style="display:none">
-    <h1>404</h1>
-    <p>Strona, której szukasz, nie istnieje.</p>
-    <a href="/">Strona główna</a> &nbsp;|&nbsp; <a href="/oferty.html">Oferty</a>
+
+<header class="nav">
+  <a href="/" class="logo" aria-label="MWW Mieszkanie - strona główna">MWW <strong>Mieszkanie</strong></a>
+  <nav class="nav-links" aria-label="Nawigacja">
+    <a href="/" class="nav-link">Strona główna</a>
+    <a href="/oferty.html" class="nav-link">Oferty</a>
+    <a href="/index.html#kontakt" class="nav-link">Kontakt</a>
+  </nav>
+  <a href="tel:+48515488951" class="btn btn-primary">Zadzwoń</a>
+</header>
+
+<main>
+  <div class="err-wrap">
+    <div class="err-code" aria-hidden="true">404</div>
+    <p class="err-eyebrow">Błąd 404</p>
+    <h1 class="err-title">Nie znaleziono strony</h1>
+    <p class="err-desc">
+      Wygląda na to, że szukana strona nie istnieje lub została przeniesiona.
+      Sprawdź poprawność adresu lub skorzystaj z poniższych skrótów.
+    </p>
+    <div class="err-cta">
+      <a href="/" class="btn btn-primary">Wróć na stronę główną</a>
+      <a href="/oferty.html" class="btn btn-outline">Przeglądaj oferty</a>
+      <a href="/index.html#kontakt" class="btn btn-outline">Skontaktuj się</a>
+    </div>
   </div>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-bottom">
+    <div class="footer-bottom-inner">
+      <p>&copy; <span id="copyright-year">2026</span> MWW Mieszkanie - Magdalena Wałowska-Wojtczak &nbsp;|&nbsp; NIP: 7262546896 &nbsp;|&nbsp; REGON: 388690768</p>
+      <p>Obowiązkowe ubezpieczenie OC pośrednika nieruchomości (art. 181 ust. 3 ustawy o gospodarce nieruchomościami).</p>
+      <p><a href="/polityka-prywatnosci.html">Polityka prywatności</a> &nbsp;|&nbsp; <a href="/regulamin.html">Regulamin</a> &nbsp;|&nbsp; <a href="#" data-cookie-settings>Ustawienia plików cookies</a></p>
+      <p>Stworzone przez <a href="https://kontaktio.pl" target="_blank" rel="noopener noreferrer">kontaktio.pl</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var path = window.location.pathname;
+    var m = path.match(/^\/oferta\/(.+?)(?:\/)?$/);
+    if (m) {
+      window.location.replace('/oferta.html?slug=' + encodeURIComponent(decodeURIComponent(m[1])));
+    }
+  })();
+</script>
+<script src="/cookie-consent.js" defer></script>
 </body>
 </html>

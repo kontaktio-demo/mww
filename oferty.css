@@ -639,6 +639,86 @@ h1, h2, h3, h4 {
 .no-results svg { margin: 0 auto 18px; opacity: .3; }
 .no-results h3  { font-size: 1.2rem; color: var(--primary); margin-bottom: 10px; font-weight: 700; }
 
+.empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 24px 100px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.empty-state-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 28px;
+  opacity: 0.85;
+}
+.empty-state h3 {
+  font-family: var(--font-heading, var(--font-sans));
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.empty-state p {
+  font-size: 0.98rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  margin-bottom: 28px;
+  max-width: 540px;
+}
+.empty-state-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+.empty-state-cta .btn {
+  padding: 12px 28px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border-radius: 999px;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  border: 1.5px solid var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.empty-state-cta .btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.empty-state-cta .btn-primary:hover {
+  background: var(--primary-d);
+  transform: translateY(-1px);
+}
+.empty-state-cta .btn-outline {
+  background: #fff;
+  color: var(--primary);
+}
+.empty-state-cta .btn-outline:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: translateY(-1px);
+}
+@media (max-width: 600px) {
+  .empty-state { padding: 56px 20px 72px; }
+  .empty-state h3 { font-size: 1.3rem; }
+  .empty-state p { font-size: 0.92rem; }
+  .empty-state-icon { width: 80px; height: 80px; margin-bottom: 22px; }
+  .empty-state-cta { flex-direction: column; width: 100%; max-width: 320px; }
+  .empty-state-cta .btn { width: 100%; justify-content: center; }
+}
+
 .load-more-wrap { text-align: center; padding-bottom: 60px; }
 .btn-load-more {
   padding: 14px 38px;

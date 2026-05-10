@@ -1,12 +1,11 @@
 User-agent: *
 Allow: /
-Allow: /images/
-Allow: /*.css$
-Allow: /*.js$
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
 Disallow: /404.html
 Disallow: /oferta.html?
 
-# AI / LLM crawlers - allowed (public real-estate office content)
 User-agent: GPTBot
 Allow: /
 
