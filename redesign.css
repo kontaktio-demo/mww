@@ -1075,12 +1075,12 @@ img, .visual, [role="img"] {
 .service-visual--off-market     { background-image: url('images/oferta-off-market.webp') !important; }
 .service-visual--wycena         { background-image: url('images/oferta-wycena.webp') !important; }
 
-.service-hero-bg--sprzedaz       { background-image: url('images/lodz-architektura-1.webp') !important; }
-.service-hero-bg--wynajem        { background-image: url('images/lodz-architektura-2.webp') !important; }
-.service-hero-bg--skup           { background-image: url('images/lodz-architektura-3.webp') !important; }
-.service-hero-bg--deweloperskie  { background-image: url('images/lodz-architektura-4.webp') !important; }
-.service-hero-bg--off-market     { background-image: url('images/lodz-architektura-5.webp') !important; }
-.service-hero-bg--wycena         { background-image: url('images/lodz-architektura-6.webp') !important; }
+.service-hero .service-hero-bg--sprzedaz       { background-image: url('images/lodz-architektura-1.webp') !important; }
+.service-hero .service-hero-bg--wynajem        { background-image: url('images/lodz-architektura-2.webp') !important; }
+.service-hero .service-hero-bg--skup           { background-image: url('images/lodz-architektura-3.webp') !important; }
+.service-hero .service-hero-bg--deweloperskie  { background-image: url('images/lodz-architektura-4.webp') !important; }
+.service-hero .service-hero-bg--off-market     { background-image: url('images/lodz-architektura-5.webp') !important; }
+.service-hero .service-hero-bg--wycena         { background-image: url('images/lodz-architektura-6.webp') !important; }
 
 .reveal {
   opacity: 0;
@@ -2290,5 +2290,333 @@ body.oferty,
   .page-header { padding: 100px 0 36px !important; }
   .page-header-inner { padding: 0 18px !important; }
   .page-header h1 { font-size: 1.85rem !important; }
+}
+
+
+
+
+
+.service-hero {
+  background: var(--color-ink) !important;
+  min-height: 60vh !important;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(150px, 18vw, 230px) 0 clamp(70px, 9vw, 120px) !important;
+  border-bottom: 0 !important;
+}
+.service-hero .service-hero-bg,
+.service-hero-bg {
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  filter: none !important;
+  transform: scale(1.04);
+  z-index: 0 !important;
+}
+.service-hero::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg,
+    rgba(10, 10, 14, 0.62) 0%,
+    rgba(10, 10, 14, 0.50) 45%,
+    rgba(10, 10, 14, 0.74) 100%) !important;
+  z-index: 1 !important;
+}
+.service-hero::after { display: none !important; }
+
+.service-hero-inner,
+.service-hero .container {
+  position: relative;
+  z-index: 2;
+  color: var(--color-white) !important;
+}
+.service-hero h1,
+.service-hero-inner h1 {
+  color: var(--color-white) !important;
+  -webkit-text-fill-color: var(--color-white) !important;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.55), 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.service-hero p,
+.service-hero .lead,
+.service-hero-inner .lead {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+.service-hero-eyebrow,
+.service-hero .eyebrow,
+.service-hero .service-hero-eyebrow {
+  color: rgba(255, 255, 255, 0.85) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.85) !important;
+  background: none !important;
+}
+.service-hero .breadcrumbs-light a,
+.service-hero .breadcrumbs-light span {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.service-hero .breadcrumbs-light a:hover { color: #fff !important; }
+.service-hero .breadcrumbs-light .sep { color: rgba(255, 255, 255, 0.4) !important; }
+.service-hero .btn-ghost-light {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  color: #fff !important;
+}
+.service-hero .btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: #fff !important;
+  color: #fff !important;
+}
+
+
+.service-hero .service-hero-bg--sprzedaz {
+  background-image: url('images/lodz-architektura-1.webp') !important;
+  background-image: image-set(url('images/lodz-architektura-1.avif') type('image/avif'), url('images/lodz-architektura-1.webp') type('image/webp')) !important;
+}
+.service-hero .service-hero-bg--wynajem {
+  background-image: url('images/lodz-architektura-2.webp') !important;
+  background-image: image-set(url('images/lodz-architektura-2.avif') type('image/avif'), url('images/lodz-architektura-2.webp') type('image/webp')) !important;
+}
+.service-hero .service-hero-bg--skup {
+  background-image: url('images/lodz-architektura-3.webp') !important;
+  background-image: image-set(url('images/lodz-architektura-3.avif') type('image/avif'), url('images/lodz-architektura-3.webp') type('image/webp')) !important;
+}
+.service-hero .service-hero-bg--deweloperskie {
+  background-image: url('images/lodz-architektura-4.webp') !important;
+  background-image: image-set(url('images/lodz-architektura-4.avif') type('image/avif'), url('images/lodz-architektura-4.webp') type('image/webp')) !important;
+}
+.service-hero .service-hero-bg--off-market {
+  background-image: url('images/lodz-architektura-5.webp') !important;
+  background-image: image-set(url('images/lodz-architektura-5.avif') type('image/avif'), url('images/lodz-architektura-5.webp') type('image/webp')) !important;
+}
+.service-hero .service-hero-bg--wycena {
+  background-image: url('images/lodz-architektura-6.webp') !important;
+  background-image: image-set(url('images/lodz-architektura-6.avif') type('image/avif'), url('images/lodz-architektura-6.webp') type('image/webp')) !important;
+}
+@media (max-width: 768px) {
+  .service-hero .service-hero-bg--sprzedaz      { background-image: url('images/lodz-architektura-1-mobile.webp') !important; background-image: image-set(url('images/lodz-architektura-1-mobile.avif') type('image/avif'), url('images/lodz-architektura-1-mobile.webp') type('image/webp')) !important; }
+  .service-hero .service-hero-bg--wynajem       { background-image: url('images/lodz-architektura-2-mobile.webp') !important; background-image: image-set(url('images/lodz-architektura-2-mobile.avif') type('image/avif'), url('images/lodz-architektura-2-mobile.webp') type('image/webp')) !important; }
+  .service-hero .service-hero-bg--skup          { background-image: url('images/lodz-architektura-3-mobile.webp') !important; background-image: image-set(url('images/lodz-architektura-3-mobile.avif') type('image/avif'), url('images/lodz-architektura-3-mobile.webp') type('image/webp')) !important; }
+  .service-hero .service-hero-bg--deweloperskie { background-image: url('images/lodz-architektura-4-mobile.webp') !important; background-image: image-set(url('images/lodz-architektura-4-mobile.avif') type('image/avif'), url('images/lodz-architektura-4-mobile.webp') type('image/webp')) !important; }
+  .service-hero .service-hero-bg--off-market    { background-image: url('images/lodz-architektura-5-mobile.webp') !important; background-image: image-set(url('images/lodz-architektura-5-mobile.avif') type('image/avif'), url('images/lodz-architektura-5-mobile.webp') type('image/webp')) !important; }
+  .service-hero .service-hero-bg--wycena        { background-image: url('images/lodz-architektura-6-mobile.webp') !important; background-image: image-set(url('images/lodz-architektura-6-mobile.avif') type('image/avif'), url('images/lodz-architektura-6-mobile.webp') type('image/webp')) !important; }
+}
+
+
+.photo-band {
+  position: relative !important;
+  overflow: hidden !important;
+  background-color: var(--color-ink) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  display: flex !important;
+  align-items: center;
+  min-height: clamp(360px, 52vh, 560px) !important;
+  padding: clamp(80px, 12vw, 150px) 0 !important;
+}
+.photo-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg,
+    rgba(10, 10, 14, 0.58) 0%,
+    rgba(10, 10, 14, 0.48) 45%,
+    rgba(10, 10, 14, 0.72) 100%);
+}
+.photo-band--stats::before {
+  background: linear-gradient(180deg,
+    rgba(10, 10, 14, 0.66) 0%,
+    rgba(10, 10, 14, 0.56) 50%,
+    rgba(10, 10, 14, 0.76) 100%);
+}
+.photo-band-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+  text-align: center;
+  color: #fff;
+}
+.photo-band-eyebrow {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  -webkit-text-fill-color: rgba(255, 255, 255, 0.82) !important;
+  background: none !important;
+  margin: 0 0 1rem !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+.photo-band h2 {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-family: 'Manrope', 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: clamp(1.8rem, 3.6vw, 3rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -0.02em !important;
+  margin: 0 auto 1.2rem !important;
+  max-width: 18ch;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+.photo-band p {
+  color: rgba(255, 255, 255, 0.92) !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: clamp(1.02rem, 1.3vw, 1.18rem) !important;
+  line-height: 1.65 !important;
+  max-width: 640px;
+  margin: 0 auto !important;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+.photo-band-quote {
+  border: 0 !important;
+  background: none !important;
+  margin: 1.5rem auto 0 !important;
+  padding: 0 !important;
+  max-width: 760px;
+}
+.photo-band-quote em {
+  color: #fff !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
+  line-height: 1.4 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+}
+.photo-band-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+
+.photo-band-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(28px, 6vw, 80px);
+  margin: 2.4rem auto 0;
+  padding: 0;
+  list-style: none;
+}
+.photo-band-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.photo-band-stat .num {
+  font-family: 'Manrope', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: clamp(2rem, 4vw, 3.2rem) !important;
+  line-height: 1 !important;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  letter-spacing: -0.02em !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.5);
+}
+.photo-band-stat .label {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 0.88rem !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  letter-spacing: 0.01em;
+  max-width: 20ch;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+
+.photo-band .btn-primary {
+  background: #fff !important;
+  color: var(--color-ink) !important;
+  border-color: #fff !important;
+}
+.photo-band .btn-primary:hover {
+  background: var(--color-surface) !important;
+  border-color: var(--color-surface) !important;
+  color: var(--color-ink) !important;
+}
+.photo-band .btn-ghost-light {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.55) !important;
+  color: #fff !important;
+}
+.photo-band .btn-ghost-light:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: #fff !important;
+  color: #fff !important;
+}
+
+@media (max-width: 600px) {
+  .photo-band { min-height: 340px !important; padding: 72px 0 !important; }
+  .photo-band-stats { gap: 22px 40px; }
+}
+
+
+.photo-band--panorama {
+  background-image: url('images/lodz-panorama-2.webp') !important;
+  background-image: image-set(url('images/lodz-panorama-2.avif') type('image/avif'), url('images/lodz-panorama-2.webp') type('image/webp')) !important;
+}
+.photo-band--cityscape {
+  background-image: url('images/lodz-panorama-1.webp') !important;
+  background-image: image-set(url('images/lodz-panorama-1.avif') type('image/avif'), url('images/lodz-panorama-1.webp') type('image/webp')) !important;
+}
+.photo-band--street {
+  background-image: url('images/lodz-tlo-cta.webp') !important;
+  background-image: image-set(url('images/lodz-tlo-cta.avif') type('image/avif'), url('images/lodz-tlo-cta.webp') type('image/webp')) !important;
+}
+.photo-band--atrium {
+  background-image: url('images/wnetrze-1.webp') !important;
+  background-image: image-set(url('images/wnetrze-1.avif') type('image/avif'), url('images/wnetrze-1.webp') type('image/webp')) !important;
+  background-position: center 35% !important;
+}
+.photo-band--brick {
+  background-image: url('images/wnetrze-2.webp') !important;
+  background-image: image-set(url('images/wnetrze-2.avif') type('image/avif'), url('images/wnetrze-2.webp') type('image/webp')) !important;
+}
+.photo-band--loft {
+  background-image: url('images/lodz-architektura-5.webp') !important;
+  background-image: image-set(url('images/lodz-architektura-5.avif') type('image/avif'), url('images/lodz-architektura-5.webp') type('image/webp')) !important;
+}
+.photo-band--night {
+  background-image: url('images/agentka-portret.webp') !important;
+  background-image: image-set(url('images/agentka-portret.avif') type('image/avif'), url('images/agentka-portret.webp') type('image/webp')) !important;
+  background-position: center 40% !important;
+}
+
+
+
+.service-intro--dark { background: var(--color-white) !important; }
+.service-intro--dark .text h2,
+.service-intro--dark .text p strong {
+  color: var(--color-ink) !important;
+  -webkit-text-fill-color: var(--color-ink) !important;
+}
+.service-intro--dark .text p {
+  color: var(--color-ink-2) !important;
+  -webkit-text-fill-color: var(--color-ink-2) !important;
+}
+.service-intro--dark .eyebrow {
+  color: var(--color-ink-mute) !important;
+  -webkit-text-fill-color: var(--color-ink-mute) !important;
+}
+
+@media (max-width: 768px) {
+  .photo-band--panorama  { background-image: url('images/lodz-panorama-2-mobile.webp') !important; background-image: image-set(url('images/lodz-panorama-2-mobile.avif') type('image/avif'), url('images/lodz-panorama-2-mobile.webp') type('image/webp')) !important; }
+  .photo-band--cityscape { background-image: url('images/lodz-panorama-1-mobile.webp') !important; background-image: image-set(url('images/lodz-panorama-1-mobile.avif') type('image/avif'), url('images/lodz-panorama-1-mobile.webp') type('image/webp')) !important; }
+  .photo-band--street    { background-image: url('images/lodz-tlo-cta-mobile.webp') !important; background-image: image-set(url('images/lodz-tlo-cta-mobile.avif') type('image/avif'), url('images/lodz-tlo-cta-mobile.webp') type('image/webp')) !important; }
+  .photo-band--atrium    { background-image: url('images/wnetrze-1-mobile.webp') !important; background-image: image-set(url('images/wnetrze-1-mobile.avif') type('image/avif'), url('images/wnetrze-1-mobile.webp') type('image/webp')) !important; }
+  .photo-band--brick     { background-image: url('images/wnetrze-2-mobile.webp') !important; background-image: image-set(url('images/wnetrze-2-mobile.avif') type('image/avif'), url('images/wnetrze-2-mobile.webp') type('image/webp')) !important; }
+  .photo-band--loft      { background-image: url('images/lodz-architektura-5-mobile.webp') !important; background-image: image-set(url('images/lodz-architektura-5-mobile.avif') type('image/avif'), url('images/lodz-architektura-5-mobile.webp') type('image/webp')) !important; }
+  .photo-band--night     { background-image: url('images/agentka-portret-mobile.webp') !important; background-image: image-set(url('images/agentka-portret-mobile.avif') type('image/avif'), url('images/agentka-portret-mobile.webp') type('image/webp')) !important; }
 }
 

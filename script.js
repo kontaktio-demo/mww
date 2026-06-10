@@ -167,21 +167,60 @@ function initForm() {
 
     if (hasError) return;
 
+    const subjectEl = form.querySelector('#fsubject');
+    const subjectLabels = {
+      sprzedaz: 'Sprzedaż nieruchomości',
+      wynajem: 'Wynajem nieruchomości',
+      skup: 'Skup za gotówkę',
+      deweloper: 'Oferta deweloperska',
+      off: 'Oferty bez ogłoszenia',
+      inne: 'Inne pytanie',
+    };
+    const subjectText = subjectEl && subjectLabels[subjectEl.value] ? subjectLabels[subjectEl.value] : 'Zapytanie ze strony';
+    const marketingEmail = form.querySelector('#fmarketingEmail');
+    const marketingPhone = form.querySelector('#fmarketingPhone');
+    const consents = [
+      'Zgoda RODO: tak',
+      'Zgoda marketing e-mail: ' + (marketingEmail && marketingEmail.checked ? 'tak' : 'nie'),
+      'Zgoda marketing telefon: ' + (marketingPhone && marketingPhone.checked ? 'tak' : 'nie'),
+    ].join('\n');
+
     btn.textContent = 'Wysyłanie...';
     btn.disabled = true;
 
-    setTimeout(() => {
-      btn.textContent = 'Wysłano';
-      btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
-      btn.style.color = '#fff';
-      setTimeout(() => {
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        access_key: 'a816fd42-55ec-41cb-91c3-da1b0852885a',
+        subject: 'Formularz kontaktowy: ' + subjectText,
+        from_name: 'Strona MWW Mieszkanie',
+        name: name,
+        email: email,
+        phone: phone || 'nie podano',
+        message: 'Temat: ' + subjectText + '\nTelefon: ' + (phone || 'nie podano') + '\n\n' + msg + '\n\n' + consents,
+        botcheck: '',
+      }),
+    })
+      .then(res => res.json().catch(() => ({})).then(data => ({ ok: res.ok, data })))
+      .then(({ ok, data }) => {
+        if (!ok || data.success === false) throw new Error('send failed');
+        btn.textContent = 'Wysłano';
+        btn.style.background = 'linear-gradient(135deg,#22c55e,#16a34a)';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+          btn.textContent = orig;
+          btn.disabled = false;
+          btn.style.background = '';
+          btn.style.color = '';
+          form.reset();
+        }, 4000);
+      })
+      .catch(() => {
         btn.textContent = orig;
         btn.disabled = false;
-        btn.style.background = '';
-        btn.style.color = '';
-        form.reset();
-      }, 4000);
-    }, 900);
+        showError(msgEl, 'Nie udało się wysłać wiadomości. Spróbuj ponownie lub zadzwoń: +48 515 488 951.');
+      });
   });
 
   const limits = { fname: 80, femail: 254, fphone: 20, fmessage: 2000 };

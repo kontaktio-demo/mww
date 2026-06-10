@@ -4,7 +4,6 @@ Disallow: /admin/
 Disallow: /private/
 Disallow: /*.json$
 Disallow: /404.html
-Disallow: /oferta.html?
 
 User-agent: GPTBot
 Allow: /
@@ -18,5 +17,5 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://www.MWWmieszkanie.pl/sitemap.xml
-Host: https://www.MWWmieszkanie.pl
+Sitemap: https://www.mwwmieszkanie.pl/sitemap.xml
+Sitemap: https://www.mwwmieszkanie.pl/sitemap-offers.xml
