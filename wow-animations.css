@@ -255,7 +255,7 @@
   100% { transform: translateY(0) scale(1); }
 }
 
-.cookie-consent.show {
+.mww-prefs.show {
   animation: bounceInUp .65s var(--ease) forwards;
 }
 
@@ -650,7 +650,7 @@
     height: 40%;
   }
 
-  .cookie-consent {
+  .mww-prefs {
     left: 8px;
     bottom: 8px;
     width: calc(100vw - 16px);
@@ -759,7 +759,7 @@
   .about-award-badge {
     animation: none;
   }
-  .cookie-consent.show {
+  .mww-prefs.show {
     animation: none;
     transform: translateY(0);
   }

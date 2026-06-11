@@ -1419,7 +1419,7 @@ p { font-weight: 400; }
   justify-content: center;
 }
 
-.cookie-consent {
+.mww-prefs {
   position: fixed;
   bottom: 20px;
   left: 20px;
@@ -1435,19 +1435,19 @@ p { font-weight: 400; }
   transform: translateY(160%);
   transition: transform 0.5s var(--ease);
 }
-.cookie-consent.show { transform: translateY(0); }
-.cookie-inner {
+.mww-prefs.show { transform: translateY(0); }
+.mww-prefs-inner {
   display: flex;
   gap: 22px;
   align-items: center;
   flex-wrap: wrap;
 }
-.cookie-text { flex: 1; min-width: 240px; }
-.cookie-text strong { font-weight: 800; display: block; margin-bottom: 4px; }
-.cookie-text p { font-size: 0.88rem; color: var(--c-mute); font-weight: 400; }
-.cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-.cookie-actions-panel { margin-top: 16px; }
-.cookie-btn {
+.mww-prefs-text { flex: 1; min-width: 240px; }
+.mww-prefs-text strong { font-weight: 800; display: block; margin-bottom: 4px; }
+.mww-prefs-text p { font-size: 0.88rem; color: var(--c-mute); font-weight: 400; }
+.mww-prefs-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.mww-prefs-actions-panel { margin-top: 16px; }
+.mww-prefs-btn {
   padding: 10px 18px;
   border-radius: 999px;
   font-weight: 700;
@@ -1455,7 +1455,7 @@ p { font-weight: 400; }
   transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
   border: 1.5px solid transparent;
 }
-.cookie-btn-equal {
+.mww-prefs-btn-equal {
   background: #fff;
   color: var(--c-ink);
   border-color: var(--c-ink);
@@ -1464,26 +1464,26 @@ p { font-weight: 400; }
   text-align: center;
   justify-content: center;
 }
-.cookie-btn-equal:hover,
-.cookie-btn-equal:focus-visible {
+.mww-prefs-btn-equal:hover,
+.mww-prefs-btn-equal:focus-visible {
   background: var(--c-ink);
   color: #fff;
   border-color: var(--c-ink);
   outline: none;
 }
-.cookie-btn-primary { background: #fff; color: var(--c-ink); border-color: var(--c-ink); }
-.cookie-btn-primary:hover { background: var(--c-ink); color: #fff; }
-.cookie-btn-outline { border-color: var(--c-ink); color: var(--c-ink); background: #fff; }
-.cookie-btn-outline:hover { background: var(--c-ink); color: #fff; }
-.cookie-btn-ghost { background: #fff; color: var(--c-ink); border-color: var(--c-ink); }
-.cookie-btn-ghost:hover { background: var(--c-ink); color: #fff; }
-.cookie-custom-panel {
+.mww-prefs-btn-primary { background: #fff; color: var(--c-ink); border-color: var(--c-ink); }
+.mww-prefs-btn-primary:hover { background: var(--c-ink); color: #fff; }
+.mww-prefs-btn-outline { border-color: var(--c-ink); color: var(--c-ink); background: #fff; }
+.mww-prefs-btn-outline:hover { background: var(--c-ink); color: #fff; }
+.mww-prefs-btn-ghost { background: #fff; color: var(--c-ink); border-color: var(--c-ink); }
+.mww-prefs-btn-ghost:hover { background: var(--c-ink); color: #fff; }
+.mww-prefs-panel {
   margin-top: 18px;
   padding-top: 18px;
   border-top: 1px solid var(--c-line);
 }
-.cookie-checks { display: grid; gap: 12px; }
-.cookie-check {
+.mww-prefs-checks { display: grid; gap: 12px; }
+.mww-prefs-check {
   display: flex;
   gap: 10px;
   align-items: flex-start;
@@ -1491,8 +1491,8 @@ p { font-weight: 400; }
   color: var(--c-mute);
   font-weight: 500;
 }
-.cookie-check input { margin-top: 4px; accent-color: var(--c-ink); }
-.cookie-check strong { color: var(--c-ink); font-weight: 700; }
+.mww-prefs-check input { margin-top: 4px; accent-color: var(--c-ink); }
+.mww-prefs-check strong { color: var(--c-ink); font-weight: 700; }
 
 .reveal {
   opacity: 0;
@@ -1660,9 +1660,9 @@ p { font-weight: 400; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-grid .footer-brand,
   .footer-grid .footer-col:last-child { grid-column: auto; }
-  .cookie-inner { flex-direction: column; align-items: stretch; }
-  .cookie-actions { justify-content: stretch; }
-  .cookie-actions .cookie-btn { flex: 1; }
+  .mww-prefs-inner { flex-direction: column; align-items: stretch; }
+  .mww-prefs-actions { justify-content: stretch; }
+  .mww-prefs-actions .mww-prefs-btn { flex: 1; }
 }
 
 @media (max-width: 420px) {

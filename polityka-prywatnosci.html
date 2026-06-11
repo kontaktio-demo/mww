@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
   <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#1a1a1a">
@@ -24,8 +23,8 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Polityka Prywatności - MWW Mieszkanie">
   <meta name="twitter:description" content="Polityka prywatności biura nieruchomości MWW Mieszkanie zgodnie z RODO.">
-  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e0e10' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
-  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png"><path d='M3 22V8L12 2l9 6v14'/><line x1='9' y1='22' x2='9' y2='14'/><line x1='15' y1='22' x2='15' y2='14'/><rect x='9' y='14' width='6' height='8'/></svg>">
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230e0e10' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M3 22V8L12 2l9 6v14'/><line x1='9' y1='22' x2='9' y2='14'/><line x1='15' y1='22' x2='15' y2='14'/><rect x='9' y='14' width='6' height='8'/></svg>">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -90,7 +89,8 @@
     .page-header h1 { font-family:var(--font-heading); font-size:2.2rem; font-weight:800; color:var(--primary); margin-bottom:10px; }
     .page-header p { color:var(--text-muted); font-size:.9rem; }
 
-    .prose-wrap { max-width:800px; margin:0 auto; padding:48px 40px 80px; position:relative; flex:1; }
+    .prose-wrap { max-width:800px; width:100%; margin:0 auto; padding:48px 40px 80px; position:relative; flex:1; min-width:0; }
+    .prose p, .prose li, .prose .info-box { overflow-wrap:break-word; word-break:break-word; }
     .prose-wrap::before { content:''; position:absolute; bottom:0; left:0; right:0; height:300px; background:url('images/lodz-panorama-2.webp') bottom center/cover no-repeat; opacity:.025; filter:grayscale(100%); pointer-events:none; }
     .prose h2 { font-family:var(--font-heading); font-size:1.35rem; font-weight:700; color:var(--primary); margin:40px 0 12px; padding-bottom:8px; border-bottom:1px solid var(--border-soft); }
     .prose h2:first-child { margin-top:0; }
@@ -122,7 +122,7 @@
       .prose h2 { font-size:1.15rem; margin:28px 0 10px; }
       .footer-bottom { padding:16px 20px; }
       .footer-bottom-inner { flex-direction:column; text-align:center; gap:4px; }
-      .cookie-table { font-size:.78rem; }
+      .cookie-table { font-size:.78rem; display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; }
       .cookie-table th, .cookie-table td { padding:6px 8px; }
     }
     @media (max-width:480px) {
@@ -132,7 +132,6 @@
       .prose p, .prose li { font-size:.85rem; }
       .prose .info-box { padding:16px; }
       .btn { padding:8px 16px; font-size:.78rem; }
-      .cookie-table { display:block; overflow-x:auto; }
     }
   </style>
   <link rel="stylesheet" href="styles.css">
@@ -358,6 +357,6 @@
 </footer>
 
 <script src="mww-shield.js" defer></script>
-<script src="cookie-consent.js" defer></script>
+<script src="prefs.js" defer></script>
 </body>
 </html>

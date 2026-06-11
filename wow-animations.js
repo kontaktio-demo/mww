@@ -251,28 +251,47 @@
     function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
     var animating = false;
-    function smoothScrollTo(targetY, duration) {
+    var animTargetY = 0;
+    var animStartY = 0;
+    var animStart = null;
+    var animDur = 600;
+
+    function startScrollAnim(targetY, duration) {
+      animTargetY = targetY;
+      animStartY = window.scrollY || window.pageYOffset;
+      var diff = animTargetY - animStartY;
+      if (Math.abs(diff) < 2) { animating = false; window.scrollTo(0, targetY); return; }
+      animDur = Math.max(450, Math.min(duration || (300 + Math.min(Math.abs(diff), 1400) * 0.55), 1300));
+      animStart = null;
       if (animating) return;
       animating = true;
-      var startY = window.scrollY || window.pageYOffset;
-      var diff = targetY - startY;
-      if (Math.abs(diff) < 2) { animating = false; window.scrollTo(0, targetY); return; }
-      var dur = Math.max(450, Math.min(duration || (300 + Math.min(Math.abs(diff), 1400) * 0.55), 1300));
-      var start = null;
+      requestAnimationFrame(step);
 
       function step(ts) {
-        if (start === null) start = ts;
-        var elapsed = ts - start;
-        var t = Math.min(1, elapsed / dur);
+        if (animStart === null) animStart = ts;
+        var elapsed = ts - animStart;
+        var t = Math.min(1, elapsed / animDur);
         var eased = easeOutCubic(t);
-        window.scrollTo(0, startY + diff * eased);
+        window.scrollTo(0, animStartY + (animTargetY - animStartY) * eased);
         if (t < 1) {
           requestAnimationFrame(step);
         } else {
           animating = false;
         }
       }
-      requestAnimationFrame(step);
+    }
+
+    function closeMobileMenu() {
+      var hamburger = document.getElementById('hamburger');
+      var navLinks = document.getElementById('navLinks');
+      if (navLinks && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        if (hamburger) {
+          hamburger.classList.remove('open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        }
+        document.body.style.overflow = '';
+      }
     }
 
     document.documentElement.style.scrollBehavior = 'auto';
@@ -298,9 +317,11 @@
       if (!target) return;
 
       e.preventDefault();
-      e.stopPropagation();
-      var top = target.getBoundingClientRect().top + window.pageYOffset - navOffset();
-      smoothScrollTo(Math.max(0, top));
+      closeMobileMenu();
+      requestAnimationFrame(function () {
+        var top = target.getBoundingClientRect().top + window.pageYOffset - navOffset();
+        startScrollAnim(Math.max(0, top));
+      });
       try { history.replaceState(null, '', '#' + id); } catch (_) {}
     }, true);
   }

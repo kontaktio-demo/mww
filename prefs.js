@@ -41,7 +41,7 @@
     });
     if (prefs.analytics) loadAnalytics();
     if (prefs.marketing) loadMarketing();
-    document.dispatchEvent(new CustomEvent('mww:cookie-consent', { detail: prefs }));
+    document.dispatchEvent(new CustomEvent('mww:mww-prefs', { detail: prefs }));
   }
 
   function loadAnalytics() {
@@ -58,40 +58,40 @@
 
   function buildBanner() {
     const wrap = document.createElement('div');
-    wrap.id = 'cookieConsent';
-    wrap.className = 'cookie-consent';
+    wrap.id = 'mwwPrefsBox';
+    wrap.className = 'mww-prefs';
     wrap.setAttribute('role', 'dialog');
-    wrap.setAttribute('aria-labelledby', 'cookieTitle');
-    wrap.setAttribute('aria-describedby', 'cookieDesc');
+    wrap.setAttribute('aria-labelledby', 'mwwPrefsTitle');
+    wrap.setAttribute('aria-describedby', 'mwwPrefsDesc');
     wrap.innerHTML = ''
-      + '<div class="cookie-inner">'
-      + '  <div class="cookie-text">'
-      + '    <strong id="cookieTitle">Pliki cookies</strong>'
-      + '    <p id="cookieDesc">Używamy plików cookies, aby zapewnić działanie strony oraz - za Twoją zgodą - mierzyć ruch (analityczne) i&nbsp;personalizować treści (marketingowe). Możesz zaakceptować wszystkie, odmówić zgody na opcjonalne lub dostosować wybór. Szczegóły: <a href="polityka-prywatnosci.html">Polityka Prywatności</a>.</p>'
+      + '<div class="mww-prefs-inner">'
+      + '  <div class="mww-prefs-text">'
+      + '    <strong id="mwwPrefsTitle">Pliki cookies</strong>'
+      + '    <p id="mwwPrefsDesc">Używamy plików cookies, aby zapewnić działanie strony oraz - za Twoją zgodą - mierzyć ruch (analityczne) i&nbsp;personalizować treści (marketingowe). Możesz zaakceptować wszystkie, odmówić zgody na opcjonalne lub dostosować wybór. Szczegóły: <a href="polityka-prywatnosci.html">Polityka Prywatności</a>.</p>'
       + '  </div>'
-      + '  <div class="cookie-actions">'
-      + '    <button type="button" id="cookieCustomize" class="cookie-btn cookie-btn-equal">Dostosuj</button>'
-      + '    <button type="button" id="cookieReject" class="cookie-btn cookie-btn-equal">Odmów</button>'
-      + '    <button type="button" id="cookieAccept" class="cookie-btn cookie-btn-equal">Akceptuj wszystkie</button>'
+      + '  <div class="mww-prefs-actions">'
+      + '    <button type="button" id="mwwPrefsCustomize" class="mww-prefs-btn mww-prefs-btn-equal">Dostosuj</button>'
+      + '    <button type="button" id="mwwPrefsReject" class="mww-prefs-btn mww-prefs-btn-equal">Odmów</button>'
+      + '    <button type="button" id="mwwPrefsAccept" class="mww-prefs-btn mww-prefs-btn-equal">Akceptuj wszystkie</button>'
       + '  </div>'
       + '</div>'
-      + '<div id="cookieCustomPanel" class="cookie-custom-panel" hidden>'
-      + '  <div class="cookie-checks">'
-      + '    <label class="cookie-check">'
+      + '<div id="mwwPrefsPanel" class="mww-prefs-panel" hidden>'
+      + '  <div class="mww-prefs-checks">'
+      + '    <label class="mww-prefs-check">'
       + '      <input type="checkbox" checked disabled aria-label="Niezbędne (zawsze włączone)">'
       + '      <span><strong>Niezbędne</strong> - wymagane do działania strony (zawsze włączone, zapis preferencji cookies).</span>'
       + '    </label>'
-      + '    <label class="cookie-check">'
-      + '      <input type="checkbox" id="cookieAnalytics">'
+      + '    <label class="mww-prefs-check">'
+      + '      <input type="checkbox" id="mwwPrefsAnalytics">'
       + '      <span><strong>Analityczne</strong> - Google Analytics 4, Google Tag Manager. Pomagają nam zrozumieć, jak korzystasz ze strony.</span>'
       + '    </label>'
-      + '    <label class="cookie-check">'
-      + '      <input type="checkbox" id="cookieMarketing">'
+      + '    <label class="mww-prefs-check">'
+      + '      <input type="checkbox" id="mwwPrefsMarketing">'
       + '      <span><strong>Marketingowe</strong> - Meta Pixel, Google Ads. Mierzymy skuteczność kampanii i&nbsp;dopasowujemy treści.</span>'
       + '    </label>'
       + '  </div>'
-      + '  <div class="cookie-actions cookie-actions-panel">'
-      + '    <button type="button" id="cookieSave" class="cookie-btn cookie-btn-equal">Zapisz preferencje</button>'
+      + '  <div class="mww-prefs-actions mww-prefs-actions-panel">'
+      + '    <button type="button" id="mwwPrefsSave" class="mww-prefs-btn mww-prefs-btn-equal">Zapisz preferencje</button>'
       + '  </div>'
       + '</div>';
     return wrap;
@@ -110,30 +110,30 @@
   }
 
   function bindBanner(banner) {
-    const panel = banner.querySelector('#cookieCustomPanel');
-    const aBox = banner.querySelector('#cookieAnalytics');
-    const mBox = banner.querySelector('#cookieMarketing');
+    const panel = banner.querySelector('#mwwPrefsPanel');
+    const aBox = banner.querySelector('#mwwPrefsAnalytics');
+    const mBox = banner.querySelector('#mwwPrefsMarketing');
 
-    banner.querySelector('#cookieAccept').addEventListener('click', () => {
+    banner.querySelector('#mwwPrefsAccept').addEventListener('click', () => {
       writeConsent({ analytics: true, marketing: true });
       hide(banner);
     });
-    banner.querySelector('#cookieReject').addEventListener('click', () => {
+    banner.querySelector('#mwwPrefsReject').addEventListener('click', () => {
       writeConsent({ analytics: false, marketing: false });
       hide(banner);
     });
-    banner.querySelector('#cookieCustomize').addEventListener('click', () => {
+    banner.querySelector('#mwwPrefsCustomize').addEventListener('click', () => {
       panel.hidden = !panel.hidden;
     });
-    banner.querySelector('#cookieSave').addEventListener('click', () => {
+    banner.querySelector('#mwwPrefsSave').addEventListener('click', () => {
       writeConsent({ analytics: aBox.checked, marketing: mBox.checked });
       hide(banner);
     });
   }
 
   function show(banner, preFill) {
-    const aBox = banner.querySelector('#cookieAnalytics');
-    const mBox = banner.querySelector('#cookieMarketing');
+    const aBox = banner.querySelector('#mwwPrefsAnalytics');
+    const mBox = banner.querySelector('#mwwPrefsMarketing');
     if (aBox) aBox.checked = !!(preFill && preFill.analytics);
     if (mBox) mBox.checked = !!(preFill && preFill.marketing);
     requestAnimationFrame(() => banner.classList.add('show'));
@@ -141,7 +141,7 @@
 
   function hide(banner) {
     banner.classList.remove('show');
-    const panel = banner.querySelector('#cookieCustomPanel');
+    const panel = banner.querySelector('#mwwPrefsPanel');
     if (panel) panel.hidden = true;
   }
 
@@ -157,7 +157,7 @@
   window.mwwOpenCookieSettings = function () {
     const current = readConsent() || { analytics: false, marketing: false };
     const b = ensureBanner();
-    b.querySelector('#cookieCustomPanel').hidden = false;
+    b.querySelector('#mwwPrefsPanel').hidden = false;
     show(b, current);
   };
 

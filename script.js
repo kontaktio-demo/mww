@@ -315,6 +315,7 @@ function initStickyBar() {
     const should = window.scrollY > 900;
     if (should !== shown) {
       shown = should;
+      bar.classList.toggle('show', should);
       bar.classList.toggle('on', should);
       bar.setAttribute('aria-hidden', String(!should));
     }
@@ -322,6 +323,7 @@ function initStickyBar() {
   window.addEventListener('scroll', update, { passive: true });
   update();
   close.addEventListener('click', () => {
+    bar.classList.remove('show');
     bar.classList.remove('on');
     bar.setAttribute('aria-hidden', 'true');
     try { localStorage.setItem(KEY, '1'); } catch {}
@@ -397,6 +399,7 @@ function initSmoothAnchors() {
   }
 
   document.addEventListener('click', (e) => {
+    if (e.defaultPrevented) return;
     const a = e.target.closest('a[href*="#"]');
     if (!a) return;
     const href = a.getAttribute('href') || '';
