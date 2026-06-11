@@ -2658,12 +2658,22 @@ body.oferty,
   .nav .nav-cta, .nav-cta { display: none !important; }
   .hamburger { width: 38px !important; height: 38px !important; }
 
-  /* hero */
-  .hero { min-height: 84vh !important; }
-  .hero-content { padding: 0 22px !important; }
-  .hero-subtitle { font-size: 1rem !important; line-height: 1.6 !important; margin-bottom: 1.6rem !important; }
+  /* hero: clear the fixed nav at the top, reserve room for the scroll cue
+     at the bottom, and center the content safely between - no overlaps */
+  .hero {
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 90vh !important;
+    padding: 88px 22px 96px !important;
+  }
+  .hero-content { padding: 0 !important; width: 100%; }
+  .hero-eyebrow { margin-bottom: 0.9rem !important; }
+  .hero h1, .hero-content h1 { margin-bottom: 0.9rem !important; }
+  .hero-subtitle { font-size: 1rem !important; line-height: 1.6 !important; margin-bottom: 1.4rem !important; }
   .hero-actions { gap: 10px; flex-direction: column; }
   .hero-actions .btn { width: 100%; }
+  .hero-scroll { bottom: 26px !important; }
+  .hero-scroll .scroll-line { height: 28px !important; }
 
   /* vertical rhythm */
   section, .section { padding-top: 50px !important; padding-bottom: 50px !important; }
