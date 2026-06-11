@@ -99,10 +99,15 @@
       display:flex; flex-wrap:wrap; gap:12px; justify-content:center;
     }
     @media (max-width:600px) {
-      .nav { padding:0 20px; }
+      .nav { padding:0 16px; height:60px; }
       .nav-links { display:none; }
-      main { padding:40px 20px; }
-      .err-desc { font-size:.94rem; }
+      .logo { font-size:1.05rem; }
+      .nav .btn-primary { padding:9px 16px; font-size:.78rem; }
+      main { padding:36px 20px; }
+      .err-code { font-size:clamp(5rem, 22vw, 7rem); margin-bottom:10px; }
+      .err-eyebrow { margin-bottom:10px; }
+      .err-title { font-size:1.4rem; margin-bottom:12px; }
+      .err-desc { font-size:.94rem; margin-bottom:28px; }
       .err-cta { flex-direction:column; width:100%; max-width:320px; margin:0 auto; }
       .err-cta .btn { width:100%; justify-content:center; }
     }

@@ -2642,3 +2642,112 @@ body.oferty,
   .photo-band--night     { background-image: url('images/agentka-portret-mobile.webp') !important; background-image: image-set(url('images/agentka-portret-mobile.avif') type('image/avif'), url('images/agentka-portret-mobile.webp') type('image/webp')) !important; }
 }
 
+
+
+.hero-scroll {
+  left: 0 !important;
+  right: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 600px) {
+  /* leaner header */
+  .nav, header.nav, #nav { padding: 10px 16px !important; }
+  .nav .logo, .preloader-logo { font-size: 1.02rem !important; white-space: nowrap !important; }
+  .nav .nav-cta, .nav-cta { display: none !important; }
+  .hamburger { width: 38px !important; height: 38px !important; }
+
+  /* hero */
+  .hero { min-height: 84vh !important; }
+  .hero-content { padding: 0 22px !important; }
+  .hero-subtitle { font-size: 1rem !important; line-height: 1.6 !important; margin-bottom: 1.6rem !important; }
+  .hero-actions { gap: 10px; flex-direction: column; }
+  .hero-actions .btn { width: 100%; }
+
+  /* vertical rhythm */
+  section, .section { padding-top: 50px !important; padding-bottom: 50px !important; }
+  .section-header { margin-bottom: 26px !important; }
+  .section-header h2 { font-size: 1.55rem !important; margin: 0.3rem 0 0.75rem !important; line-height: 1.25 !important; }
+  .container { padding-left: 18px !important; padding-right: 18px !important; }
+
+  /* readable body copy */
+  .lead, .section-desc, .about-solo-lead, .service-hero .lead, .section-header p { font-size: 1rem !important; line-height: 1.6 !important; }
+
+  /* cards: tighter + clearer type */
+  .usp-card, .service-card, .process-step, .partner-card, .testimonial-card,
+  .contact-info-card, .contact-form-wrap, .value-card, .feature-card,
+  .benefit-card, .howto-step, .faq-item, .highlight-card {
+    padding: 22px 18px !important;
+  }
+  .usp-grid, .services-grid, .process-grid, .partners-grid, .values-grid,
+  .benefits-grid, .howto-grid, .highlights-grid { gap: 12px !important; }
+  .usp-card h3, .service-card h3, .process-step h3, .benefit-card h3, .howto-step h3, .faq-item h3 {
+    font-size: 1.02rem !important; margin: 0.7rem 0 0.45rem !important;
+  }
+  .usp-card p, .service-card p, .process-step p, .benefit-card p, .howto-step p, .faq-item p, .partner-card span {
+    font-size: 0.92rem !important; line-height: 1.55 !important;
+  }
+  .usp-icon, .service-icon, .benefit-icon { width: 48px !important; height: 48px !important; margin-bottom: 0.9rem !important; }
+  .process-number { font-size: 1.5rem !important; }
+  .howto-step .num { width: 38px !important; height: 38px !important; font-size: 0.9rem !important; }
+
+  /* shorten the very tall Uslugi list: cap card blurb, full text lives on its page */
+  .services-grid .service-card p {
+    display: -webkit-box !important;
+    -webkit-line-clamp: 3 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+
+  /* photo bands */
+  .photo-band { min-height: 280px !important; padding: 50px 0 !important; }
+  .photo-band-inner { padding: 0 20px !important; }
+  .photo-band h2 { font-size: 1.55rem !important; line-height: 1.3 !important; max-width: 100% !important; margin-bottom: 0.8rem !important; }
+  .photo-band p { font-size: 0.98rem !important; line-height: 1.6 !important; max-width: 100% !important; }
+  .photo-band-stats { gap: 16px 30px !important; margin-top: 1.6rem !important; }
+  .photo-band-stat .num { font-size: 2.4rem !important; }
+  .photo-band-stat .label { font-size: 0.85rem !important; }
+
+  /* about / agent block */
+  .agent-photo, .agent-photo--photo { aspect-ratio: 3 / 4 !important; }
+  .about-solo-cta { gap: 10px !important; }
+  .about-solo-cta .btn { width: 100%; }
+
+  /* service subpage hero */
+  .service-hero { min-height: auto !important; padding: 88px 0 44px !important; }
+  .service-hero h1, .service-hero-inner h1 { font-size: 1.95rem !important; line-height: 1.18 !important; margin: 0.5rem 0 1rem !important; }
+  .service-hero-eyebrow, .service-hero .eyebrow { font-size: 0.78rem !important; }
+  .breadcrumbs-light { margin-bottom: 14px !important; font-size: 0.72rem !important; }
+  .service-hero-actions { flex-direction: column !important; gap: 10px !important; }
+  .service-hero-actions .btn { width: 100% !important; }
+
+  /* dark CTA box on service pages */
+  .service-cta { margin: 50px auto !important; }
+  .service-cta .container { padding: 34px 22px 40px !important; }
+  .service-cta h2 { font-size: 1.5rem !important; }
+  .service-cta-actions { flex-direction: column !important; }
+  .service-cta-actions .btn { width: 100% !important; }
+
+  /* contact form: 1rem inputs prevent iOS zoom */
+  .contact-form input, .contact-form textarea, .contact-form select,
+  input[type=text], input[type=email], input[type=tel], select, textarea {
+    font-size: 1rem !important; padding: 12px 14px !important;
+  }
+  .contact-form label, label { font-size: 0.88rem !important; }
+  .form-group { margin-bottom: 14px !important; }
+  .contact-layout { gap: 16px !important; }
+
+  /* footer: a touch larger + roomier links */
+  .footer-col a { font-size: 0.9rem !important; }
+  .footer-col ul { gap: 9px !important; }
+  .footer h4 { font-size: 0.82rem !important; margin-bottom: 0.7rem !important; }
+
+  /* offer detail headings (base h1/h2 are forced !important above) */
+  .offer-title { font-size: 1.75rem !important; line-height: 1.2 !important; }
+  .offer-section h2 { font-size: 1.15rem !important; }
+
+  /* legal pages prose headings (forced h2/h3 above) */
+  .prose h2 { font-size: 1.28rem !important; margin: 26px 0 10px !important; }
+  .prose h3 { font-size: 1.05rem !important; }
+}

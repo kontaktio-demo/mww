@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initCounters();
   initForm();
-  initStickyBar();
   initTelConfirm();
   initSmoothAnchors();
 });
@@ -302,33 +301,6 @@ function clearError(input) {
   input.style.boxShadow   = '';
   const msg = input.parentNode && input.parentNode.querySelector('.field-error');
   if (msg) msg.remove();
-}
-
-function initStickyBar() {
-  const bar   = document.getElementById('stickyBar');
-  const close = document.getElementById('stickyClose');
-  if (!bar || !close) return;
-  const KEY = 'kontaktio_sticky_closed';
-  try { if (localStorage.getItem(KEY) === '1') return; } catch {}
-  let shown = false;
-  const update = () => {
-    const should = window.scrollY > 900;
-    if (should !== shown) {
-      shown = should;
-      bar.classList.toggle('show', should);
-      bar.classList.toggle('on', should);
-      bar.setAttribute('aria-hidden', String(!should));
-    }
-  };
-  window.addEventListener('scroll', update, { passive: true });
-  update();
-  close.addEventListener('click', () => {
-    bar.classList.remove('show');
-    bar.classList.remove('on');
-    bar.setAttribute('aria-hidden', 'true');
-    try { localStorage.setItem(KEY, '1'); } catch {}
-    window.removeEventListener('scroll', update);
-  });
 }
 
 function initTelConfirm() {
