@@ -969,12 +969,12 @@ input[type=checkbox]:focus-visible, input[type=radio]:focus-visible {
 }
 .footer h4, .footer .footer-col h3 {
   color: var(--color-ink) !important;
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
-  font-size: 0.78rem !important;
+  font-family: 'Manrope', 'Inter', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
   text-transform: none;
-  letter-spacing: 0 !important;
-  margin-bottom: 0.7rem;
+  letter-spacing: -0.01em !important;
+  margin-bottom: 1rem;
 }
 .footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
 .footer-col a { color: var(--color-ink-2) !important; font-size: 0.84rem; }
@@ -2769,7 +2769,7 @@ body.oferty,
   /* footer: a touch larger + roomier links */
   .footer-col a { font-size: 0.9rem !important; }
   .footer-col ul { gap: 9px !important; }
-  .footer h4, .footer .footer-col h3 { font-size: 0.82rem !important; margin-bottom: 0.7rem !important; }
+  .footer h4, .footer .footer-col h3 { font-size: 1.02rem !important; margin-bottom: 0.85rem !important; }
 
   /* offer detail headings (base h1/h2 are forced !important above) */
   .offer-title { font-size: 1.75rem !important; line-height: 1.2 !important; }
