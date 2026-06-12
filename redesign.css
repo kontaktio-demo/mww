@@ -2666,7 +2666,7 @@ body.oferty,
     justify-content: center !important;
     align-items: center !important;
     min-height: 100vh !important;
-    min-height: 100svh !important;
+    min-height: 100dvh !important;
     padding: 86px 22px 48px !important;
   }
   .hero-content { padding: 0 !important; width: 100%; }
@@ -2676,6 +2676,7 @@ body.oferty,
   .hero-actions { gap: 10px; flex-direction: column; }
   .hero-actions .btn { width: 100%; }
   .hero-scroll { display: none !important; }
+  .hero-bg, #heroBg { transform: none !important; }
 
   /* vertical rhythm */
   section, .section { padding-top: 50px !important; padding-bottom: 50px !important; }
