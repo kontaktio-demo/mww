@@ -2199,114 +2199,129 @@ body.oferty,
     grid-template-columns: 1fr !important;
     gap: 14px !important;
   }
+  /* mobile offer card: clean VERTICAL layout - full-width photo on top,
+     readable details below, action row at the bottom (no cramped side-by-side) */
   .listing-card {
-    flex-direction: row !important;
+    flex-direction: column !important;
     align-items: stretch !important;
-    border-radius: 12px !important;
+    border-radius: 16px !important;
     overflow: hidden !important;
   }
   .listing-card-link {
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
     align-items: stretch !important;
     width: 100% !important;
     min-width: 0 !important;
   }
   .listing-photo {
-    flex: 0 0 38% !important;
-    max-width: 38% !important;
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    aspect-ratio: 16 / 10 !important;
     height: auto !important;
-    min-height: 150px !important;
-    aspect-ratio: auto !important;
+    min-height: 0 !important;
   }
   .listing-photo img {
+    width: 100% !important;
     height: 100% !important;
-    min-height: 150px !important;
+    min-height: 0 !important;
+    object-fit: cover !important;
   }
   .listing-body {
     flex: 1 1 auto !important;
     min-width: 0 !important;
-    padding: 12px 14px 10px !important;
+    padding: 16px 16px 12px !important;
     display: flex !important;
     flex-direction: column !important;
   }
   .listing-price {
-    font-size: 1.1rem !important;
+    font-size: 1.4rem !important;
   }
   .listing-price-row {
-    margin-bottom: 4px !important;
+    margin-bottom: 6px !important;
     flex-wrap: wrap !important;
-    gap: 6px !important;
+    gap: 2px 10px !important;
+    align-items: baseline !important;
   }
   .listing-price-m2 {
-    margin-left: 0 !important;
-    width: 100%;
-    font-size: 0.74rem !important;
+    margin-left: auto !important;
+    width: auto !important;
+    font-size: 0.82rem !important;
   }
   .listing-title {
-    font-size: 0.95rem !important;
-    margin: 4px 0 6px !important;
+    font-size: 1.08rem !important;
+    margin: 6px 0 12px !important;
     -webkit-line-clamp: 2;
   }
   .listing-pills {
-    margin-bottom: 6px !important;
-    gap: 4px !important;
+    margin-bottom: 12px !important;
+    gap: 6px !important;
   }
   .pill {
-    font-size: 0.72rem !important;
-    padding: 3px 7px !important;
+    font-size: 0.8rem !important;
+    padding: 5px 11px !important;
   }
   .listing-location {
-    font-size: 0.78rem !important;
-    margin-bottom: 4px !important;
+    font-size: 0.86rem !important;
+    margin-bottom: 10px !important;
   }
-  .listing-desc { display: none !important; }
+  .listing-desc {
+    display: -webkit-box !important;
+    font-size: 0.88rem !important;
+    margin-bottom: 12px !important;
+  }
   .listing-footer {
-    padding-top: 6px !important;
-    border-top: none !important;
+    padding-top: 12px !important;
+    border-top: 1px solid var(--color-line-soft) !important;
     margin-top: auto !important;
   }
   .listing-time {
-    font-size: 0.72rem !important;
+    font-size: 0.8rem !important;
   }
   .listing-actions-bar {
-    flex-direction: column !important;
-    justify-content: center !important;
-    gap: 6px !important;
-    padding: 10px 10px !important;
-    border-left: 1px solid var(--color-line-soft) !important;
+    flex-direction: row !important;
+    align-items: stretch !important;
+    justify-content: stretch !important;
+    gap: 10px !important;
+    padding: 0 16px 16px !important;
+    border-left: none !important;
     border-top: none !important;
     flex: 0 0 auto !important;
   }
   .btn-ask-small {
-    padding: 7px 10px !important;
-    font-size: 0.78rem !important;
+    flex: 1 1 auto !important;
+    justify-content: center !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem !important;
   }
-  .btn-ask-small svg { display: none; }
+  .btn-ask-small svg { display: inline !important; }
   .btn-save {
-    padding: 7px 10px !important;
+    flex: 0 0 auto !important;
+    width: 50px !important;
+    padding: 12px !important;
   }
   .listing-badges {
-    top: 8px !important;
-    left: 8px !important;
-    gap: 4px !important;
+    top: 12px !important;
+    left: 12px !important;
+    gap: 6px !important;
   }
   .listing-badge {
-    font-size: 0.76rem !important;
-    padding: 4px 9px !important;
+    font-size: 0.78rem !important;
+    padding: 5px 11px !important;
   }
   .listing-img-count {
-    bottom: 8px !important;
-    right: 8px !important;
-    padding: 3px 8px !important;
-    font-size: 0.68rem !important;
+    bottom: 12px !important;
+    right: 12px !important;
+    padding: 4px 10px !important;
+    font-size: 0.76rem !important;
   }
   .listing-badge-featured {
-    top: 8px !important;
-    right: 8px !important;
-    width: 22px !important;
-    height: 22px !important;
-    font-size: 0.7rem !important;
+    top: 12px !important;
+    right: 12px !important;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 0.78rem !important;
   }
 
   .page-header { padding: 100px 0 36px !important; }
