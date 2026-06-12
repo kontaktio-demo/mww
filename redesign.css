@@ -2866,3 +2866,19 @@ body.oferty,
   outline: 2px solid var(--color-accent) !important;
   outline-offset: 2px !important;
 }
+
+
+/* Short viewports (landscape phones, very short screens): the decorative
+   scroll cue has no room and would overlap the hero content - hide it and
+   let the hero size to its content. */
+@media (max-height: 560px) {
+  .hero-scroll { display: none !important; }
+  .hero {
+    min-height: auto !important;
+    padding: 78px 22px 34px !important;
+  }
+}
+@media (max-height: 560px) and (orientation: landscape) {
+  .hero-actions { flex-direction: row !important; justify-content: center; flex-wrap: wrap; }
+  .hero-actions .btn { width: auto !important; }
+}
