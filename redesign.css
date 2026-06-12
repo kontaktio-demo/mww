@@ -2900,3 +2900,9 @@ body.oferty,
   .hero-actions { flex-direction: row !important; justify-content: center; flex-wrap: wrap; }
   .hero-actions .btn { width: auto !important; }
 }
+
+
+@media (max-width: 600px) {
+  .service-hero .service-hero-bg,
+  .service-hero-bg { transform: none !important; }
+}
